@@ -8,7 +8,7 @@
 #              for upload to SIS.
 
 #### Load packages ####
-packages <- c("tidyr")
+packages <- c("tidyr","data.table","dplyr")
 
 lapply(packages, package.check)
 
@@ -50,9 +50,9 @@ SIS_table_generator_main <- function (){
   dist.realm <- narrative_realm_search()
   extreme_occ <- Extreme_occurrences_narrative()
   # Build final elevation table (FNA is prioritized over GBIF)
-  elevation_text <<- elevation_narrative()
+  elevation_text <- elevation_narrative()
   # Build allfields table
-  allfields <<- ALLFIELDS_TABLE_BUILD()
+  allfields <<- ALLFIELDS_TABLE_BUILD(elevation_text)
   # Write allfields table
   write.csv(allfields, 
             paste("Outputs/Allfields_batch_", 
@@ -60,7 +60,7 @@ SIS_table_generator_main <- function (){
                   ".csv", sep = ""),
             row.names = FALSE)
   # Build assessments table
-  assessments <<- ASSESSMENT_TABLE_BUILD()
+  assessments <<- ASSESSMENT_TABLE_BUILD(elevation_text)
   # Write assessments table
   write.csv(assessments, 
             file=paste("Outputs/Assessments_batch_", 
@@ -347,7 +347,7 @@ elevation_narrative <- function (){
 # Purpose: Generates citations for distribution narrative fields
 distribution_citations_generate <- function (){
   # Build table with each source for taxa with distributions
-  dist_cite <<- data.frame(id = unique(countries_table$id))
+  dist_cite <- data.frame(id = unique(countries_table$id))
   dist_cite$POWO <- unique(countries_table$id) %in% 
     references$internal_taxon_id[which(references$keywords == "POWO")]
   dist_cite$NS <- unique(countries_table$id) %in% 
@@ -375,7 +375,7 @@ distribution_citations_generate <- function (){
   return(dist_cite)
 }
 
-ASSESSMENT_TABLE_BUILD <- function (){
+ASSESSMENT_TABLE_BUILD <- function (x){
   # Build assessments table
   assessments <- rbind(assessments.template, 
                        assessments.template[rep(1, nrow(spec.list)), ])
@@ -385,7 +385,7 @@ ASSESSMENT_TABLE_BUILD <- function (){
   extreme_temp <- Extreme_occurrences_narrative()
   dist_citations <- distribution_citations_generate()
   dist_nar1 <- narrative_realm_search()
-  dist_nar1 <- merge(dist_nar1, elevation_text)
+  dist_nar1 <- merge(dist_nar1, x)
 
   dist_nar1 <- merge(dist_nar1, extreme_temp, by.x = "internal_taxon_id", by.y = "ID_NO")
   
@@ -487,7 +487,7 @@ ASSESSMENT_TABLE_BUILD <- function (){
   return(assessments)
 }
 
-ALLFIELDS_TABLE_BUILD <- function (){
+ALLFIELDS_TABLE_BUILD <- function (x){
   # Build allfields table
   allfields <- rbind(allfields.template, 
                      allfields.template[rep(1, nrow(spec.list)), ])
@@ -516,16 +516,16 @@ ALLFIELDS_TABLE_BUILD <- function (){
       !is.na(spec.list$eoo_range))], allfields$internal_taxon_id)]
   # Populate elevation minimum
   allfields$ElevationLower.limit[
-    which(allfields$internal_taxon_id %in% elevation_text$internal_taxon_id)] <- 
-    elevation_text$min_elev[match(allfields$internal_taxon_id[
-      which(allfields$internal_taxon_id %in% elevation_text$internal_taxon_id)],
-                                           elevation_text$internal_taxon_id)]
+    which(allfields$internal_taxon_id %in% x$internal_taxon_id)] <- 
+    x$min_elev[match(allfields$internal_taxon_id[
+      which(allfields$internal_taxon_id %in% x$internal_taxon_id)],
+                                           x$internal_taxon_id)]
   # Populate elevation maximum
   allfields$ElevationUpper.limit[
-    which(allfields$internal_taxon_id %in% elevation_text$internal_taxon_id)] <- 
-    elevation_text$max_elev[match(allfields$internal_taxon_id[
-      which(allfields$internal_taxon_id %in% elevation_text$internal_taxon_id)],
-      elevation_text$internal_taxon_id)]
+    which(allfields$internal_taxon_id %in% x$internal_taxon_id)] <- 
+    x$max_elev[match(allfields$internal_taxon_id[
+      which(allfields$internal_taxon_id %in% x$internal_taxon_id)],
+      x$internal_taxon_id)]
   # Populate AOO justification field
   allfields$AOO.justification[which(!is.na(allfields$AOO.range))] <- 
     default_vals$value[which(default_vals$var_name == "aoo.just")]

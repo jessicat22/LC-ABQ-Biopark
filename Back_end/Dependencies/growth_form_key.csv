@@ -1,0 +1,47 @@
+iucn_code,growth_form
+A,annual
+A,therophyte
+B,moss
+B,acrocarpic moss
+B,pleurocarpus
+B,pleurocarpous
+C,cycad
+E,epiphyte
+E,hemiepiphyte
+F,herb
+F,lycopsid
+F,forb
+F,sub-shrub
+S,sub-shrub
+F,subshrub
+S,subshrub
+F,woody herb
+GE,geophyte
+GR,grass
+GR,sedge
+GR,reed
+GR,cyperoid
+H,hydrophyte
+H,aquatic
+H,marsh
+L,lithophyte
+LC,lichen
+M,fungus
+P,parasite
+P,hemiparasite
+PT,fern
+S,woody herb
+S,shrub
+SA,annual succulent
+SC,succulent
+SH,succulent shrub
+SL,large shrub
+SS,small shrub
+ST,succulent tree
+T,tree
+TL,large tree
+TS,small tree
+V,vine
+V,liana
+V,twining herb
+F,twining herb

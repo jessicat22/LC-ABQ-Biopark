@@ -1,0 +1,28 @@
+var_name,value
+presence_code,1
+seasonal_code,1
+origin_code,1
+pop.data.qual,Unknown
+aoo.just,AOO was calculated based on publicly available point data from GBIF . The reported upper value is calculated based on the number of 2 km x 2 km grid cells occupied by points occurring within WGSRPD regions where the species is confirmed to be native. The lower value is derived from the same data with the 10% of points furthest from the species' centroid removed. Both figures should be considered underestimates given incomplete sampling of the species.
+eoo.just,"EOO calculated based on GBIF.org (2020) occurrence records trimmed to include only the species' native range as defined by Plants of the World Online, NatureServe, and VASCAN. The lower value is derived from the same data with the 10% of points furthest from the species' centroid removed."
+del_year,TRUE
+sens,FALSE
+inat,TRUE
+nothreats,TRUE
+threats.unknown,FALSE
+rationale.text,"The species has a large range, and there is currently no indication of widespread population decline. It is therefore listed as Least Concern."
+threats.text,There are no known significant threats to the species at this time.
+outlier_threshold,0.9
+uncertainty_tolerance,5000
+min_decimals,4
+precision_method,single
+ocurrenceRemarks_cull,cult
+ocurrenceRemarks_cull,garden
+occurrenceRemarks_introduced,escaped
+is.restricted.eoo.cutoff,40000
+is.restricted.aoo.cutoff,500
+is.restricted.justification,Records of the species are abundant and there is currently no indication that the species would qualify for listing under a threatened category based on its distribution.
+language.value,English
+pop.narrative,"Records of the species are abundant, and there is currently no indication that population declines meet thresholds for listing under a threatened category."
+map.status,Done
+threats.narrative,"The species has a large range, and numerous records of the species are available. At present, no threats likely to drive the species into a threatened category are known."

@@ -1,0 +1,9 @@
+origin_text,origin_code,presence_text,presence_code,seasonality_text,seasonality_code,realm_abbreviated,realm_text
+Native,1,Extant,1,Resident,1,AT,Afrotropical
+Reintroduced,2,Possibly Extant,3,Breeding Season,2,AN,Antarctic
+Introduced,3,Possibly Extinct,4,Non-Breeding Season,3,AA,Australasian
+Assisted Colonisation,6,Extinct Post-1500,5,Passage,4,IM,Indomalayan
+Vagrant,4,Presence Uncertain,6,Seasonal Occurrence Uncertain,5,NA,Nearctic
+Origin Uncertain,5,,,,,NT,Neotropical
+,,,,,,OC,Oceanian
+,,,,,,PA,Palearctic

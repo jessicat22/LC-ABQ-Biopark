@@ -54,7 +54,7 @@ NS_data_main <- function () {
   NS_common_reformat()
   NS_syn_reformat()
   NS_synonyms <<- NS_synonym_reformat2()
-  NS_author_extract()
+  NS_taxonomy <<- NS_author_extract()
   if(nrow(NS_occ)>0){references <<- NS_citations_generate()}
   print("NatureServe Data reformatted.")
 }
@@ -342,8 +342,10 @@ NS_syn_reformat <- function () {
 # Throws: none
 # Purpose: Add author field to taxonomic summary (NS_taxonomy)
 NS_author_extract <- function () {
+  NS_taxonomy$ns_authority <- NA
   NS_taxonomy$ns_authority[which(
-    NS_taxonomy$match_type != "No result")] <<- NS_data$ns_aut
+    NS_taxonomy$match_type != "No result")] <- NS_data$ns_aut
+  return(NS_taxonomy)
 }
 
 # Parameters: NS_synonyms (table)

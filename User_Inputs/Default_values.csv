@@ -26,3 +26,5 @@ language.value,English
 pop.narrative,"Records of the species are abundant, and there is currently no indication that population declines meet thresholds for listing under a threatened category."
 map.status,Done
 threats.narrative,"The species has a large range, and numerous records of the species are available. At present, no threats likely to drive the species into a threatened category are known."
+throttle_points,TRUE
+throttle_level,5000

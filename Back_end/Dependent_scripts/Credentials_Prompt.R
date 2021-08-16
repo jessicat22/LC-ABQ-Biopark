@@ -33,7 +33,6 @@ GBIF_username <- function (){
   }
 }
 
-
 # Parameters: User input
 # Returns: var: gbif_email
 # Throws: If email is already stored, returns text confirmation.
@@ -86,7 +85,9 @@ RL_credentials <- function (){
 
 #### Execute Functions ####
 # Ask user if they'd like to search the Red List
-RL_toggle <- readline(prompt="Search the IUCN Red List (requires a Red List API Token? Enter Y or N:")
+# RL_toggle <- readline(prompt="Search the IUCN Red List (requires a Red List API Token? Enter Y or N:")
+RL_toggle <- "N"
+
 # Ask user if they'd like to search GBIF records
 GBIF_toggle <- readline(prompt="Search GBIF databse (requires GBIF credentials and password)? Enter Y or N:")
 

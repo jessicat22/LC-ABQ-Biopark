@@ -50,8 +50,10 @@ DEPENDENCIES_load_defaults <- function () {
   # Load default_values.csv
   default_vals <<- data.frame(read.csv("User_inputs/Default_values.csv"))
   # Add version number
-  version_no <- data.frame(c("version_number",version_no,NA,NA))
-  default_vals <<- rbind(default_vals,version_no)
+  version_no2 <- data.frame("version_number",version_no,
+                            "Software version number used in this analysis", NA)
+  names(version_no2) <- names(default_vals)
+  default_vals <<- rbind(default_vals,version_no2)
   # Load occurrence key
   occ.codes <- data.frame(read.csv("Back_end/Dependencies/occ_codes.csv"), 
                           stringsAsFactors = FALSE)

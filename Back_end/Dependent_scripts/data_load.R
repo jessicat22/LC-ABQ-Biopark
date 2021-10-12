@@ -36,7 +36,7 @@ DEPENDENCIES_main <- function () {
   # Assign batch number
   batch_no <- data.frame(var_name = "batch_no",
                          value = as.numeric(format(Sys.time(),"%y%m%d%H%M%S")))
-  default_vals <<- rbind(default_vals, batch_no)
+  default_vals <<- rbind(default_vals[,c(1:2)], batch_no)
   print("Dependent data loaded.")
 }
 

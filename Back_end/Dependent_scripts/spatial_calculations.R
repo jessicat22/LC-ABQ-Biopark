@@ -31,6 +31,8 @@ lapply(packages, package.check)
 
 SPATIAL_CALCULATIONS_MAIN <- function (){
   print("Performing spatial calculations.")
+  # Turn off s2 processing
+  sf::sf_use_s2(FALSE)
   GBIF_lat_long_duplicate()
   WGSRPD_index()
   WGSRPD_lvl1_add()

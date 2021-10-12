@@ -57,7 +57,7 @@ spec.list$id[which(is.na(spec.list$id))] <-
 
 ## Subset rows for testing purposes
 # Comment out this line to run entire list
-spec.list <- spec.list[c(101:125),]
+spec.list <- spec.list[c(1:30),]
 
 #### Initiate GBIF Search ####
 if(GBIF_toggle == "Y") {

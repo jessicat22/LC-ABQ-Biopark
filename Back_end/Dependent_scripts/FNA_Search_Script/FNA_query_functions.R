@@ -149,10 +149,12 @@ fna_sp_lvl_check <- function(){
     fna_tax_check$accepted_match))] <<-
     fna_tax_check$synonym_match[which(is.na(
       fna_tax_check$accepted_match))]
-  
+
   # Unlist results
-  fna_tax_check$accepted_match <<- unlist(
-    fna_tax_check$accepted_match)
+  # Method selects first element in each list as FNA reports species
+  # level first. This may produce unpredictable results when infrataxa are run
+  fna_tax_check$accepted_match <<- lapply(
+    fna_tax_check$accepted_match, '[[',1)
   
 }
 

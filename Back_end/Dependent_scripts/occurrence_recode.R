@@ -8,6 +8,8 @@
 #              ready for export
 
 #### Load Packages ####
+# Load dependent functions
+source("Back_end/Dependent_scripts/Occurrence_reformat.R")
 
 #### Main Function ####
 OCCURRENCE_RECODE_MAIN <- function (){

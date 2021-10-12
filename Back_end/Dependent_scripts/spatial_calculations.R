@@ -153,7 +153,7 @@ WGSRPD_convert <- function() {
 #          occurrence records from other sources.
 cross.occ <- function (x) {
   x$ORIGIN[which(x$lvl3 %ni% countries_table$occ[
-    which(x$ORIGIN == 1 &
+    which(countries_table$ORIGIN == 1 &
             countries_table$id == x$ID_NO[1])])] <- 3 
   return(x)
 }
@@ -167,9 +167,9 @@ POINT_data_origin_recalculate <- function() {
   # Divide data into list of data frames
   GBIF_point_data <- split( GBIF_point_data , f = GBIF_point_data$ID_NO )
   # Redefine origin field based on Kew, NS, and VC occurrence lookups
-  GBIF_point_data <- lapply(GBIF_point_data, cross.occ)
+  points_redefined <- lapply(GBIF_point_data, cross.occ)
   # Convert to long
-  GBIF_point_data <<- data.frame(bind_rows(GBIF_point_data, .id="name"))
+  GBIF_point_data <<- data.frame(bind_rows(points_redefined, .id="name"))
 }
 
 # Parameters: GBIF_point_data (table from GBIF_download.R)

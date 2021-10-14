@@ -189,7 +189,7 @@ VC_occurrence_reformat <- function () {
 # Purpose: Add VC citations to references table
 VC_citations_generate <- function (){
   # Identify taxa using GBIF data
-  VC_ids <- unique(VC_occurrence$id)
+  VC_ids <- unique(VC_occurrence$internal_taxon_id)
   # Generate references
   VC_citations <- ref.key[which(ref.key$keywords == "VASCAN"),]
   VC_citations <- rbind(VC_citations, VC_citations[rep(1, length(VC_ids)-1), ])

@@ -228,7 +228,7 @@ Extreme_occurrences_narrative <- function () {
 narrative_realm_search <- function  () {
   # Split long form data frame into list
   realms.long1 <- split(realm_results , f = realm_results$ID_NO)
-  
+
   # Generate prefix for each distribution field
   dist.prefix <- lapply(realms.long1, function(x) {
     if (all(c("NA", "NT", "IM", "AA", "AT", "PA") %in% x$realm)) {

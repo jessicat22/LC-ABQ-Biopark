@@ -1,13 +1,13 @@
 #### LC Pipeline Main Script ####
-## Version 3.1
+## Version 3.1.1
 # Started: January 2021
-# Last worked on: 4 July 2021
+# Last worked on: 13 October 2021
 # Author: Clay Meredith
 # File: LC_pipeline_main.R
 # Description: Script runs dependent scripts to determine user parameters, load data,
 # search databases, and generate SIS Connect output files.
 
-version_no <- 3.1
+version_no <- "3.1.1"
 
 # # Notes
 # 
@@ -59,7 +59,7 @@ spec.list$id[which(is.na(spec.list$id))] <-
 
 ## Subset rows for testing purposes
 # Comment out this line to run entire list
-spec.list <- spec.list[c(1:30),]
+spec.list <- spec.list[c(31:88),]
 
 #### Initiate GBIF Search ####
 if(GBIF_toggle == "Y") {

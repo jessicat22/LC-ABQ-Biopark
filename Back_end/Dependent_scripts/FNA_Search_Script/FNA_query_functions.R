@@ -324,6 +324,13 @@ fna_volume_retrieve <- function(){
                     "Outputs/output_file_name.csv")
   # Append to results
   if(class(fna_vol) != "list"){fna_vol<- as.list(unname(fna_vol[1,]))}
+  
+  # Unlist fna_vol
+  fna_vol <- lapply(fna_vol, function(x){
+    x <- x[[1]][[1]]
+    unlist(x)
+  }
+  )
 
   fna_tax_check$fna_vol <<- fna_vol
   
@@ -479,7 +486,7 @@ fna_cons_elevate <- function(){
 
 # Generate FNA citations
 fna_citation_build <- function(){
-  references <- ref.key[0,]
+  # references1 <- ref.key[0,]
   fna_hits <- fna_tax_check$id[which(
     !is.na(fna_tax_check$fna_vol))]
   # Cross-reference fna results with citation list
@@ -502,6 +509,12 @@ FNA_list_fix <- function (){
   fna_tax_check$fna_author <- lapply(fna_tax_check$fna_author,unlist)
   fna_tax_check$fna_author <- lapply(fna_tax_check$fna_author,unname)
   fna_tax_check$fna_author <- lapply(fna_tax_check$fna_author,function(x){x[1]})
+  # Unlist fna_vol
+  fna_tax_check$fna_author <- lapply(fna_tax_check$fna_author, function(x){
+    x <- x[[1]][[1]]
+    unlist(x)
+  }
+  )
   # Unlist volume field
   fna_tax_check$fna_vol <- lapply(fna_tax_check$fna_vol,unlist)
   fna_tax_check$fna_vol <- lapply(fna_tax_check$fna_vol,unname)

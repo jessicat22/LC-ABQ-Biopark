@@ -356,8 +356,9 @@ POINT_subset <- function () {
   eoo_min <- data.frame(t(bind_rows(eoo_min, .id="ID_NO")))
   eoo_min$ID_NO <- rownames(eoo_min)
   names(eoo_min) <- c("EOO_min","id")
+  # Remove scientific notation
+  eoo_min$EOO_min <- format(eoo_min$EOO_min, scientific=F)
 
-  
   return(eoo_min)
 }
 

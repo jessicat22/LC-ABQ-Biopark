@@ -43,6 +43,20 @@ EU_MASK_MAIN <- function (){
   spec.list <<- eu27_eoo_calculate(intersects_all)
   # Finalize point data for export
   EU_points_final <<- EU_points_generate(intersects_all)
+  # Export results
+  write.csv(EU_points_final, 
+            paste("Outputs/euro_points", 
+                  default_vals$value[which(default_vals$var_name == "batch_no")],
+                  ".csv", sep = ""),
+            row.names = FALSE)
+  # Export results
+  write.csv(spec.list, 
+            paste("Outputs/euro_taxonomy", 
+                  default_vals$value[which(default_vals$var_name == "batch_no")],
+                  ".csv", sep = ""),
+            row.names = FALSE)
+  
+  
 }
 
 #### Load shapefiles ####
@@ -137,7 +151,7 @@ intersection_merge <- function (x,y,z){
     y, .id="name"))
   # eu27_long <- eu27_long[,-1]
   prepped_points <- data.frame(bind_rows(
-    prepped_points, .id="ID_NO"))
+    z, .id="ID_NO"))
   # Merge into single data frame
   intersects_all <- merge(paneurope_long,
                           eu27_long,
@@ -158,7 +172,6 @@ intersection_merge <- function (x,y,z){
 # Purpose: Calculates EOO for all taxa with point data. Results added
 #          to spec.list
 paneurope_eoo_calculate <- function(x){
-  foo <<- x
   # Remove non-native points and points outside pan-Europe
   point_natives <- x[which(x$ORIGIN == 1 & !is.na(x$paneurope_intersect)),]
   # Split data into list of data frames
@@ -243,6 +256,30 @@ EU_points_generate <- function(x){
                               "DEC_LAT2",
                               "DEC_LONG2")
       )]
+  names(EU_points_export) <- c("ID_NO",
+                               "paneurope_intersect",
+                               "eu27_intersect",
+                               "BasisOfRec",
+                               "EVENT_YEAR",
+                               "ORIGIN",
+                               "SEASONAL",
+                               "YEAR",
+                               "COMPILER",
+                               "SUBSPECIES",
+                               "SUBPOP",
+                               "DATA_SENS",
+                               "SENS_COMM",
+                               "DIST_COMM",
+                               "ISLAND",
+                               "PRESENCE",
+                               "TAX_COMM",
+                               "SPATIALREF",
+                               "CATALOG_NO",
+                               "SOURCE",
+                               "BINOMIAL",
+                               "CITATION",
+                               "DEC_LAT",
+                               "DEC_LONG")
   # Recode EU intersects
   EU_points_export$paneurope_intersect[
     which(!is.na(EU_points_export$paneurope_intersect))] <- TRUE
@@ -264,6 +301,8 @@ EOO_calculator <- function(x){
   st_geod_area(st_convex_hull(st_union(
     x$geometry)))
 }
+
+
 
 #### Execute Main Function ####
 EU_MASK_MAIN()

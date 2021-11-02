@@ -59,7 +59,7 @@ spec.list$id[which(is.na(spec.list$id))] <-
 
 ## Subset rows for testing purposes
 # Comment out this line to run entire list
-spec.list <- spec.list[c(31:88),]
+# spec.list <- spec.list[c(1:20),]
 
 #### Initiate GBIF Search ####
 if(GBIF_toggle == "Y") {
@@ -135,6 +135,9 @@ source("Back_end/Dependent_scripts/spatial_calculations.R")
 if(spatial_collect_toggle == "Y"){
 source("Back_end/Testing_scripts/spatial_variable_test.R")
 }
+
+# Run European Mask
+source("Back_end/Dependent_scripts/Euro_mask_eoo_recalculate.R")
 
 # Table exports
 source("Back_end/Dependent_scripts/SIS_connect_file_generator.R")

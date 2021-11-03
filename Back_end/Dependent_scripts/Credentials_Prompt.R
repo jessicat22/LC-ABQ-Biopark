@@ -33,7 +33,6 @@ GBIF_username <- function (){
   }
 }
 
-
 # Parameters: User input
 # Returns: var: gbif_email
 # Throws: If email is already stored, returns text confirmation.
@@ -86,9 +85,23 @@ RL_credentials <- function (){
 
 #### Execute Functions ####
 # Ask user if they'd like to search the Red List
-RL_toggle <- readline(prompt="Search the IUCN Red List (requires a Red List API Token? Enter Y or N:")
+# RL_toggle <- readline(prompt="Search the IUCN Red List (requires a Red List API Token? Enter Y or N:")
+# Removed RL Functions
+RL_toggle <- "N"
+
 # Ask user if they'd like to search GBIF records
-GBIF_toggle <- readline(prompt="Search GBIF databse (requires GBIF credentials and password)? Enter Y or N:")
+GBIF_toggle <- PROMPT_GBIF_toggle()
+
+PROMPT_GBIF_toggle <- function (){
+  # Prompt user to select action
+  selected_action <- select.list(c("Y",
+                                   "N"
+  ), 
+  preselect = NULL, multiple = FALSE,
+  title = "Search GBIF databse (requires GBIF credentials and password)?",
+  graphics = getOption("menu.graphics"))
+  return(selected_action)
+}
 
 # Parameters: User input
 # Returns: var: GBIF credentials via user input or GBIF_old_toggle
@@ -124,7 +137,15 @@ if (RL_toggle == "Y"){
   )
 }
 
-# Prompt user for spatial statistics collection
-spatial_collect_toggle <- readline(
-  prompt="Collect spatial statistics data (significantly slows runtime)? Enter Y or N:")
+PROMPT_spatial_collect <- function (){
+  # Prompt user to select action
+  selected_action <- select.list(c("Y",
+                                   "N"
+  ), 
+  preselect = NULL, multiple = FALSE,
+  title = "Collect spatial statistics data (significantly slows runtime)? Enter Y or N:",
+  graphics = getOption("menu.graphics"))
+  return(selected_action)
+}
 
+spatial_collect_toggle <- PROMPT_spatial_collect()

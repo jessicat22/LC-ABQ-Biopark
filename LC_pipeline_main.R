@@ -31,31 +31,8 @@ source("Back_end/Dependent_scripts/base_functions.R")
 #### Prompt for user credentials ####
 source("Back_end/Dependent_scripts/Credentials_Prompt.R")
 
-#### Prompt user for remaining details ####
-compiler_name <- readline(prompt="Enter Compiler Name: ")
-
-inat <- readline(prompt="Include iNaturalist records? Enter Y or N: ")
-
 #### Load Species List ####
-## List must be a single column .csv file with the header "Species"
-spec.list <- data.frame(read.csv(
-  "User_Inputs/spec_list.csv"))
-# Remove no-break spaces
-spec.list$Species <- remove_no_breaks(spec.list$Species)
-# Convert species names to class character
-spec.list$Species <- as.character(spec.list$Species)
-# Asign arbitrary internal id (based on system time to avoid duplicates)
-spec.list$int_id <- -1*seq(from=as.numeric(format(Sys.time(),
-                                                  "%y%m%d%H%M%S")),
-                           to=(as.numeric(format(Sys.time(),
-                                                 "%y%m%d%H%M%S"))+
-                                 length(spec.list$Species)-1))
-
-# Replace arbitrary id with Red List ID (if it exists in input table)
-spec.list$id <- spec.list$iucn_id
-spec.list$id[which(spec.list$id == "")] <- NA
-spec.list$id[which(is.na(spec.list$id))] <- 
-  spec.list$int_id[which(is.na(spec.list$id))]
+source("Back_end/Dependent_scripts/species_input_load.R")
 
 ## Subset rows for testing purposes
 # Comment out this line to run entire list

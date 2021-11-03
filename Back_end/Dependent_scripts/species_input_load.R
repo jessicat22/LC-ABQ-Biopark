@@ -9,13 +9,3 @@
 
 
 
-choose_map_source <- function (){
-  # Prompt user to select action
-  selected_action <- select.list(c("Choose previous batch results",
-                                   "Continue with current batch"
-  ), 
-  preselect = NULL, multiple = FALSE,
-  title = "Select data source",
-  graphics = getOption("menu.graphics"))
-  return(selected_action)
-}

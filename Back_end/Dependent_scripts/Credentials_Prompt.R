@@ -17,6 +17,62 @@ packages <- c("keyring")
 
 lapply(packages, package.check)
 
+#### Main function ####
+PROMPT_credentials_main <- function(){
+  #### Execute Functions ####
+  # RL Functions deprecated
+  RL_toggle <<- "N"
+  
+  # Ask user if they'd like to search GBIF records
+  GBIF_toggle <<- PROMPT_GBIF_toggle()
+  
+  # Parameters: User input
+  # Returns: var: GBIF credentials via user input or GBIF_old_toggle
+  # Throws: 
+  # Purpose: Prompt user for GBIF username, email, and password
+  # Runs GBIF_credentials only if user wishes to use data and no credentials are present. If 
+  # GBIF_toggle is not "Y", prompts user for GBIF_old_toggle which bypasses GBIF query, and loads
+  # previous downloaded results (used primarily for testing).
+  if (GBIF_toggle == "Y"){
+    tryCatch(
+      expr = if(exists("gbif_user") & exists("gbif_email") & 
+                !is.null(key_get("gbif_pass"))) {} else {
+                  GBIF_username()
+                  GBIF_email_prompt()
+                  GBIF_password_prompt()
+                },
+      error = function(e) {
+        GBIF_username()
+        GBIF_email_prompt()
+        GBIF_password_prompt() 
+      }
+    )
+  } else {
+    GBIF_old_toggle <<- 
+      PROMPT_old_GBIF_toggle()
+  }
+  
+  # Run Red List API check only if user indicates they want to and no credentials are present
+  if (RL_toggle == "Y"){
+    tryCatch(
+      expr = if(!is.null(key_get("RL_api"))){print("Red List API Key stored.")},
+      error = function(e) {RL_credentials()}
+    )
+  }
+  # Prompt to collect spatial data
+  spatial_collect_toggle <<- PROMPT_spatial_collect()
+  
+  #### Prompt user for remaining details ####
+  compiler_name <<- readline(prompt="Enter Compiler Name: ")
+  
+  inat <<- PROMPT_inat_toggle()
+
+}
+
+
+
+
+
 #### Prompt user for GBIF credentials ####
 
 # Parameters: User input
@@ -83,14 +139,6 @@ RL_credentials <- function (){
   }
 }
 
-#### Execute Functions ####
-# Ask user if they'd like to search the Red List
-# RL_toggle <- readline(prompt="Search the IUCN Red List (requires a Red List API Token? Enter Y or N:")
-# Removed RL Functions
-RL_toggle <- "N"
-
-# Ask user if they'd like to search GBIF records
-GBIF_toggle <- PROMPT_GBIF_toggle()
 
 PROMPT_GBIF_toggle <- function (){
   # Prompt user to select action
@@ -103,39 +151,6 @@ PROMPT_GBIF_toggle <- function (){
   return(selected_action)
 }
 
-# Parameters: User input
-# Returns: var: GBIF credentials via user input or GBIF_old_toggle
-# Throws: 
-# Purpose: Prompt user for GBIF username, email, and password
-# Runs GBIF_credentials only if user wishes to use data and no credentials are present. If 
-# GBIF_toggle is not "Y", prompts user for GBIF_old_toggle which bypasses GBIF query, and loads
-# previous downloaded results (used primarily for testing).
-if (GBIF_toggle == "Y"){
-  tryCatch(
-    expr = if(exists("gbif_user") & exists("gbif_email") & 
-              !is.null(key_get("gbif_pass"))) {} else {
-                GBIF_username()
-                GBIF_email_prompt()
-                GBIF_password_prompt()
-              },
-    error = function(e) {
-      GBIF_username()
-      GBIF_email_prompt()
-      GBIF_password_prompt() 
-    }
-  )
-} else {
-  GBIF_old_toggle <- 
-    readline(prompt="Use previously downloaded GBIF results? Enter Y or N:")
-}
-
-# Run Red List API check only if user indicates they want to and no credentials are present
-if (RL_toggle == "Y"){
-  tryCatch(
-    expr = if(!is.null(key_get("RL_api"))){print("Red List API Key stored.")},
-    error = function(e) {RL_credentials()}
-  )
-}
 
 PROMPT_spatial_collect <- function (){
   # Prompt user to select action
@@ -148,4 +163,28 @@ PROMPT_spatial_collect <- function (){
   return(selected_action)
 }
 
-spatial_collect_toggle <- PROMPT_spatial_collect()
+PROMPT_old_GBIF_toggle <- function (){
+  # Prompt user to select action
+  selected_action <- select.list(c("Y",
+                                   "N"
+  ), 
+  preselect = NULL, multiple = FALSE,
+  title = "Use previously downloaded GBIF results?",
+  graphics = getOption("menu.graphics"))
+  return(selected_action)
+}
+
+PROMPT_inat_toggle <- function(){
+  # Prompt user to select action
+  selected_action <- select.list(c("Y",
+                                   "N"
+  ), 
+  preselect = NULL, multiple = FALSE,
+  title = "Include iNaturalist records?",
+  graphics = getOption("menu.graphics"))
+  return(selected_action)
+}
+
+
+#### Execute script ####
+PROMPT_credentials_main()

@@ -7,7 +7,6 @@
 # Description: User interface for LC app 
 
 library(shiny)
-source("LC-ABQ-Biopark/ui_csv.r")
 shinyUI(fluidPage(# Application title
     titlePanel(
         h1("LC-Pipeline Test Site", align = "center")
@@ -81,18 +80,12 @@ shinyUI(fluidPage(# Application title
                 "Occurance",
                 
                 h4("Occurance Remarks"),
-                radioButtons(
-                    "ocurrenceRemarks_cull",
-                    " Occurrence Remarks",
-                    c(" Cult" = "cult", "Garden" = " garden")
-                ),
+                radioButtons( "ocurrenceRemarks_cull"," Occurrence Remarks",c(" Cult" = "cult", "Garden" = "garden")),
                 
-                checkboxInput(
-                    "occurrenceRemarks_introduced",
-                    "Occurrence Remarks Introduced Escaped",
-                    1
-                ),
+                checkboxInput( "occurrenceRemarks_introduced","Occurrence Remarks Introduced Escaped", 1),
                 h4("AOO, EOO toggle"),
+                
+                
                 splitLayout(
                     numericInput("is.restricted.aoo.cutoff", "Restricted AOO Cutoff", value =
                                      500),
@@ -120,7 +113,7 @@ shinyUI(fluidPage(# Application title
                 "Threats",
                 h5("threats"),
                 checkboxInput("nothreats", "No Threats", 1),
-                checkboxInput("threats_unknown", "Threats Unknown", 0),
+                checkboxInput("threats.unknown", "Threats Unknown", 0),
                 #threats.narrative	rationale.text	threats.unknown	threats.text	nothreats
                 textAreaInput("threats.narrative", "Threats Narrative",
                               value = "The species has a large range, and numerous records of the species are available. At present, no threats likely to drive the species into a threatened category are known.",
@@ -130,23 +123,63 @@ shinyUI(fluidPage(# Application title
                               400, 100),
                 textAreaInput("threats.text", "Threats Text",
                               value = "There are no known significant threats to the species at this time",
-                              400, 50)
+                              400, 50),
+                textAreaInput("pop.narrative", "Population Narrative Text",
+                              value = "The species has a large range, and numerous records of the species are available. At present, no threats likely to drive the species into a threatened category are known.	",
+                              400, 100)
                 
             ),
             tabPanel(
                 "More Toggles",
-                h5("title"),
+                
                 splitLayout(
                     checkboxInput("del_year", "Delete Year", 1),
                     checkboxInput("sens", "Sens", 0),
                     checkboxInput("inat", "Inat", 1)
                 ),
-                h5("title"),
-                splitLayout(
-                    numericInput("presence_code", "Presence Code", 1, 0, 3, 1),
-                    numericInput("origin_code", "Origin Code", 1, 0, 3, 1)
-                ),
                 
+                checkboxInput("unerctanty.tolerance", "Uncertanty Tolerance",1),
+                h5("Codes"),
+                splitLayout(
+                    numericInput("presence_code", "Presence Code", 1, 0, 6, 1),
+                    numericInput("origin_code", "Origin Code", 1, 0, 6, 1),
+                    numericInput("seasonal_code","Seasonal Code",1,0,5,1)
+                ),
+                    numericInput("outlier_threshold","Outlier Threshold",.9,0,1,.01),
+                
+                br(),
+                tags$hr(),
+               br(),
+    
+                radioButtons("pop.data.qual", "Population data qual:",
+                             c("Good" = "good", "Medium" = "medium", 
+                               "Poor" = "poor", "Unkown"= "unkown", "NA"= "na"), 
+                             (selected = "english"),(inline = TRUE)),
+            
+                radioButtons("map.status","Map Status:",
+                             c("Done" = "done","Missing" = "missing", "Incomplete"= "Incomplete",
+                               "Not Possible" = "not possible"), (selected = "done"),(inline = TRUE)),
+                splitLayout(
+                    radioButtons("precision_method", "Precision Method:",
+                                 c("Single" = "single", "Double" = "Double"), (selected = "single"),(inline = TRUE)),
+                    checkboxInput("min.decimals", "Min Decimals",1),
+                    checkboxInput("throttle.points","Throttle Points",1)
+                ),
+                radioButtons("language.value", "Language Value:",
+                             c("English" = "english", "French" = "french", "Spanish" = "spanish",
+                               "Portuguese" = "portuguese"), (selected = "english"),(inline = TRUE)),
+               br(),
+               tags$hr(),
+               br(),
+               
+                sliderInput("min.decimals",label = h5("Minimum Decimals:"),
+                            min = 0, max = 10, value = 4),
+                
+                sliderInput("uncertainty_tolerance", label = h5("Uncertainty Tolerance"),
+                            min = 1, max = 10000, value = 5000),
+               
+                sliderInput("throttle_level", label = h5("Throttle Level"),
+                            min = 250, max = 750, value = 500)
                 
             )
         )),
@@ -166,7 +199,8 @@ shinyUI(fluidPage(# Application title
             ),
             tableOutput("contentsOfInputFile"),
             tableOutput("OutputFile2"),
-            downloadButton("downloadData", "Download")
+            downloadButton("downloadData", "Download"),
+            textOutput("txt")
             
         )
     )))

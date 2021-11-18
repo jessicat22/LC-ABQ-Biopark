@@ -39,7 +39,9 @@ shinyServer(function(input, output){
        # OutputFile2()
     #})
     
-    
+    output$txt <- renderText({
+        paste("You chose", input$language.value)
+    })
     output$downloadData <- downloadHandler(
         filename =function(){
             paste(input$file1, "OutputLCPipeline.csv", sep = "")

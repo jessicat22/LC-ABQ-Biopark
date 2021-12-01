@@ -87,7 +87,7 @@ standardize_level <- function (x){
   # Subset only the first character
   first_letter <- as.list(substring(x, 1, 1))
   # Re-code results
-  if (first_letter %in% c("v","V")){first_letter <- "variety (plantae)"}
+  if (first_letter %in% c("v","V")){first_letter <- "variety"}
   if (first_letter %in% c("s","S")){first_letter <-"subspecies (plantae)"}
   if (first_letter %in% c("f","F")){first_letter <-"forma"}
   return(first_letter)

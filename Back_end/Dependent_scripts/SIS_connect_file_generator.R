@@ -391,6 +391,7 @@ distribution_citations_generate <- function (){
 }
 
 ASSESSMENT_TABLE_BUILD <- function (x){
+  
   # Build assessments table
   assessments <- rbind(assessments.template, 
                        assessments.template[rep(1, nrow(spec.list)), ])
@@ -413,20 +414,23 @@ ASSESSMENT_TABLE_BUILD <- function (x){
   # Add Latin name if common name exists
   dist_narrative$common[which(!is.na(dist_narrative$common))] <- 
     paste(dist_narrative$common[which(!is.na(dist_narrative$common))],
-          " (<em>",
           spec.list$Species[
-            match(dist_narrative$id[which(!is.na(dist_narrative$common))], spec.list$id)],
-          "</em>)",
+            match(dist_narrative$id[which(!is.na(dist_narrative$common))], 
+                  spec.list$id)],
           sep = "")
   
   # Use Latin name if common name does not exist
   dist_narrative$common[which(is.na(dist_narrative$common))] <- 
-    paste("<em>",
-          spec.list$Species[
-            match(dist_narrative$id[which(is.na(dist_narrative$common))], spec.list$id)],
-          "</em>",
+    paste(spec.list$Species[
+            match(dist_narrative$id[which(is.na(dist_narrative$common))], 
+                  spec.list$id)],
           sep = "")
-
+  
+  # Add commas to elevation text
+  dist_narrative$min_elev <- prettyNum(as.numeric(dist_narrative$min_elev), 
+                                     big.mark=",")
+  dist_narrative$max_elev <- prettyNum(as.numeric(dist_narrative$max_elev), 
+                                       big.mark=",")
   # Compose final narrative
   dist_narrative$final <- paste(dist_narrative$common, " ", dist_narrative$dist_prefix,
                                 ". ", dist_narrative$narrative, " (", dist_narrative$V1, "). ",

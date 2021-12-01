@@ -7,10 +7,16 @@
 # Description: Collates output tables from least concern pipeline into individual files
 #              for upload using SIS Connect.
 
+#### Load packages ####
+library(data.table)
+# packages <- c("data.table")
+# 
+# lapply(packages, package.check)
+
 #### Main function ####
 LC_collate_main <- function (){
-  parameters <- c("Assessments","Countries","Credits","Point","References",
-                  "species_inputs","Allfields","common_names","Synonyms")
+  parameters <- c("Assessments","Countries","Credits","Point_data","References",
+                  "species_inputs","Allfields","commonnames","Synonyms")
   lapply(parameters, FILE_COLLATE)
   
 }

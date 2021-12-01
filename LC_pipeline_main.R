@@ -34,9 +34,9 @@ source("Back_end/Dependent_scripts/Credentials_Prompt.R")
 #### Load Species List ####
 source("Back_end/Dependent_scripts/species_input_load.R")
 
-## Subset rows for testing purposes
+# Subset rows for testing purposes
 # Comment out this line to run entire list
-# spec.list <- spec.list[c(1:20),]
+spec.list <- spec.list[c(61:65),]
 
 #### Initiate GBIF Search ####
 if(GBIF_toggle == "Y") {

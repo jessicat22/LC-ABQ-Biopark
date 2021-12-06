@@ -25,12 +25,12 @@ lapply(packages, package.check)
 # Purpose: Prompt user for GBIF username
 GBIF_username <- function (){
   # Ask user if GBIF data is to be used
-  if (GBIF_toggle == "Y"){
+ # if (GBIF_toggle == "Y"){
     # Prompt user to input GBIF password (if statement ensures prompt only appears once)
     if (!exists("gbif_user")){
       gbif_user <<- readline(prompt="Enter GBIF username: ")
     } else {print("GBIF username stored")}
-  }
+  #}
 }
 
 
@@ -40,12 +40,12 @@ GBIF_username <- function (){
 # Purpose: Prompt user for GBIF email
 GBIF_email_prompt <- function (){
   # Ask user if GBIF data is to be used
-  if (GBIF_toggle == "Y"){
+ # if (GBIF_toggle == "Y"){
     # Prompt user to input GBIF password (if statement ensures prompt only appears once)
     if (!exists("gbif_email")){
       gbif_email <<- readline(prompt="Enter your GBIF account email address: ")
     } else {print("GBIF email stored")}
-  }
+#  }
 }
 
 # Parameters: User input
@@ -59,7 +59,7 @@ GBIF_password_prompt <- function () {
       print("GBIF password stored")},
     error = function(e) {
       print("If promted for password, enter your GBIF account password.")
-      key_set("gbif_pass")}
+      key_set("gbif_pass")}#key set ui.r variable 
   )
 }
 
@@ -125,6 +125,7 @@ if (RL_toggle == "Y"){
 }
 
 # Prompt user for spatial statistics collection
-spatial_collect_toggle <- readline(
-  prompt="Collect spatial statistics data (significantly slows runtime)? Enter Y or N:")
+spatial_collect_toggle <- #the answer to spatial collect toggle 
+#<- readline(
+ # prompt="Collect spatial statistics data (significantly slows runtime)? Enter Y or N:")
 

@@ -19,11 +19,20 @@ shinyUI(fluidPage(# Application title
             tabPanel(
                 "Inputs",
                 #file submit
+                #taxonoly file and darwincore file taken in 
+                #TODO rename file input to match pipeline backend 
+                #TODO Add to dataload a
                 h4("Upload your .CSV below for varification:"),
                 fileInput(
                     "file1",
-                    "Choose CSV File",
-                    multiple = FALSE,
+                    "Upload a taxonomy.csv file associated with the working set of your choosing. Species can be removed from the file, but the headers should be consistent with the download. Files with more than 20 species can be time consuming. Files with more than 50 species may cause errors. For larger working sets, running 20-30 species at a time is recommended.",
+                   
+                    accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")
+                ),
+                fileInput(
+                    "file2",
+                    "Optional: Upload DarwinCore distribution data associated with the species in your taxonomy file.",
+                 
                     accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")
                 ),
                 # Horizontal line ----
@@ -52,17 +61,7 @@ shinyUI(fluidPage(# Application title
                 actionButton("submit_GBIF", "Submit Credentials"),
                 br(),
                 tags$hr(),
-                #IUCN data
-                h4("IUCN Red List Credentials"),
-                passwordInput(
-                    "RL_Password",
-                    "Red List API Token:",
-                    value = "",
-                    width = 200),
-                #password
-                actionButton("submit_RL", "Submit Credentials"),
-                br(),
-                tags$hr(),
+               
                 #spacial Calculations
                 checkboxInput(
                     "Spacial_calc",
@@ -77,13 +76,16 @@ shinyUI(fluidPage(# Application title
             
             #beginning of second panel for toggle options
             tabPanel(
-                "Occurance",
+                "Occurrance",
                 
-                h4("Occurance Remarks"),
-                radioButtons( "ocurrenceRemarks_cull"," Occurrence Remarks",c(" Cult" = "cult", "Garden" = "garden")),
+                h4("Occurrance Remarks"),
+                #change to non radio button
+                checkboxInput( "occurrenceRemarks_introduced","Remove potentially introduced records with the remarks in fields listed below?", 1),
                 
-                checkboxInput( "occurrenceRemarks_introduced","Occurrence Remarks Introduced Escaped", 1),
-                h4("AOO, EOO toggle"),
+                checkboxGroupInput("ocurranceRemarks_cull", "Occurrence Remarks:",
+                                   c("Cult" = "cult",
+                                     "Garden" = "garden")),
+                 h4("AOO, EOO toggle"),
                 
                 
                 splitLayout(
@@ -111,7 +113,7 @@ shinyUI(fluidPage(# Application title
             ),
             tabPanel(
                 "Threats",
-                h5("threats"),
+                h5("Threats"),
                 checkboxInput("nothreats", "No Threats", 1),
                 checkboxInput("threats.unknown", "Threats Unknown", 0),
                 #threats.narrative	rationale.text	threats.unknown	threats.text	nothreats
@@ -132,14 +134,14 @@ shinyUI(fluidPage(# Application title
             tabPanel(
                 "More Toggles",
                 
-                splitLayout(
-                    checkboxInput("del_year", "Delete Year", 1),
-                    checkboxInput("sens", "Sens", 0),
-                    checkboxInput("inat", "Inat", 1)
-                ),
+               
+                    checkboxInput("del_year", "Remove records with no associated date?", 1),
+                    checkboxInput("sens", "Flag occurrence records as sensitive?", 0),
+                    checkboxInput("inat", "Include iNaturalist records?", 1),
+             
                 
                 checkboxInput("unerctanty.tolerance", "Uncertanty Tolerance",1),
-                h5("Codes"),
+                h5("Default Codes"),
                 splitLayout(
                     numericInput("presence_code", "Presence Code", 1, 0, 6, 1),
                     numericInput("origin_code", "Origin Code", 1, 0, 6, 1),
@@ -156,18 +158,12 @@ shinyUI(fluidPage(# Application title
                                "Poor" = "poor", "Unkown"= "unkown", "NA"= "na"), 
                              (selected = "english"),(inline = TRUE)),
             
-                radioButtons("map.status","Map Status:",
-                             c("Done" = "done","Missing" = "missing", "Incomplete"= "Incomplete",
-                               "Not Possible" = "not possible"), (selected = "done"),(inline = TRUE)),
                 splitLayout(
                     radioButtons("precision_method", "Precision Method:",
                                  c("Single" = "single", "Double" = "Double"), (selected = "single"),(inline = TRUE)),
                     checkboxInput("min.decimals", "Min Decimals",1),
                     checkboxInput("throttle.points","Throttle Points",1)
                 ),
-                radioButtons("language.value", "Language Value:",
-                             c("English" = "english", "French" = "french", "Spanish" = "spanish",
-                               "Portuguese" = "portuguese"), (selected = "english"),(inline = TRUE)),
                br(),
                tags$hr(),
                br(),
@@ -197,10 +193,25 @@ shinyUI(fluidPage(# Application title
                and all assessments generated using the tool will require review
                according to the regular processes outlined in the IUCN Red List Rules of Procedure."
             ),
+            verbatimTextOutput("value"),
+            verbatimTextOutput("value2"),
+            #taxonomy
+            h4("contents of taxonomy file"),
             tableOutput("contentsOfInputFile"),
-            tableOutput("OutputFile2"),
-            downloadButton("downloadData", "Download"),
-            textOutput("txt")
             
+            #darwincore
+            h4("contents of Optional DarwinCore "),
+            tableOutput("OutputFile2"),
+            # downloadButton("downloadData", "Download"),
+             textOutput("usertxt"),
+            # textOutput("userEmail"),
+            # numericInput("num", label = "Make changes", value = 1),
+            # #submitButton("Submit Credentials", icon("refresh")),
+            # helpText("When you click the button above, you should see",
+            #          "the output below update to reflect the value you",
+            #          "entered at the top:"),
+            # verbatimTextOutput("value"),
+            # textOutput("usertxt"),
+            # textOutput("userEmail")
         )
     )))

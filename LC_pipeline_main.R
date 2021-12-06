@@ -111,9 +111,10 @@ try(source("Back_end/Dependent_scripts/POW_data_retrieve.R"))
 source("Back_end/Dependent_scripts/Darwincore_manual_upload.R")
 
 # Download GBIF Data
-if(GBIF_toggle == "Y" || GBIF_old_toggle == "Y"){
+GBIF_toggle <- "Y" 
+GBIF_old_toggle <-"Y"
   source("Back_end/Dependent_scripts/GBIF_download.R")
-}
+
 
 # Reformat GBIF data for export and merge DC data if available
 if (exists("GBIF_raw")) {

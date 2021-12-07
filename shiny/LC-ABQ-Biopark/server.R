@@ -14,51 +14,63 @@ library(shiny)
 shinyServer(function(input, output){
     
    #Taxonomy File input 
-    output$contentsOfInputFile <- renderTable({
+    output$contentsOfTaxonomy <- renderTable({
         # input$file1 will be NULL initially. After the user selects and uploads a file, it will be a data frame with 'name',
         # 'size', 'type', and 'datapath' columns. The 'datapath' column will contain the local filenames where the data can be found.
-        inFile <- input$file1
+        TaxonomyFile <- input$taxonomy
         
-        
-        if (is.null(inFile))
+        if (is.null(TaxonomyFile))
             return(NULL)
         
-        read.csv(inFile$datapath, header = input$header)
+        read.csv(TaxonomyFile$datapath, header = input$header)
       
     })
     
     #darwincore file input
-    output$OutputFile2 <- renderTable({
-            inFile2 <- input$file2
+    output$DarwinCore<- renderTable({
+            DarwinCoreFile <- input$darwinInput
 
-            if (is.null(inFile2))
+            if (is.null(DarwinCoreFile))
                 return(NULL)
 
-            read.csv(inFile2$datapath, header = input$header)
-        }
-    )
+            read.csv(DarwinCoreFile$datapath, header = input$header)
+   })
    # spec.list <- inFile Breaks code
    # 
    #     # OutputFile2()
    #  #})
    #  
    #  submit 
-    output$usertxt <- renderText({
-        paste("username", input$GBIF_User)
+   # output$usertxt <- renderText({
+       # paste("username", input$GBIF_User)
 
-    })
+   #})
     
-    output$value2 <- renderText({
+    output$GBIF_users <- renderText({
        req(input$submit_GBIF)
-       isolate(input$GBIF_User)})
+       isolate(input$GBIF_User)
+       gbif_user <<- input$GBIF_User
+       #set to keychain 
+       })
     
-    output$value <- renderText({
+    output$GBIF_emails <- renderText({
        req(input$submit_GBIF)
-       isolate(input$GBIF_email)})
+       isolate(input$GBIF_email)
+       gbif_email <<- gbif_email
+       #set to keychain 
+       })
     
-    output$value <- renderText({
+    output$GBIF_password <- renderText({
        req(input$submit_GBIF)
-       isolate(input$GBIF_Password)})
+       isolate(input$GBIF_Password)
+       pwd = key_get("GBIF_Password")
+       #set to keychain
+       })
+    
+    
+    
+    
+    
    #  output$userEmail <-renderText({
    #      paste("email", input$GBIF_email)
    #  })

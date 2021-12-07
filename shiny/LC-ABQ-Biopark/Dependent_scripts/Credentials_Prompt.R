@@ -125,7 +125,7 @@ if (RL_toggle == "Y"){
 }
 
 # Prompt user for spatial statistics collection
-spatial_collect_toggle <- #the answer to spatial collect toggle 
+#spatial_collect_toggle <- #the answer to spatial collect toggle 
 #<- readline(
  # prompt="Collect spatial statistics data (significantly slows runtime)? Enter Y or N:")
 

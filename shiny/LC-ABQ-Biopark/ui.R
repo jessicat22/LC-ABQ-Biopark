@@ -22,15 +22,16 @@ shinyUI(fluidPage(# Application title
                 #taxonoly file and darwincore file taken in 
                 #TODO rename file input to match pipeline backend 
                 #TODO Add to dataload a
-                h4("Upload your .CSV below for varification:"),
+                h4("File Upload + GBIF Credentials + Submit"),
+                h3("File Uploads (Taxonomy Required)"),
+                helpText("Upload a taxonomy.csv file associated with the working set of your choosing. Species can be removed from the file, but the headers should be consistent with the download. Files with more than 20 species can be time consuming. Files with more than 50 species may cause errors. For larger working sets, running 20-30 species at a time is recommended."),
                 fileInput(
-                    "file1",
-                    "Upload a taxonomy.csv file associated with the working set of your choosing. Species can be removed from the file, but the headers should be consistent with the download. Files with more than 20 species can be time consuming. Files with more than 50 species may cause errors. For larger working sets, running 20-30 species at a time is recommended.",
-                   
+                    "taxonomy",
+                    "Taxonomy File - Required",
                     accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")
                 ),
                 fileInput(
-                    "file2",
+                    "darwinInput",
                     "Optional: Upload DarwinCore distribution data associated with the species in your taxonomy file.",
                  
                     accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")
@@ -39,7 +40,7 @@ shinyUI(fluidPage(# Application title
                 checkboxInput("header", "Header", TRUE),
                 tags$hr(),
                 #passwords for logins
-                h3("Step 2: Provide login information for specific sites (optional)"),
+                h3("GBIF Credential (optional)"),
                 br(),
                 h4("GBIF Credentials"),
                 splitLayout(
@@ -69,16 +70,16 @@ shinyUI(fluidPage(# Application title
                     FALSE),
                 #submit all info
                 tags$hr(),
-                h3("Step 3: Submit information"),
-                actionButton("submit_file", "Submit")
+
+                actionButton("submit_file", "Submit -> Run Program")
             ),
             
             
             #beginning of second panel for toggle options
             tabPanel(
-                "Occurrance",
+                "Occurrence",
                 
-                h4("Occurrance Remarks"),
+                h4("Occurrence Remarks"),
                 #change to non radio button
                 checkboxInput( "occurrenceRemarks_introduced","Remove potentially introduced records with the remarks in fields listed below?", 1),
                 
@@ -193,17 +194,17 @@ shinyUI(fluidPage(# Application title
                and all assessments generated using the tool will require review
                according to the regular processes outlined in the IUCN Red List Rules of Procedure."
             ),
-            verbatimTextOutput("value"),
-            verbatimTextOutput("value2"),
+           
             #taxonomy
-            h4("contents of taxonomy file"),
-            tableOutput("contentsOfInputFile"),
+            h4("Contents of Taxonomy File:"),
+            tableOutput("contentsOfTaxonomy"),
             
             #darwincore
-            h4("contents of Optional DarwinCore "),
-            tableOutput("OutputFile2"),
+            h4("Contents of Optional DarwinCore File:"),
+            tableOutput("DarwinCore"),
+            
             # downloadButton("downloadData", "Download"),
-             textOutput("usertxt"),
+            
             # textOutput("userEmail"),
             # numericInput("num", label = "Make changes", value = 1),
             # #submitButton("Submit Credentials", icon("refresh")),

@@ -7,6 +7,7 @@
 # Description: User interface for LC app 
 
 library(shiny)
+library(rgbif)
 shinyUI(fluidPage(# Application title
     titlePanel(
         h1("LC-Pipeline Test Site", align = "center")
@@ -62,7 +63,7 @@ shinyUI(fluidPage(# Application title
                 actionButton("submit_GBIF", "Submit Credentials"),
                 br(),
                 tags$hr(),
-               
+               textOutput("gbif_sucess"),
                 #spacial Calculations
                 checkboxInput(
                     "Spacial_calc",
@@ -202,6 +203,10 @@ shinyUI(fluidPage(# Application title
             #darwincore
             h4("Contents of Optional DarwinCore File:"),
             tableOutput("DarwinCore"),
+            
+            h4("Contents of user input csv"),
+            tableOutput("sample"),
+            h4("contents below sample")
             
             # downloadButton("downloadData", "Download"),
             

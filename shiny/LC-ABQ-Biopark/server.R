@@ -7,8 +7,9 @@
 #    http://shiny.rstudio.com/
 #
 packages <- c("keyring")
-
+packages <- c("bit64","rgbif","data.table","stringr")
 library(shiny)
+library(rgbif)
 
 # Define server logic 
 shinyServer(function(input, output){
@@ -22,7 +23,7 @@ shinyServer(function(input, output){
         if (is.null(TaxonomyFile))
             return(NULL)
         
-        read.csv(TaxonomyFile$datapath, header = input$header)
+        spec.list <- data.frame(read.csv(TaxonomyFile$datapath, header = input$header))
       
     })
     
@@ -35,29 +36,23 @@ shinyServer(function(input, output){
 
             read.csv(DarwinCoreFile$datapath, header = input$header)
    })
-   # spec.list <- inFile Breaks code
-   # 
-   #     # OutputFile2()
-   #  #})
-   #  
-   #  submit 
+  
    # output$usertxt <- renderText({
        # paste("username", input$GBIF_User)
 
    #})
     
+    #output gbif cred
     output$GBIF_users <- renderText({
        req(input$submit_GBIF)
        isolate(input$GBIF_User)
        gbif_user <<- input$GBIF_User
-       #set to keychain 
        })
     
     output$GBIF_emails <- renderText({
        req(input$submit_GBIF)
        isolate(input$GBIF_email)
        gbif_email <<- gbif_email
-       #set to keychain 
        })
     
     output$GBIF_password <- renderText({
@@ -68,9 +63,51 @@ shinyServer(function(input, output){
        })
     
     
+    output$gbif_sucess <- renderText({
+       req(input$submit_GBIF)
+       occ_download_list(
+          user = input$GBIF_User,
+          pwd = input$GBIF_Password,
+          limit = 20,
+          start = 0,
+          curlopts = list()
+       )
+    })
+    spacial_collect_toggle <<- renderText({ 
+       req(input$submit_file)
+       isolate(input$Spacial_calc)
+    })
     
     
     
+    
+    #with everything from csv file create a csv and append each row in order 
+    #when submit button is pressed req(input$submit_file)
+    #maybe req(input$taxonomycsv)
+    
+    
+    presence_code <<- renderText({
+       req(input$submit_file)
+       isolate(input$presence_code)
+    })
+    
+    seasonal_code <<- renderText({
+       req(input$submit_file)
+       isolate(input$seasonal_code)
+    })
+    
+    
+    
+    
+    #submit button variables set to their variable names when big submit is pressed 
+  output$sample<- renderTable({
+    
+    rendercsvuser = data.frame(ID = 1:4, Name = c("A","B","C","D"),
+                      Post=c("Peon","SDE","Manager","SDE"), 
+                      Age = c(23,39,28,39))
+    
+    # write.table(rendercsvuser, file = "sample.csv")
+    })
    #  output$userEmail <-renderText({
    #      paste("email", input$GBIF_email)
    #  })

@@ -6,11 +6,12 @@
 #
 #    http://shiny.rstudio.com/
 #
+
 packages <- c("keyring")
 packages <- c("bit64","rgbif","data.table","stringr")
 library(shiny)
 library(rgbif)
-
+library("keyring")
 # Define server logic 
 shinyServer(function(input, output){
     
@@ -63,15 +64,11 @@ shinyServer(function(input, output){
        })
     
     
-    output$gbif_sucess <- renderText({
+    output$gbif_success <- renderText({
        req(input$submit_GBIF)
-       occ_download_list(
-          user = input$GBIF_User,
-          pwd = input$GBIF_Password,
-          limit = 20,
-          start = 0,
-          curlopts = list()
-       )
+      occ_download_list(user = isolate(input$GBIF_User),pwd = input$GBIF_Password,limit = 20,
+             start = 0,curlopts = list())
+            
     })
     spacial_collect_toggle <<- renderText({ 
        req(input$submit_file)
@@ -86,25 +83,40 @@ shinyServer(function(input, output){
     #maybe req(input$taxonomycsv)
     
     
-    presence_code <<- renderText({
-       req(input$submit_file)
-       isolate(input$presence_code)
-    })
-    
-    seasonal_code <<- renderText({
-       req(input$submit_file)
-       isolate(input$seasonal_code)
-    })
+  
+   
     
     
-    
-    
+  
     #submit button variables set to their variable names when big submit is pressed 
   output$sample<- renderTable({
-    
-    rendercsvuser = data.frame(ID = 1:4, Name = c("A","B","C","D"),
-                      Post=c("Peon","SDE","Manager","SDE"), 
-                      Age = c(23,39,28,39))
+    #req(input$submit_file)
+    rendercsvuser = data.frame(
+      Var_Name = c("presence_code","seasonal_code",
+                   "orgin_code","pop.data.qual","aoo just",
+                   "eoo just", "del year","sens", 
+                   "inat","nothreats","threats.unkown",
+                   "rationale.text","threats.text", "outlier_threshold",
+                   "uncertainty_tolerance","min_decimals",
+                   "precision_method",
+                   "occurrenceRemarks_introduced","is.restricted.eoo.cutoff",
+                   "is.restricted.aoo.cutoff","is.restricted.justification",
+                  "pop.narrative", "threats.narrative",
+                   "throttle_points","throttle_level"
+                   ),
+      Value = c(isolate(input$presence_code), isolate(input$seasonal_code), 
+                isolate(input$origin_code), input$pop.data.qual, isolate(input$aoo_just),
+                isolate(input$eoo_just), isolate(input$del_year),isolate(input$sens),
+                isolate(input$inat),isolate(input$nothreats),isolate(input$threats.unknown),
+                isolate(input$rationale.text),isolate(input$threats.text),isolate(input$outlier_threshold),
+                isolate(input$uncertainty_tolerance),isolate(input$min.decimals),
+                isolate(input$precision_method),
+                isolate(input$occurrenceRemarks_introduced), isolate(input$is.restricted.eoo.cutoff),
+                isolate(input$is.restricted.aoo.cutoff), isolate(input$is.restricted.justification),
+                isolate(input$pop.narrative), isolate(input$threats.narrative),
+                isolate(input$throttle.points), input$throttle_level
+               )
+                            )
     
     # write.table(rendercsvuser, file = "sample.csv")
     })

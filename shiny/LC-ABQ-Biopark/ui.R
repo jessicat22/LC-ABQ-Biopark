@@ -5,7 +5,7 @@
 # Author: JT
 # File: UI.r
 # Description: User interface for LC app 
-
+citation(package = "rgbif")
 library(shiny)
 library(rgbif)
 shinyUI(fluidPage(# Application title
@@ -63,7 +63,7 @@ shinyUI(fluidPage(# Application title
                 actionButton("submit_GBIF", "Submit Credentials"),
                 br(),
                 tags$hr(),
-               textOutput("gbif_sucess"),
+               textOutput("gbif_success"),
                 #spacial Calculations
                 checkboxInput(
                     "Spacial_calc",
@@ -84,7 +84,7 @@ shinyUI(fluidPage(# Application title
                 #change to non radio button
                 checkboxInput( "occurrenceRemarks_introduced","Remove potentially introduced records with the remarks in fields listed below?", 1),
                 
-                checkboxGroupInput("ocurranceRemarks_cull", "Occurrence Remarks:",
+                checkboxGroupInput("occurrenceRemarks_cull", "Occurrence Remarks:",
                                    c("Cult" = "cult",
                                      "Garden" = "garden")),
                  h4("AOO, EOO toggle"),
@@ -158,7 +158,7 @@ shinyUI(fluidPage(# Application title
                 radioButtons("pop.data.qual", "Population data qual:",
                              c("Good" = "good", "Medium" = "medium", 
                                "Poor" = "poor", "Unkown"= "unkown", "NA"= "na"), 
-                             (selected = "english"),(inline = TRUE)),
+                             (selected = "unkown"),(inline = TRUE)),
             
                 splitLayout(
                     radioButtons("precision_method", "Precision Method:",

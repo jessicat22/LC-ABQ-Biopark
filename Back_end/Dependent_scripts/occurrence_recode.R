@@ -8,6 +8,8 @@
 #              ready for export
 
 #### Load Packages ####
+# Load dependent functions
+source("Back_end/Dependent_scripts/Occurrence_reformat.R")
 
 #### Main Function ####
 OCCURRENCE_RECODE_MAIN <- function (){
@@ -28,6 +30,9 @@ OCCURRENCE_RECODE_MAIN <- function (){
 NS_occurrence_recode <- function() {
   if (exists("NS_occ")) {
     NS_occ$source <- "NatureServe"
+    # Recode country codes to WGSRPD
+    NS_occ$WGSRPD3 <-
+      occ.codes$lvl3_display[match(NS_occ$occ, occ.codes$ns_codes)]
     # Recode country codes to match IUCN formatting
     NS_occ$occ <-
       occ.codes$iucn_code[match(NS_occ$occ, occ.codes$ns_codes)]
@@ -51,7 +56,7 @@ NS_occurrence_recode <- function() {
     NS_occ <<-
       NS_occ[, which(names(NS_occ) %in% 
                        c("id", "occ", "source", "ORIGIN", "PRESENCE",
-                         "SEASONALITY"))]
+                         "SEASONALITY","WGSRPD3"))]
   }
 }
 
@@ -67,14 +72,17 @@ POW_occurrence_recode <- function() {
     POW_occurrence$occ <-
       occ.codes$iucn_code[match(POW_occurrence$CountryOccurrenceLookup,
                                 occ.codes$CountryOccurrenceLookup)]
+    # Rename columns
+    names(POW_occurrence) <- c("id","WGSRPD3","name","ORIGIN","PRESENCE",
+                              "SEASONALITY","source","occ")
+    POW_occurrence$CountryOccurrenceLookup
+    
     # Remove unused name field
     POW_occurrence <<-
       POW_occurrence[,-which(
         names(POW_occurrence) %in% c(
-          "name",
-          "CountryOccurrenceName",
-          "CountryOccurrenceLookup"
-        )
+          "name"
+          )
       )]
   }
 }
@@ -91,11 +99,16 @@ VC_occurrence_recode <- function () {
     VC_occurrence$occ <-
       occ.codes$iucn_code[match(VC_occurrence$CountryOccurrenceLookup,
                                 occ.codes$vc_codes)]
+    # Index VC code to return WGSRPD3 code
+    VC_occurrence$WGSRPD3 <-
+      occ.codes$lvl3_display[match(VC_occurrence$CountryOccurrenceLookup,
+                                occ.codes$vc_codes)]
+    
     # Drop unused column and rename remaining columns
-    names(VC_occurrence) <- c("id", "remove", "ORIGIN", "PRESENCE",
+    names(VC_occurrence) <- c("id", "WGSRPD3", "ORIGIN", "PRESENCE",
                               "occ")
     VC_occurrence <- VC_occurrence[, which(names(VC_occurrence) %in%
-                                                   c("id", "ORIGIN", "PRESENCE", "occ"))]
+                                      c("id", "WGSRPD3", "ORIGIN", "PRESENCE", "occ"))]
     # Recode origin fields
     VC_occurrence$ORIGIN[which(VC_occurrence$ORIGIN == "native")] <- 1
     VC_occurrence$ORIGIN[which(VC_occurrence$ORIGIN == "introduced")] <- 3

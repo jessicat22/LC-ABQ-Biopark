@@ -31,6 +31,8 @@ lapply(packages, package.check)
 
 SPATIAL_CALCULATIONS_MAIN <- function (){
   print("Performing spatial calculations.")
+  # Turn off s2 processing
+  sf::sf_use_s2(FALSE)
   GBIF_lat_long_duplicate()
   WGSRPD_index()
   WGSRPD_lvl1_add()
@@ -151,7 +153,7 @@ WGSRPD_convert <- function() {
 #          occurrence records from other sources.
 cross.occ <- function (x) {
   x$ORIGIN[which(x$lvl3 %ni% countries_table$occ[
-    which(x$ORIGIN == 1 &
+    which(countries_table$ORIGIN == 1 &
             countries_table$id == x$ID_NO[1])])] <- 3 
   return(x)
 }
@@ -165,9 +167,9 @@ POINT_data_origin_recalculate <- function() {
   # Divide data into list of data frames
   GBIF_point_data <- split( GBIF_point_data , f = GBIF_point_data$ID_NO )
   # Redefine origin field based on Kew, NS, and VC occurrence lookups
-  GBIF_point_data <- lapply(GBIF_point_data, cross.occ)
+  points_redefined <- lapply(GBIF_point_data, cross.occ)
   # Convert to long
-  GBIF_point_data <<- data.frame(bind_rows(GBIF_point_data, .id="name"))
+  GBIF_point_data <<- data.frame(bind_rows(points_redefined, .id="name"))
 }
 
 # Parameters: GBIF_point_data (table from GBIF_download.R)
@@ -354,8 +356,9 @@ POINT_subset <- function () {
   eoo_min <- data.frame(t(bind_rows(eoo_min, .id="ID_NO")))
   eoo_min$ID_NO <- rownames(eoo_min)
   names(eoo_min) <- c("EOO_min","id")
+  # Remove scientific notation
+  eoo_min$EOO_min <- format(eoo_min$EOO_min, scientific=F)
 
-  
   return(eoo_min)
 }
 

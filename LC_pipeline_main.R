@@ -1,11 +1,13 @@
 #### LC Pipeline Main Script ####
-## Version 3.1
+## Version 3.1.1
 # Started: January 2021
-# Last worked on: 4 July 2021
+# Last worked on: 13 October 2021
 # Author: Clay Meredith
 # File: LC_pipeline_main.R
 # Description: Script runs dependent scripts to determine user parameters, load data,
 # search databases, and generate SIS Connect output files.
+
+version_no <- "3.1.1"
 
 # # Notes
 # 
@@ -29,35 +31,12 @@ source("Back_end/Dependent_scripts/base_functions.R")
 #### Prompt for user credentials ####
 source("Back_end/Dependent_scripts/Credentials_Prompt.R")
 
-#### Prompt user for remaining details ####
-compiler_name <- readline(prompt="Enter Compiler Name: ")
-
-inat <- readline(prompt="Include iNaturalist records? Enter Y or N: ")
-
 #### Load Species List ####
-## List must be a single column .csv file with the header "Species"
-spec.list <- data.frame(read.csv(
-  "User_Inputs/spec_list.csv"))
-# Remove no-break spaces
-spec.list$Species <- remove_no_breaks(spec.list$Species)
-# Convert species names to class character
-spec.list$Species <- as.character(spec.list$Species)
-# Asign arbitrary internal id (based on system time to avoid duplicates)
-spec.list$int_id <- -1*seq(from=as.numeric(format(Sys.time(),
-                                                  "%y%m%d%H%M%S")),
-                           to=(as.numeric(format(Sys.time(),
-                                                 "%y%m%d%H%M%S"))+
-                                 length(spec.list$Species)-1))
+source("Back_end/Dependent_scripts/species_input_load.R")
 
-# Replace arbitrary id with Red List ID (if it exists in input table)
-spec.list$id <- spec.list$iucn_id
-spec.list$id[which(spec.list$id == "")] <- NA
-spec.list$id[which(is.na(spec.list$id))] <- 
-  spec.list$int_id[which(is.na(spec.list$id))]
-
-## Subset rows for testing purposes
+# Subset rows for testing purposes
 # Comment out this line to run entire list
-spec.list <- spec.list[c(101:125),]
+spec.list <- spec.list[c(61:65),]
 
 #### Initiate GBIF Search ####
 if(GBIF_toggle == "Y") {
@@ -134,6 +113,9 @@ source("Back_end/Dependent_scripts/spatial_calculations.R")
 if(spatial_collect_toggle == "Y"){
 source("Back_end/Testing_scripts/spatial_variable_test.R")
 }
+
+# Run European Mask
+source("Back_end/Dependent_scripts/Euro_mask_eoo_recalculate.R")
 
 # Table exports
 source("Back_end/Dependent_scripts/SIS_connect_file_generator.R")

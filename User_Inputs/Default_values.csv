@@ -1,28 +1,30 @@
-var_name,value
-presence_code,1
-seasonal_code,1
-origin_code,1
-pop.data.qual,Unknown
-aoo.just,AOO was calculated based on publicly available point data from GBIF . The reported upper value is calculated based on the number of 2 km x 2 km grid cells occupied by points occurring within WGSRPD regions where the species is confirmed to be native. The lower value is derived from the same data with the 10% of points furthest from the species' centroid removed. Both figures should be considered underestimates given incomplete sampling of the species.
-eoo.just,"EOO calculated based on GBIF.org (2020) occurrence records trimmed to include only the species' native range as defined by Plants of the World Online, NatureServe, and VASCAN. The lower value is derived from the same data with the 10% of points furthest from the species' centroid removed."
-del_year,TRUE
-sens,FALSE
-inat,TRUE
-nothreats,TRUE
-threats.unknown,FALSE
-rationale.text,"The species has a large range, and there is currently no indication of widespread population decline. It is therefore listed as Least Concern."
-threats.text,There are no known significant threats to the species at this time.
-outlier_threshold,0.9
-uncertainty_tolerance,5000
-min_decimals,4
-precision_method,single
-ocurrenceRemarks_cull,cult
-ocurrenceRemarks_cull,garden
-occurrenceRemarks_introduced,escaped
-is.restricted.eoo.cutoff,40000
-is.restricted.aoo.cutoff,500
-is.restricted.justification,Records of the species are abundant and there is currently no indication that the species would qualify for listing under a threatened category based on its distribution.
-language.value,English
-pop.narrative,"Records of the species are abundant, and there is currently no indication that population declines meet thresholds for listing under a threatened category."
-map.status,Done
-threats.narrative,"The species has a large range, and numerous records of the species are available. At present, no threats likely to drive the species into a threatened category are known."
+var_name,value,Description,Accepted_Values
+presence_code,1,Default presence code used when species is not known to be extinct within a WGSRPD polygon.,Integer values between 1 and 6
+seasonal_code,1,Default seasonal code used for all occurrences.,Integer values between 1 and 5
+origin_code,1,Default presence code used for occurrences within the accepted WGSRPD polygons which cannot be determined to be introduced.,Integer values between 1 and 6
+pop.data.qual,Unknown,Default value added to allfields table for population data quality,"good, medium, poor, unknown, not applicable"
+aoo.just,AOO was calculated based on publicly available point data from GBIF . The reported upper value is calculated based on the number of 2 km x 2 km grid cells occupied by points occurring within WGSRPD regions where the species is confirmed to be native. The lower value is derived from the same data with the 10% of points furthest from the species' centroid removed. Both figures should be considered underestimates given incomplete sampling of the species.,Default narrative for AOO justification field.,Any user-defined text.
+eoo.just,"EOO calculated based on GBIF.org (2020) occurrence records trimmed to include only the species' native range as defined by Plants of the World Online, NatureServe, and VASCAN. The lower value is derived from the same data with the 10% of points furthest from the species' centroid removed.",Default narrative for EOO justification field.,Any user-defined text.
+del_year,TRUE,Toggle to instruct script to delete point records which lack a year.,"TRUE, FALSE"
+sens,FALSE,Default value for data sensitive field in point occurrences.,"TRUE, FALSE"
+inat,TRUE,Default value for including iNaturalist observations derived from GBIF (not currently used since it is asked directly).,"TRUE, FALSE"
+nothreats,TRUE,Default value for nothreats field in allfields table (defaults to TRUE at the request of Craig Hilton-Taylor).,"TRUE, FALSE"
+threats.unknown,FALSE,Default value for threatsUnknown field in allfields table (defaults to FALSE at the request of Craig Hilton-Taylor).,"TRUE, FALSE"
+rationale.text,"The species has a large range, and there is currently no indication of widespread population decline. It is therefore listed as Least Concern.",Default narrative for assessment rationale.,Any user-defined text.
+threats.text,There are no known significant threats to the species at this time.,Default text for threats narrative field.,Any user-defined text.
+outlier_threshold,0.9,Proportion of points to keep based on distance to centroid for minimum EOO calculation.,Numbers between 0 and 1
+uncertainty_tolerance,5000,Threshold value for removal of GBIF/DarwinCore points based on stated precision value (in meters).,An integer value greater than 1
+min_decimals,4,Minimum number of decimals included in latitude and longitude values.,An integer value greater than 0
+precision_method,single,Precision method employed for removing imprecise latitude and longitude values. Not yet implemented. Will be included in future releases.,"single, double"
+ocurrenceRemarks_cull,cult,Terms used in search of occurrence remarks. Occurrences including this term will be removed.,Any user-defined text.
+ocurrenceRemarks_cull,garden,Terms used in search of occurrence remarks. Occurrences including this term will be removed.,Any user-defined text.
+occurrenceRemarks_introduced,escaped,Terms used to find occurrences which have escaped cultivation. Occurrences containing this term in the occurrenceRemarks field will be marked as introduced.,Any user-defined text.
+is.restricted.eoo.cutoff,40000,Cutoff EOO value to flag species as restricted (km2).,An integer value greater than 0
+is.restricted.aoo.cutoff,500,Cutoff AOO value to flag species as restricted (km2).,An integer value greater than 0
+is.restricted.justification,Records of the species are abundant and there is currently no indication that the species would qualify for listing under a threatened category based on its distribution.,Default text for species not flagged as restricted.,Any user-defined text.
+language.value,English,Default language value for assessment.,"English, Spanish, French, Portuguese"
+pop.narrative,"Records of the species are abundant, and there is currently no indication that population declines meet thresholds for listing under a threatened category.",Default population narrative for assessment.,Any user-defined text.
+map.status,Done,"Default map status for allfields table. If polygons or major modifications to the map status are to be done, this field can be changed according to the SIS Connect accepted values for the field.","Done, Missing, Incomplete, Not possible"
+threats.narrative,"The species has a large range, and numerous records of the species are available. At present, no threats likely to drive the species into a threatened category are known.",Default threats narrative for assessment.,Any user-defined text.
+throttle_points,TRUE,"Toggle to instruct script to limit the number of points used in calculations. If TRUE, the number of points used in calculations will be throttled according to the throttle_level value (good for saving resources, speeding up calculations). If FALSE, all points derived from GBIF and uploaded DarwinCore files will be used (consumes far more resources).","TRUE, FALSE"
+throttle_level,5000,Number of points to include in spatial calculations if throttle_points value is set to TRUE.,An integer value greater than 1

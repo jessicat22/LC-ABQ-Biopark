@@ -18,7 +18,6 @@ lapply(packages, package.check)
 # Throws: 
 # Purpose: 
 SIS_table_generator_main <- function (){
-  
   # Export synonyms from NS and POWO
   synonyms_table <- data.frame(synonym_export())
   synonyms_table <- unnest(synonyms_table, cols = c(speciesName, infraType, infrarankName))
@@ -41,7 +40,7 @@ SIS_table_generator_main <- function (){
   common_name_final[is.na(common_name_final)] <- ""
   common_name_final <<- common_name_final
   write.csv(common_name_final, 
-            paste("Outputs/common_names_batch_", 
+            paste("Outputs/commonnames_batch_", 
                   default_vals$value[which(default_vals$var_name == "batch_no")],
                   ".csv", sep = ""),
             row.names = FALSE)
@@ -69,8 +68,24 @@ SIS_table_generator_main <- function (){
             row.names = FALSE)
   # Replace NA values with blanks
   countries_table[is.na(countries_table)] <- ""
+  # Define final table
+  countries_final <- countries_table
+  # Recode final table
+  countries_final <- countries_recode(countries_final)
+  # Replace countries table headers
+  names(countries_final) <-
+    c(
+      "internal_taxon_id",
+      "DELETE",
+      "CountryOccurrence.CountryOccurrenceSubfield.origin",
+      "CountryOccurrence.CountryOccurrenceSubfield.presence",
+      "CountryOccurrence.CountryOccurrenceSubfield.seasonality",
+      "CountryOccurrence.CountryOccurrenceSubfield.CountryOccurrenceLookup"
+    )
+  countries_final <- countries_final[,-which(names(countries_final) %in% 
+                                               c("DELETE"))]
   # Write countries table
-  write.csv(countries_table, 
+  write.csv(countries_final, 
             file = paste("Outputs/Countries_batch_", 
                   default_vals$value[which(default_vals$var_name == "batch_no")],
                   ".csv", sep = ""),
@@ -228,7 +243,7 @@ Extreme_occurrences_narrative <- function () {
 narrative_realm_search <- function  () {
   # Split long form data frame into list
   realms.long1 <- split(realm_results , f = realm_results$ID_NO)
-  
+
   # Generate prefix for each distribution field
   dist.prefix <- lapply(realms.long1, function(x) {
     if (all(c("NA", "NT", "IM", "AA", "AT", "PA") %in% x$realm)) {
@@ -376,6 +391,7 @@ distribution_citations_generate <- function (){
 }
 
 ASSESSMENT_TABLE_BUILD <- function (x){
+  
   # Build assessments table
   assessments <- rbind(assessments.template, 
                        assessments.template[rep(1, nrow(spec.list)), ])
@@ -398,20 +414,23 @@ ASSESSMENT_TABLE_BUILD <- function (x){
   # Add Latin name if common name exists
   dist_narrative$common[which(!is.na(dist_narrative$common))] <- 
     paste(dist_narrative$common[which(!is.na(dist_narrative$common))],
-          " (<em>",
           spec.list$Species[
-            match(dist_narrative$id[which(!is.na(dist_narrative$common))], spec.list$id)],
-          "</em)",
+            match(dist_narrative$id[which(!is.na(dist_narrative$common))], 
+                  spec.list$id)],
           sep = "")
   
   # Use Latin name if common name does not exist
   dist_narrative$common[which(is.na(dist_narrative$common))] <- 
-    paste("<em>",
-          spec.list$Species[
-            match(dist_narrative$id[which(is.na(dist_narrative$common))], spec.list$id)],
-          "</em>",
+    paste(spec.list$Species[
+            match(dist_narrative$id[which(is.na(dist_narrative$common))], 
+                  spec.list$id)],
           sep = "")
-
+  
+  # Add commas to elevation text
+  dist_narrative$min_elev <- prettyNum(as.numeric(dist_narrative$min_elev), 
+                                     big.mark=",")
+  dist_narrative$max_elev <- prettyNum(as.numeric(dist_narrative$max_elev), 
+                                       big.mark=",")
   # Compose final narrative
   dist_narrative$final <- paste(dist_narrative$common, " ", dist_narrative$dist_prefix,
                                 ". ", dist_narrative$narrative, " (", dist_narrative$V1, "). ",
@@ -450,12 +469,15 @@ ASSESSMENT_TABLE_BUILD <- function (x){
   # Populate language field
   assessments$Language.value <- 
     default_vals$value[which(default_vals$var_name == "language.value")]
+
   # Populate assessment category
   assessments$RedListCriteria.manualCategory[which(assessments$internal_taxon_id %in%
                                                         allfields$internal_taxon_id[which(
                                                           allfields$AreaRestricted.isRestricted ==
                                                             FALSE
                                                         )])] <- "LC"
+  
+  
   # Populate category is manual field  
   assessments$RedListCriteria.isManual[which(
     assessments$RedListCriteria.manualCategory == "LC"
@@ -484,6 +506,9 @@ ASSESSMENT_TABLE_BUILD <- function (x){
   )] <- default_vals$value[which(default_vals$var_name == "rationale.text")]
   # Replace NA values with blanks
   assessments[is.na(assessments)] <- ""
+  # Add Red List Criteria Version
+  assessments$redlistcriteria.critversion <- 3.1
+  
   return(assessments)
 }
 
@@ -508,8 +533,9 @@ ALLFIELDS_TABLE_BUILD <- function (x){
   # Build EOO range field
   spec.list$eoo_range <- NA
   spec.list$eoo_range[which(!is.na(spec.list$EOO_min))] <- 
-    paste(spec.list$EOO_min[which(!is.na(spec.list$EOO_min))],
-          spec.list$EOO_max[which(!is.na(spec.list$EOO_min))], sep=" - ")
+    paste(format(spec.list$EOO_min[which(!is.na(spec.list$EOO_min))], scientific=F),
+          format(spec.list$EOO_max[which(!is.na(spec.list$EOO_min))], scientific=F)
+          , sep=" - ")
   # Populate EOO field
   allfields$EOO.range[which(allfields$internal_taxon_id %in% spec.list$id[which(
     !is.na(spec.list$eoo_range))])] <- spec.list$eoo_range[match(spec.list$id[which(
@@ -532,8 +558,9 @@ ALLFIELDS_TABLE_BUILD <- function (x){
   # Populate EOO justification field
   allfields$EOO.justification[which(!is.na(allfields$EOO.range))] <- 
     default_vals$value[which(default_vals$var_name == "eoo.just")]
-  # Populate population trend field  
-  allfields$populationtrend.value <- "Unknown"
+  # Removed as this field is included in assessments table
+  # Populate population trend field
+  # allfields$populationtrend.value <- "Unknown"
   # Check EOO and AOO limits for area restricted designation
   # Flag widespread taxa as area restricted = FALSE
   allfields$AreaRestricted.isRestricted[
@@ -551,6 +578,8 @@ ALLFIELDS_TABLE_BUILD <- function (x){
   # Fill no threats field
   allfields$NoThreats.noThreats[which(allfields$AreaRestricted.isRestricted == FALSE)] <-
     TRUE
+  # Fill threats unknown field
+  allfields$threatsunknown.value <- FALSE
   # Replace NA values with blanks
   allfields[is.na(allfields)] <- ""
 
@@ -601,9 +630,9 @@ TAXONOMY_TABLE_BUILD <- function (){
     # Build NS author column
     spec.list$NS_author <- "No Results"
     # Append matched values
-    spec.list$NS_author[which(spec.list$id %in% NS_taxonomy$id)] <- 
-      NS_taxonomy$ns_authority[match(spec.list$id[
-        which(spec.list$id %in% NS_taxonomy$id)],NS_taxonomy$id)]
+    # spec.list$NS_author[which(spec.list$id %in% NS_taxonomy$id)] <- 
+    #   NS_taxonomy$ns_authority[match(spec.list$id[
+    #     which(spec.list$id %in% NS_taxonomy$id)],NS_taxonomy$id)]
   }
   if (exists("VC_data")){
     # Build VC accepted column
@@ -650,14 +679,46 @@ TAXONOMY_TABLE_BUILD <- function (){
     # Append matched values
     spec.list$FNA_name[which(spec.list$id %in% fna_tax_check_final$id)] <- 
       fna_tax_check_final$accepted_match
+    # Unlist FNA_name
+    spec.list$FNA_name <- unlist(spec.list$FNA_name)
     # Build FNA author column
     spec.list$FNA_author <- "No Results"
     # Append matched values
     spec.list$FNA_author[which(spec.list$id %in% fna_tax_check_final$id)] <- 
       fna_tax_check_final$fna_author
+    # Unlist FNA_author
+    spec.list$FNA_author <- unlist(spec.list$FNA_author)
   }
   # Set as global variable
   spec.list <<- spec.list
+}
+
+# Parameters: countries_table (x)
+# Returns: countries_table
+# Throws: none
+# Purpose: Recodes countries table codes from numeric values to text accepted
+#          by SIS Connect.
+
+countries_recode <- function (x){
+  # Build temp table
+  countries_temp <- x
+  # Build temp origin table
+  origin_codes <- coding_key$origin_text
+  names(origin_codes) <- coding_key$origin_code
+  # Recode ORIGIN field
+  countries_temp$ORIGIN <- unname(origin_codes[countries_temp$ORIGIN])
+  # Build temp presence table
+  presence_codes <- coding_key$presence_text
+  names(presence_codes) <- coding_key$presence_code
+  # Recode PRESENCE field
+  countries_temp$PRESENCE <- unname(presence_codes[countries_temp$PRESENCE])
+  # Build temp origin table
+  seasonality_codes <- coding_key$seasonality_text
+  names(seasonality_codes) <- coding_key$seasonality_code
+  # Recode ORIGIN field
+  countries_temp$SEASONALITY <- 
+    unname(seasonality_codes[countries_temp$SEASONALITY])
+  return(countries_temp)
 }
 
 SIS_table_generator_main()

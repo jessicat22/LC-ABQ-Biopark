@@ -32,7 +32,6 @@ fna_search_main <- function (){
   fna_subtaxa_retrieve()
   # Merge subtaxa and reorganize
   fna_subtaxa_merge()
-  
   #### FNA Data retrieval ####
   # Retrieve author for all taxa
   fna_author_retrieve()
@@ -149,10 +148,12 @@ fna_sp_lvl_check <- function(){
     fna_tax_check$accepted_match))] <<-
     fna_tax_check$synonym_match[which(is.na(
       fna_tax_check$accepted_match))]
-  
+
   # Unlist results
-  fna_tax_check$accepted_match <<- unlist(
-    fna_tax_check$accepted_match)
+  # Method selects first element in each list as FNA reports species
+  # level first. This may produce unpredictable results when infrataxa are run
+  fna_tax_check$accepted_match <<- lapply(
+    fna_tax_check$accepted_match, '[[',1)
   
 }
 
@@ -242,7 +243,7 @@ fna_subtaxa_retrieve <- function (){
       # Convert from wide to long
       fna_sub_res <- data.frame(stack(fna_sub_res),stringsAsFactors=FALSE)
       # Convert columns to character and numeric types
-      fna_sub_res$ind <- as.numeric(as.character(fna_sub_res$ind))
+      fna_sub_res$id <- as.numeric(as.character(fna_sub_res$id))
       # Convert to global variable
       fna_sub_res <<- fna_sub_res
       # fna_sub_res <- data.frame(Values = fna_sub_res,
@@ -273,11 +274,16 @@ fna_subtaxa_merge <- function(){
     #   fna_sub_res$id <- 
     #     as.numeric(levels(fna_sub_res$id))[fna_sub_res$id]
     # }
+    # Reclass columns before merge
+    fna_sub_res$id <- as.numeric(as.character(fna_sub_res$id))
+    fna_tax_check$accepted_match <- unlist(fna_tax_check$accepted_match)
+    fna_sub_res <<- fna_sub_res
+    fna_tax_check <<- fna_tax_check
     # Bind subtaxa to taxa
     fna_tax_check <<- rbind.fill(fna_tax_check,fna_sub_res)
-    
-    # Add temp index column
-    fna_tax_check$temp_id <<- c(1:nrow(fna_tax_check))
+    print(fna_tax_check)
+    # # Add temp index column
+    # fna_tax_check$temp_id <<- c(1:nrow(fna_tax_check))
     # Define number of subtaxa as 0 for subtaxa
     fna_tax_check$num_subtaxa[which(is.na(fna_tax_check$num_subtaxa))] <<- 0
     
@@ -322,6 +328,13 @@ fna_volume_retrieve <- function(){
                     "Outputs/output_file_name.csv")
   # Append to results
   if(class(fna_vol) != "list"){fna_vol<- as.list(unname(fna_vol[1,]))}
+  
+  # Unlist fna_vol
+  fna_vol <- lapply(fna_vol, function(x){
+    x <- x[[1]][[1]]
+    unlist(x)
+  }
+  )
 
   fna_tax_check$fna_vol <<- fna_vol
   
@@ -453,11 +466,13 @@ fna_in_text <- function(){
 
 # Merge habitat narratives for subtaxa
 fna_habitat_merge <- function(){
-  fna_tax_check$habitat <<- as.character(fna_tax_check$habitat)
+  fna_tax_check$habitat <- unlist(fna_tax_check$habitat)
   # Concatenate habitat narratives
-  fna_habitat_concatenated <- aggregate(habitat ~ id, 
-                                        fna_tax_check[which(fna_tax_check$entered_name=="SUBTAXON"),],
-                                        paste, collapse = ", ")
+  fna_habitat_concatenated <-
+    aggregate(habitat ~ id,
+              fna_tax_check[which(fna_tax_check$entered_name == "SUBTAXON"), ],
+              paste, collapse = ", ")
+  
   # Append to fna_tax_check table
   fna_tax_check$habitat[which(fna_tax_check$entered_name!="SUBTAXON")][match(
     fna_habitat_concatenated$id,
@@ -477,15 +492,18 @@ fna_cons_elevate <- function(){
 
 # Generate FNA citations
 fna_citation_build <- function(){
-  references <- ref.key[0,]
+  # references1 <- ref.key[0,]
   fna_hits <- fna_tax_check$id[which(
     !is.na(fna_tax_check$fna_vol))]
+  print(fna_hits)
   # Cross-reference fna results with citation list
   fna_references_used <- 
     ref.key[match(fna_tax_check$fna_vol[which(!is.na(
       fna_tax_check$fna_vol))], ref.key$keywords),]
+  print(fna_references_used)
   # Append taxon id
   fna_references_used$internal_taxon_id <- fna_hits
+  print(fna_references_used)
   # Remove duplicates
   if (!is.null(fna_references_used)){
     references <<- rbind(references, 
@@ -500,6 +518,12 @@ FNA_list_fix <- function (){
   fna_tax_check$fna_author <- lapply(fna_tax_check$fna_author,unlist)
   fna_tax_check$fna_author <- lapply(fna_tax_check$fna_author,unname)
   fna_tax_check$fna_author <- lapply(fna_tax_check$fna_author,function(x){x[1]})
+  # Unlist fna_vol
+  fna_tax_check$fna_author <- lapply(fna_tax_check$fna_author, function(x){
+    x <- x[[1]][[1]]
+    unlist(x)
+  }
+  )
   # Unlist volume field
   fna_tax_check$fna_vol <- lapply(fna_tax_check$fna_vol,unlist)
   fna_tax_check$fna_vol <- lapply(fna_tax_check$fna_vol,unname)

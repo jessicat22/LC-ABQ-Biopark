@@ -5,7 +5,7 @@
 # Find out more about building applications with Shiny here:
 #
 #    http://shiny.rstudio.com/
-#
+
 
 packages <- c("keyring")
 packages <- c("bit64","rgbif","data.table","stringr")
@@ -24,7 +24,7 @@ shinyServer(function(input, output){
         if (is.null(TaxonomyFile))
             return(NULL)
         
-        spec.list <- data.frame(read.csv(TaxonomyFile$datapath, header = input$header))
+        spec.list <<- data.frame(read.csv(TaxonomyFile$datapath, header = input$header))
       
     })
     
@@ -35,7 +35,7 @@ shinyServer(function(input, output){
             if (is.null(DarwinCoreFile))
                 return(NULL)
 
-            read.csv(DarwinCoreFile$datapath, header = input$header)
+            DC_point_data<<- data.frame(read.csv(DarwinCoreFile$datapath, header = input$header))
    })
   
    # output$usertxt <- renderText({
@@ -47,35 +47,33 @@ shinyServer(function(input, output){
     output$GBIF_users <- renderText({
        req(input$submit_GBIF)
        isolate(input$GBIF_User)
-       gbif_user <<- input$GBIF_User
+      # gbif_user <<- input$GBIF_User
        })
     
     output$GBIF_emails <- renderText({
        req(input$submit_GBIF)
        isolate(input$GBIF_email)
-       gbif_email <<- gbif_email
+       #gbif_email <<- input$GBIF_email
        })
     
     output$GBIF_password <- renderText({
        req(input$submit_GBIF)
        isolate(input$GBIF_Password)
-       pwd = key_get("GBIF_Password")
+       
        #set to keychain
        })
     
     
-    output$gbif_success <- renderText({
+    output$gbif_success <- renderPrint({
        req(input$submit_GBIF)
-      occ_download_list(user = isolate(input$GBIF_User),pwd = input$GBIF_Password,limit = 20,
-             start = 0,curlopts = list())
+        occ_download_list(
+          user = input$GBIF_User,
+          pwd = input$GBIF_Password,
+          limit = 20,
+          start = 0
+          )
             
     })
-    spacial_collect_toggle <<- renderText({ 
-       req(input$submit_file)
-       isolate(input$Spacial_calc)
-    })
-    
-    
     
     
     #with everything from csv file create a csv and append each row in order 
@@ -90,7 +88,7 @@ shinyServer(function(input, output){
   
     #submit button variables set to their variable names when big submit is pressed 
   output$sample<- renderTable({
-    #req(input$submit_file)
+    req(input$submit_file)
     rendercsvuser = data.frame(
       Var_Name = c("presence_code","seasonal_code",
                    "orgin_code","pop.data.qual","aoo just",
@@ -115,8 +113,8 @@ shinyServer(function(input, output){
                 isolate(input$is.restricted.aoo.cutoff), isolate(input$is.restricted.justification),
                 isolate(input$pop.narrative), isolate(input$threats.narrative),
                 isolate(input$throttle.points), input$throttle_level
-               )
-                            )
+               ))
+   source("LC_pipeline_main.R")
     
     # write.table(rendercsvuser, file = "sample.csv")
     })

@@ -1,11 +1,13 @@
 #### LC Pipeline Main Script ####
-## Version 3.1
+## Version 3.1.1
 # Started: January 2021
-# Last worked on: 4 July 2021
+# Last worked on: 13 October 2021
 # Author: Clay Meredith
 # File: LC_pipeline_main.R
 # Description: Script runs dependent scripts to determine user parameters, load data,
 # search databases, and generate SIS Connect output files.
+
+version_no <- "3.1.1"
 
 # # Notes
 # 
@@ -17,58 +19,34 @@
 #### Define working directory ####
 # This line only works when the file is sourced. It will not function as expected
 # when run line by line.
-
+# if (!exists("current.dir")){
+#   current.dir <- dirname(parent.frame(2)$ofile)
+#   setwd(current.dir)
+#   print(getwd())
+# }
+#source("server.R")
+#source("ui.R")
 # Load base functions
-source("Dependent_scripts/base_functions.R")
-
+source("Back_end/Dependent_scripts/base_functions.R")
+print("baseloaded")
 #### Prompt for user credentials ####
-source("Dependent_scripts/Credentials_Prompt.R")
-
-#### Prompt user for remaining details ####
-
+#source("Back_end/Dependent_scripts/Credentials_Prompt.R")
+source("Back_end/Dependent_scripts/GBIF_search_initiate.R")
 #### Load Species List ####
-## List must be a single column .csv file with the header "Species"
-spec.list <- data.frame(read.csv(
-  TaxonomyFile$datapath, header = input$header))
-# Remove no-break spaces
-spec.list$Species <- remove_no_breaks(spec.list$Species)
-# Convert species names to class character
-spec.list$Species <- as.character(spec.list$Species)
-# Asign arbitrary internal id (based on system time to avoid duplicates)
-spec.list$int_id <- -1*seq(from=as.numeric(format(Sys.time(),
-                                                  "%y%m%d%H%M%S")),
-                           to=(as.numeric(format(Sys.time(),
-                                                 "%y%m%d%H%M%S"))+
-                                 length(spec.list$Species)-1))
+source("Back_end/Dependent_scripts/species_input_load.R")
 
-# Replace arbitrary id with Red List ID (if it exists in input table)
-spec.list$id <- spec.list$iucn_id
-spec.list$id[which(spec.list$id == "")] <- NA
-spec.list$id[which(is.na(spec.list$id))] <- 
-  spec.list$int_id[which(is.na(spec.list$id))]
-
-## Subset rows for testing purposes
+# Subset rows for testing purposes
 # Comment out this line to run entire list
-spec.list <- spec.list[c(101:125),]
+spec.list <- spec.list[c(7,16),]
 
 #### Initiate GBIF Search ####
-if(GBIF_toggle == "Y") {
-  # Run GBIF_search_initiate if 
-  source("Back_end/Dependent_scripts/GBIF_search_initiate.R")
-} else if (GBIF_old_toggle == "Y" & 
-           file.exists("Back_end/Downloaded_Datasets/GBIF_key_result.csv")) {
+
   # Load previous key results
-  GBIF_key_result <-
-    data.frame(read.csv(file = "Back_end/Downloaded_Datasets/GBIF_key_result.csv"))
-  # Recode ID numbers for previous results
-  GBIF_key_result$internal_taxon_id <- spec.list$id[match(GBIF_key_result$name_entered,
-                                                          spec.list$Species)]
-}
 
 #### Load dependent data ####
 
 # Load dependent data
-source("Back_end/Dependent_scripts/data_load.R")
+#source("Back_end/Dependent_scripts/data_load.R")
 
 #### Taxonomic search functions ####
 # ITIS Taxonomy Check #
@@ -86,13 +64,7 @@ try(source("Back_end/Dependent_scripts/NS_data_retrieve.R"))
 try(source("Back_end/Dependent_scripts/FNA_Search_Script/FNA_query_functions.R"))
 
 # Run Red List search only if RL token is found
-if(nrow(spec.list)<100 && RL_toggle == "Y" && 
-   !is.null(key_get("RL_api"))) {
-  source("Back_end/Dependent_scripts/RL_functions.R")} else 
-  {print("Red List API token not found.")
-    print("Red List search will not be performed.")}
 
-# Execute Kew POWO taxonomy search
 # TODO : Remove working tables from global variables
 try(source("Back_end/Dependent_scripts/POW_taxonomy_functions.R"))
 
@@ -103,9 +75,9 @@ try(source("Back_end/Dependent_scripts/POW_data_retrieve.R"))
 source("Back_end/Dependent_scripts/Darwincore_manual_upload.R")
 
 # Download GBIF Data
-GBIF_toggle <- "Y" 
-GBIF_old_toggle <-"Y"
-  source("Back_end/Dependent_scripts/GBIF_download.R")
+GBIF_toggle <<- "Y" 
+GBIF_old_toggle <<-"Y"
+source("Back_end/Dependent_scripts/GBIF_download.R")
 
 
 # Reformat GBIF data for export and merge DC data if available
@@ -114,6 +86,7 @@ if (exists("GBIF_raw")) {
   if (exists("DC_point_data")) {
     GBIF_point_data <- rbind(DC_point_data, GBIF_point_data)
   }
+  
 }
 
 # Recode occurrence fields and create countries table
@@ -126,6 +99,9 @@ source("Back_end/Dependent_scripts/spatial_calculations.R")
 if(spatial_collect_toggle == "Y"){
 source("Back_end/Testing_scripts/spatial_variable_test.R")
 }
+
+# Run European Mask
+source("Back_end/Dependent_scripts/Euro_mask_eoo_recalculate.R")
 
 # Table exports
 source("Back_end/Dependent_scripts/SIS_connect_file_generator.R")

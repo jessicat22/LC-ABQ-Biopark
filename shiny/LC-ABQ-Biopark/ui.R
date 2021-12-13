@@ -65,10 +65,7 @@ shinyUI(fluidPage(# Application title
                 tags$hr(),
                textOutput("gbif_success"),
                 #spacial Calculations
-                checkboxInput(
-                    "Spacial_calc",
-                    "Collect spatial statistics data (significantly slows runtime)?",
-                    FALSE),
+                
                 #submit all info
                 tags$hr(),
 

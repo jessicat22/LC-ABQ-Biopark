@@ -30,13 +30,11 @@ DEPENDENCIES_main <- function () {
   # Load allfields template
   allfields.template <<- data.frame(read.csv("Back_end/Dependencies/allfields_template.csv"))
   # Run Geospatial import if GBIF toggle is active
-  if (GBIF_toggle == "Y" || GBIF_old_toggle == "Y") {
-    DEPENDENCIES_GEOSPATIAL_main()
-  }
+  
   # Assign batch number
   batch_no <- data.frame(var_name = "batch_no",
                          value = as.numeric(format(Sys.time(),"%y%m%d%H%M%S")))
-  default_vals <<- rbind(default_vals, batch_no)
+  default_vals <<- rbind(default_vals[,c(1:2)], batch_no)
   print("Dependent data loaded.")
 }
 
@@ -49,6 +47,11 @@ DEPENDENCIES_main <- function () {
 DEPENDENCIES_load_defaults <- function () {
   # Load default_values.csv
   default_vals <<- data.frame(read.csv("User_inputs/Default_values.csv"))
+  # Add version number
+  version_no2 <- data.frame("version_number",version_no,
+                            "Software version number used in this analysis", NA)
+  names(version_no2) <- names(default_vals)
+  default_vals <<- rbind(default_vals,version_no2)
   # Load occurrence key
   occ.codes <- data.frame(read.csv("Back_end/Dependencies/occ_codes.csv"), 
                           stringsAsFactors = FALSE)

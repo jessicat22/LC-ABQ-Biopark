@@ -1,0 +1,784 @@
+iucn_code,iucn_country,CountryOccurrenceLookup,WGSRPD_name,vc_codes,ns_codes,lvl3_display,cent_lat,cent_long,level2_code,level2_name,level1_code,level1_name
+AGE-CH,Chaco,AGE-CH,Chaco,,,AGE,-32.60227234,-61.25823203,85,Southern South America,8,Latin America
+AGE-CN,Corrientes,AGE-CN,Corrientes,,,AGE,-32.60227234,-61.25823203,85,Southern South America,8,Latin America
+AGE-DF,Argentina Distrito Federal,AGE-DF,Argentina Distrito Federal,,,AGE,-32.60227234,-61.25823203,85,Southern South America,8,Latin America
+AGE-ER,Entre Ríos,AGE-ER,Entre Rios,,,AGE,-32.60227234,-61.25823203,85,Southern South America,8,Latin America
+AGE-FO,Formosa,AGE-FO,Formosa,,,AGE,-32.60227234,-61.25823203,85,Southern South America,8,Latin America
+AGE-LP,La Pampa,AGE-LP,La Pampa,,,AGE,-32.60227234,-61.25823203,85,Southern South America,8,Latin America
+AGE-MI,Misiones,AGE-MI,Misiones,,,AGE,-32.60227234,-61.25823203,85,Southern South America,8,Latin America
+AGE-SF,Santa Fé,AGE-SF,Santa Fe,,,AGE,-32.60227234,-61.25823203,85,Southern South America,8,Latin America
+AR,Argentina,AGS,Argentina South,,,AGS,-44.42958738,-68.83039105,85,Southern South America,8,Latin America
+AGS-CB,Chubut,AGS-CB,Chubut,,,AGS,-44.42958738,-68.83039105,85,Southern South America,8,Latin America
+ASS-MA,Manipur,ASS-MA,Manipur,,,ASS,25.4827162,92.85194548,40,Indian Subcontinent,4,tropical Asia
+ASS-ME,Meghalaya,ASS-ME,Meghalaya,,,ASS,25.4827162,92.85194548,40,Indian Subcontinent,4,tropical Asia
+AGS-NE,Neuquén,AGS-NE,Neuquen,,,AGS,-44.42958738,-68.83039105,85,Southern South America,8,Latin America
+AGS-RN,Rio Negro,AGS-RN,Rio Negro,,,AGS,-44.42958738,-68.83039105,85,Southern South America,8,Latin America
+AGS-SC,Santa Cruz,AGS-SC,Santa Cruz,,,AGS,-44.42958738,-68.83039105,85,Southern South America,8,Latin America
+AGS-TF,Tierra del Fuego,AGS-TF,Tierra del Fuego (Argentina),,,AGS,-44.42958738,-68.83039105,85,Southern South America,8,Latin America
+AR,Argentina,AGW,Argentina Northwest,,,AGW,-29.14959223,-66.36119564,85,Southern South America,8,Latin America
+AGW-CA,Catamarca,AGW-CA,Catamarca,,,AGW,-29.14959223,-66.36119564,85,Southern South America,8,Latin America
+AGW-JU,Jujuy,AGW-JU,Jujuy,,,AGW,-29.14959223,-66.36119564,85,Southern South America,8,Latin America
+AGW-LR,La Rioja,AGW-LR,La Rioja,,,AGW,-29.14959223,-66.36119564,85,Southern South America,8,Latin America
+AGW-ME,Mendoza,AGW-ME,Mendoza,,,AGW,-29.14959223,-66.36119564,85,Southern South America,8,Latin America
+AGW-SA,Salta,AGW-SA,Salta,,,AGW,-29.14959223,-66.36119564,85,Southern South America,8,Latin America
+AGW-SE,Santiago del Estero,AGW-SE,Santiago del Estero,,,AGW,-29.14959223,-66.36119564,85,Southern South America,8,Latin America
+AGW-SJ,San Juan,AGW-SJ,San Juan,,,AGW,-29.14959223,-66.36119564,85,Southern South America,8,Latin America
+AGW-SL,San Luis,AGW-SL,San Luis,,,AGW,-29.14959223,-66.36119564,85,Southern South America,8,Latin America
+AGW-TU,Tucumán,AGW-TU,Tucuman,,,AGW,-29.14959223,-66.36119564,85,Southern South America,8,Latin America
+ALA-OO,Alabama,ALA,Alabama,,AL,ALA,32.79389912,-86.82906784,78,Southeastern U.S.A.,7,North America
+ABT-OO,Alberta,ABT,Alberta,AB,AB,ABT,55.16847238,-114.5109586,71,Western Canada,7,North America
+AF,Afghanistan,AFG,Afghanistan,,,AFG,33.83890296,66.02653864,34,Western Asia,3,temperate Asia
+AR,Argentina,AGE,Argentina Northeast,,,AGE,-32.60227234,-61.25823203,85,Southern South America,8,Latin America
+AGE-BA,Buenos Aires,AGE-BA,Buenos Aires,,,AGE,-32.60227234,-61.25823203,85,Southern South America,8,Latin America
+AGE-CO,Córdoba,AGE-CD,Cordoba,,,AGE,-32.60227234,-61.25823203,85,Southern South America,8,Latin America
+ALU-OO,Aleutian Is.,ALU,Aleutian Is.,,,ALU,52.80766048,-108.5379159,70,Subarctic America,7,North America
+AMU-OO,Amur,AMU,Amur,,,AMU,53.39992279,127.7254487,31,Russian Far East,3,temperate Asia
+AND-AN,Andaman Is.,AND,Andaman Is.,,,AND,12.27997874,92.78132302,41,Indo-China,4,tropical Asia
+AND-AN,Andaman Is.,AND-AN,Andaman Is.,,,AND,12.27997874,92.78132302,41,Indo-China,4,tropical Asia
+AND-CO,Coco Is.,AND-CO,Coco Is.,,,AND,12.27997874,92.78132302,41,Indo-China,4,tropical Asia
+ANG-OO,Angola,ANG,Angola,,,ANG,-12.3357622,17.57181504,26,South Tropical Africa,2,Africa
+AO,Angola,ANG,Angola,,,ANG,-12.3357622,17.57181504,26,South Tropical Africa,2,Africa
+AQ,Antarctica,ANT,Antarctica,,,ANT,-80.44593994,21.30394693,91,Antarctic Continent,9,Antarctica
+ARI-OO,Arizona,ARI,Arizona,,AZ,ARI,34.29669616,-111.6575963,76,Southwestern U.S.A.,7,North America
+ARK-OO,Arkansas,ARK,Arkansas,,AR,ARK,34.90084347,-92.44235749,78,Southeastern U.S.A.,7,North America
+AL,Albania,ALB,Albania,,,ALB,41.14254637,20.06837242,13,Southeastern Europe,1,Europe
+ALD-OO,Aldabra,ALD,Aldabra,,,ALD,-9.412807798,46.38345351,29,Western Indian Ocean,2,Africa
+DZ,Algeria,ALG,Algeria,,,ALG,28.1633545,2.632362328,20,Northern Africa,2,Africa
+ALT-OO,Altay,ALT,Altay,,,ALT,51.96816239,84.13073238,30,Siberia,3,temperate Asia
+AW,Aruba,ARU,Aruba,,,ARU,12.51668736,-69.97713313,81,Caribbean,8,Latin America
+ASC-OO,Ascension,ASC,Ascension,,,ASC,-7.938079755,-14.3632866,28,Middle Atlantic Ocean,2,Africa
+ASK-OO,Alaska,ASK,Alaska,,AK,ASK,64.30501188,-152.4711869,70,Subarctic America,7,North America
+ASP-OO,Amsterdam-St. Paul Is.,ASP,Amsterdam-St.Paul Is.,,,ASP,-37.97877628,77.53284994,90,Subantarctic Islands,9,Antarctica
+ASS-AS,Assam,ASS,Assam,,,ASS,25.4827162,92.85194548,40,Indian Subcontinent,4,tropical Asia
+ASS-AS,Assam,ASS-AS,Assam,,,ASS,25.4827162,92.85194548,40,Indian Subcontinent,4,tropical Asia
+ASS-MI,Mizoram,ASS-MI,Mizoram,,,ASS,25.4827162,92.85194548,40,Indian Subcontinent,4,tropical Asia
+ASS-NA,Nagaland,ASS-NA,Nagaland,,,ASS,25.4827162,92.85194548,40,Indian Subcontinent,4,tropical Asia
+ASS-TR,Tripura,ASS-TR,Tripura,,,ASS,25.4827162,92.85194548,40,Indian Subcontinent,4,tropical Asia
+ATP-OO,Antipodean Is.,ATP,Antipodean Is.,,,ATP,-50.99242823,167.927082,51,New Zealand,5,Australasia
+AT,Austria,AUT,Austria,,,AUT,47.5920478,14.13049501,11,Middle Europe,1,Europe
+AT,Austria,AUT-AU,Austria,,,AUT,47.5920478,14.13049501,11,Middle Europe,1,Europe
+LI,Liechtenstein,AUT-LI,Liechtenstein,,,AUT,47.5920478,14.13049501,11,Middle Europe,1,Europe
+AZO-OO,Azores,AZO,Azores,,,AZO,38.2706244,-27.06916208,21,Macaronesia,2,Africa
+BS,Bahamas,BAH,Bahamas,,,BAH,24.1666829,-76.5004385,81,Caribbean,8,Latin America
+BAL-OO,Baleares,BAL,Baleares,,,BAL,39.55938907,2.900068554,12,Southwestern Europe,1,Europe
+BD,Bangladesh,BAN,Bangladesh,,,BAN,23.83299497,90.27093153,40,Indian Subcontinent,4,tropical Asia
+BJ,Benin,BEN,Benin,,,BEN,9.647652716,2.343259931,22,West Tropical Africa,2,Africa
+BM,Bermuda,BER,Bermuda,,,BER,32.31349498,-64.75637722,81,Caribbean,8,Latin America
+BE,Belgium,BGM,Belgium,,,BGM,50.576268,4.773152529,11,Middle Europe,1,Europe
+BE,Belgium,BGM-BE,Belgium,,,BGM,50.576268,4.773152529,11,Middle Europe,1,Europe
+LU,Luxembourg,BGM-LU,Luxembourg,,,BGM,50.576268,4.773152529,11,Middle Europe,1,Europe
+BIS-OO,Bismarck Archipelago,BIS,Bismarck Archipelago,,,BIS,-4.936901663,150.6265362,43,Papuasia,4,tropical Asia
+BF,Burkina Faso,BKN,Burkina,,,BKN,12.27792186,-1.739834269,22,West Tropical Africa,2,Africa
+BY,Belarus,BLR,Belarus,,,BLR,53.5402221,28.04696571,14,Eastern Europe,1,Europe
+BLT-KA,Kaliningrad,BLT,Baltic States,,,BLT,56.67179107,24.50203088,14,Eastern Europe,1,Europe
+EE,Estonia,BLT,Baltic States,,,BLT,56.67179107,24.50203088,14,Eastern Europe,1,Europe
+LV,Latvia,BLT,Baltic States,,,BLT,56.67179107,24.50203088,14,Eastern Europe,1,Europe
+LT,Lithuania,BLT,Baltic States,,,BLT,56.67179107,24.50203088,14,Eastern Europe,1,Europe
+EE,Estonia,BLT-ES,Estonia,,,BLT,56.67179107,24.50203088,14,Eastern Europe,1,Europe
+BLT-KA,Kaliningrad,BLT-KA,Kaliningrad,,,BLT,56.67179107,24.50203088,14,Eastern Europe,1,Europe
+LV,Latvia,BLT-LA,Latvia,,,BLT,56.67179107,24.50203088,14,Eastern Europe,1,Europe
+LT,Lithuania,BLT-LI,Lithuania,,,BLT,56.67179107,24.50203088,14,Eastern Europe,1,Europe
+BZ,Belize,BLZ,Belize,,,BLZ,17.2185052,-88.68282364,80,Central America,8,Latin America
+BO,"Bolivia, Plurinational States of",BOL,Bolivia,,,BOL,-16.71511345,-64.67053986,83,Western South America,8,Latin America
+BOR-SB,Sabah,BOR,Borneo,,,BOR,0.867890526,114.2000166,42,Malesia,4,tropical Asia
+BN,Brunei Darussalam,BOR-BR,Brunei,,,BOR,0.867890526,114.2000166,42,Malesia,4,tropical Asia
+BOR-KA,Kalimantan,BOR-KA,Kalimantan,,,BOR,0.867890526,114.2000166,42,Malesia,4,tropical Asia
+BOR-SR,Sarawak,BOR-SB,Sabah,,,BOR,0.867890526,114.2000166,42,Malesia,4,tropical Asia
+BOR-SR,Sarawak,BOR-SR,Sarawak,,,BOR,0.867890526,114.2000166,42,Malesia,4,tropical Asia
+BW,Botswana,BOT,Botswana,,,BOT,-22.18204586,23.81507477,27,Southern Africa,2,Africa
+BV,Bouvet Island,BOU,Bouvet I.,,,BOU,-54.42178759,3.412458431,90,Subantarctic Islands,9,Antarctica
+BRC-OO,British Columbia,BRC,British Columbia,BC,BC,BRC,54.75407132,-124.7569631,71,Western Canada,7,North America
+BRY-OO,Buryatiya,BRY,Buryatiya,,,BRY,53.55446059,109.5025411,30,Siberia,3,temperate Asia
+BG,Bulgaria,BUL,Bulgaria,,,BUL,42.76135302,25.2313767,13,Southeastern Europe,1,Europe
+BI,Burundi,BUR,Burundi,,,BUR,-3.356304234,29.88681075,23,West-Central Tropical Africa,2,Africa
+BR,Brazil,BZC,Brazil West-Central,,,BZC,-15.29799181,-54.29442686,84,Brazil,8,Latin America
+BZC-DF,Brasília Distrito Federal,BZC-DF,Brasilia Distrito Federal,,,BZC,-15.29799181,-54.29442686,84,Brazil,8,Latin America
+BZC-GO,Goiás,BZC-GO,Goias,,,BZC,-15.29799181,-54.29442686,84,Brazil,8,Latin America
+BZC-MS,Mato Grosso do Sul,BZC-MS,Mato Grosso do Sul,,,BZC,-15.29799181,-54.29442686,84,Brazil,8,Latin America
+BZC-MT,Mato Grosso,BZC-MT,Mato Grosso,,,BZC,-15.29799181,-54.29442686,84,Brazil,8,Latin America
+BR,Brazil,BZE,Brazil Northeast,,,BZE,-8.635179224,-41.7295316,84,Brazil,8,Latin America
+BZE-AL,Alagoas,BZE-AL,Alagoas,,,BZE,-8.635179224,-41.7295316,84,Brazil,8,Latin America
+BZE-BA,Bahia,BZE-BA,Bahia,,,BZE,-8.635179224,-41.7295316,84,Brazil,8,Latin America
+BZE-CE,Ceará,BZE-CE,Ceara,,,BZE,-8.635179224,-41.7295316,84,Brazil,8,Latin America
+BZE-FN,Fernando de Noronha,BZE-FN,Fernando de Noronha,,,BZE,-8.635179224,-41.7295316,84,Brazil,8,Latin America
+BZE-MA,Maranhão,BZE-MA,Maranhao,,,BZE,-8.635179224,-41.7295316,84,Brazil,8,Latin America
+BZE-PB,Paraíba,BZE-PB,Paraiba,,,BZE,-8.635179224,-41.7295316,84,Brazil,8,Latin America
+BZE-PE,Pernambuco,BZE-PE,Pernambuco,,,BZE,-8.635179224,-41.7295316,84,Brazil,8,Latin America
+BZE-PI,Piauí,BZE-PI,Piaui,,,BZE,-8.635179224,-41.7295316,84,Brazil,8,Latin America
+BZE-RN,Rio Grande do Norte,BZE-RN,Rio Grande do Norte,,,BZE,-8.635179224,-41.7295316,84,Brazil,8,Latin America
+BZE-SE,Sergipe,BZE-SE,Sergipe,,,BZE,-8.635179224,-41.7295316,84,Brazil,8,Latin America
+BR,Brazil,BZL,Brazil Southeast,,,BZL,-19.72534707,-45.48097772,84,Brazil,8,Latin America
+BZL-ES,Espírito Santo,BZL-ES,Espirito Santo,,,BZL,-19.72534707,-45.48097772,84,Brazil,8,Latin America
+BZL-MG,Minas Gerais,BZL-MG,Minas Gerais,,,BZL,-19.72534707,-45.48097772,84,Brazil,8,Latin America
+BZL-RJ,Rio de Janeiro,BZL-RJ,Rio de Janeiro,,,BZL,-19.72534707,-45.48097772,84,Brazil,8,Latin America
+BZL-SP,São Paulo,BZL-SP,Sao Paulo,,,BZL,-19.72534707,-45.48097772,84,Brazil,8,Latin America
+BZL-TR,Trindade,BZL-TR,Trindade,,,BZL,-19.72534707,-45.48097772,84,Brazil,8,Latin America
+BR,Brazil,BZN,Brazil North,,,BZN,-4.630617529,-59.25074171,84,Brazil,8,Latin America
+BZN-AC,Acre,BZN-AC,Acre,,,BZN,-4.630617529,-59.25074171,84,Brazil,8,Latin America
+BZN-AZ,Amazonas,BZN-AM,Amazonas,,,BZN,-4.630617529,-59.25074171,84,Brazil,8,Latin America
+BZN-AP,Amapá,BZN-AP,Amapa,,,BZN,-4.630617529,-59.25074171,84,Brazil,8,Latin America
+BZN-PA,Pará,BZN-PA,Para,,,BZN,-4.630617529,-59.25074171,84,Brazil,8,Latin America
+BZN-RM,Roraima,BZN-RM,Roraima,,,BZN,-4.630617529,-59.25074171,84,Brazil,8,Latin America
+BZN-RO,Rondônia,BZN-RO,Rondonia,,,BZN,-4.630617529,-59.25074171,84,Brazil,8,Latin America
+BZN-TO,Tocantins,BZN-TO,Tocantins,,,BZN,-4.630617529,-59.25074171,84,Brazil,8,Latin America
+BR,Brazil,BZS,Brazil South,,,BZS,-27.56814167,-52.26177998,84,Brazil,8,Latin America
+BZS-PR,Paraná,BZS-PR,Parana,,,BZS,-27.56814167,-52.26177998,84,Brazil,8,Latin America
+BZS-RS,Rio Grande do Sul,BZS-RS,Rio Grande do Sul,,,BZS,-27.56814167,-52.26177998,84,Brazil,8,Latin America
+BZS-SC,Santa Catarina,BZS-SC,Santa Catarina,,,BZS,-27.56814167,-52.26177998,84,Brazil,8,Latin America
+CAB-OO,Cabinda,CAB,Cabinda,,,CAB,-5.041229577,12.46228731,23,West-Central Tropical Africa,2,Africa
+CF,Central African Republic,CAF,Central African Republic,,,CAF,6.571447681,20.48276784,23,West-Central Tropical Africa,2,Africa
+CAL-OO,California,CAL,California,,CA,CAL,37.23999046,-119.5874549,76,Southwestern U.S.A.,7,North America
+KY,Cayman Islands,CAY,Cayman Is.,,,CAY,19.431525,-80.82909683,81,Caribbean,8,Latin America
+KH,Cambodia,CBD,Cambodia,,,CBD,12.7140315,104.9212402,41,Indo-China,4,tropical Asia
+CGS-OO,Chagos Archipelago,CGS,Chagos Archipelago,,,CGS,-7.081251358,72.28982913,29,Western Indian Ocean,2,Africa
+TD,Chad,CHA,Chad,,,CHA,15.3611377,18.66460375,24,Northeast Tropical Africa,2,Africa
+CN,China,CHC,China South-Central,,,CHC,28.51736896,104.640891,36,China,3,temperate Asia
+CHC-CQ,Chongqing,CHC-CQ,Chongqing,,,CHC,28.51736896,104.640891,36,China,3,temperate Asia
+CHC-GZ,Guizhou,CHC-GZ,Guizhou,,,CHC,28.51736896,104.640891,36,China,3,temperate Asia
+CHC-HU,Hubei,CHC-HU,Hubei,,,CHC,28.51736896,104.640891,36,China,3,temperate Asia
+CHC-SC,Sichuan,CHC-SC,Sichuan,,,CHC,28.51736896,104.640891,36,China,3,temperate Asia
+CHC-YN,Yunnan,CHC-YN,Yunnan,,,CHC,28.51736896,104.640891,36,China,3,temperate Asia
+CHH-OO,Hainan,CHH,Hainan,,,CHH,19.20103623,109.7420098,36,China,3,temperate Asia
+CN,China,CHI,Inner Mongolia,,,CHI,43.79697592,113.5548353,36,China,3,temperate Asia
+CHI-NM,Nei Mongol,CHI-NM,Nei Mongol,,,CHI,43.79697592,113.5548353,36,China,3,temperate Asia
+CHI-NX,Ningxia,CHI-NX,Ningxia,,,CHI,43.79697592,113.5548353,36,China,3,temperate Asia
+CN,China,CHM,Manchuria,,,CHM,45.75175656,126.4988421,36,China,3,temperate Asia
+CHM-HJ,Heilongjiang,CHM-HJ,Heilongjiang,,,CHM,45.75175656,126.4988421,36,China,3,temperate Asia
+CHM-JL,Jilin,CHM-JL,Jilin,,,CHM,45.75175656,126.4988421,36,China,3,temperate Asia
+CHM-LN,Liaoning,CHM-LN,Liaoning,,,CHM,45.75175656,126.4988421,36,China,3,temperate Asia
+CN,China,CHN,China North-Central,,,CHN,37.42761071,109.454869,36,China,3,temperate Asia
+CHN-BJ,Beijing,CHN-BJ,Beijing,,,CHN,37.42761071,109.454869,36,China,3,temperate Asia
+CHN-GS,Gansu,CHN-GS,Gansu,,,CHN,37.42761071,109.454869,36,China,3,temperate Asia
+CHN-HB,Hebei,CHN-HB,Hebei,,,CHN,37.42761071,109.454869,36,China,3,temperate Asia
+CHN-SA,Shaanxi,CHN-SA,Shaanxi,,,CHN,37.42761071,109.454869,36,China,3,temperate Asia
+CHN-SD,Shandong,CHN-SD,Shandong,,,CHN,37.42761071,109.454869,36,China,3,temperate Asia
+CHN-SX,Shanxi,CHN-SX,Shanxi,,,CHN,37.42761071,109.454869,36,China,3,temperate Asia
+CHN-TJ,Tianjin,CHN-TJ,Tianjin,,,CHN,37.42761071,109.454869,36,China,3,temperate Asia
+CHQ-OO,Qinghai,CHQ,Qinghai,,,CHQ,35.77342914,96.04684807,36,China,3,temperate Asia
+CN,China,CHS,China Southeast,,,CHS,28.08960648,114.4271419,36,China,3,temperate Asia
+CHS-AH,Anhui,CHS-AH,Anhui,,,CHS,28.08960648,114.4271419,36,China,3,temperate Asia
+CHS-FJ,Fujian,CHS-FJ,Fujian,,,CHS,28.08960648,114.4271419,36,China,3,temperate Asia
+CHS-GD,Guangdong,CHS-GD,Guangdong,,,CHS,28.08960648,114.4271419,36,China,3,temperate Asia
+CHS-GX,Guangxi,CHS-GX,Guangxi,,,CHS,28.08960648,114.4271419,36,China,3,temperate Asia
+CHS-HE,Henan,CHS-HE,Henan,,,CHS,28.08960648,114.4271419,36,China,3,temperate Asia
+HK,Hong Kong,CHS-HK,Hong Kong,,,CHS,28.08960648,114.4271419,36,China,3,temperate Asia
+CHS-HN,Hunan,CHS-HN,Hunan,,,CHS,28.08960648,114.4271419,36,China,3,temperate Asia
+CHS-JS,Jiangsu,CHS-JS,Jiangsu,,,CHS,28.08960648,114.4271419,36,China,3,temperate Asia
+CHS-JX,Jiangxi,CHS-JX,Jiangxi,,,CHS,28.08960648,114.4271419,36,China,3,temperate Asia
+CHS-KI,Kin-Men,CHS-KI,Kin-Men,,,CHS,28.08960648,114.4271419,36,China,3,temperate Asia
+MO,Macao,CHS-MA,Macau,,,CHS,28.08960648,114.4271419,36,China,3,temperate Asia
+CHS-MP,Ma-tsu-Pai-chuan,CHS-MP,Ma-tsu-Pai-chuan,,,CHS,28.08960648,114.4271419,36,China,3,temperate Asia
+CHS-SH,Shanghai,CHS-SH,Shanghai,,,CHS,28.08960648,114.4271419,36,China,3,temperate Asia
+CHS-ZJ,Zhejiang,CHS-ZJ,Zhejiang,,,CHS,28.08960648,114.4271419,36,China,3,temperate Asia
+CHT-OO,Tibet [or Xizang],CHT,Tibet,,,CHT,31.712301,88.11841654,36,China,3,temperate Asia
+CHX-OO,Xinjiang,CHX,Xinjiang,,,CHX,41.12316666,85.25096208,36,China,3,temperate Asia
+CC,Cocos (Keeling) Islands,CKI,Cocos (Keeling) Is.,,,CKI,-12.17188243,96.85559708,42,Malesia,4,tropical Asia
+CL,Chile,CLC,Chile Central,,,CLC,-34.96793939,-71.50360801,85,Southern South America,8,Latin America
+CLC-BI,Biobío,CLC-BI,Biobio,,,CLC,-34.96793939,-71.50360801,85,Southern South America,8,Latin America
+CLC-CO,Coquimbo,CLC-CO,Coquimbo,,,CLC,-34.96793939,-71.50360801,85,Southern South America,8,Latin America
+CLC-LA,La Araucania,CLC-LA,La Araucania,,,CLC,-34.96793939,-71.50360801,85,Southern South America,8,Latin America
+CLC-MA,Maule,CLC-MA,Maule,,,CLC,-34.96793939,-71.50360801,85,Southern South America,8,Latin America
+CLC-OH,O'Higgins,CLC-OH,O'Higgins,,,CLC,-34.96793939,-71.50360801,85,Southern South America,8,Latin America
+CLC-SA,Santiago,CLC-SA,Santiago,,,CLC,-34.96793939,-71.50360801,85,Southern South America,8,Latin America
+CLC-VA,Valparaíso,CLC-VA,Valparaiso,,,CLC,-34.96793939,-71.50360801,85,Southern South America,8,Latin America
+CLM-OO,Colombia (mainland),CLM,Colombia,,,CLM,3.899940025,-73.07536004,83,Western South America,8,Latin America
+CL,Chile,CLN,Chile North,,,CLN,-23.869117,-69.43770693,85,Southern South America,8,Latin America
+CLN-AN,Antofagasta,CLN-AN,Antofagasta,,,CLN,-23.869117,-69.43770693,85,Southern South America,8,Latin America
+CLN-AT,Atacama,CLN-AT,Atacama,,,CLN,-23.869117,-69.43770693,85,Southern South America,8,Latin America
+CLN-TA,Tarapacá,CLN-TA,Tarapaca,,,CLN,-23.869117,-69.43770693,85,Southern South America,8,Latin America
+CL,Chile,CLS,Chile South,,,CLS,-48.21628617,-72.52704616,85,Southern South America,8,Latin America
+CLS-AI,Aisén,CLS-AI,Aisen,,,CLS,-48.21628617,-72.52704616,85,Southern South America,8,Latin America
+CLS-LL,Los Lagos,CLS-LL,Los Lagos,,,CLS,-48.21628617,-72.52704616,85,Southern South America,8,Latin America
+CLS-MG,Magellanes,CLS-MG,Magellanes,,,CLS,-48.21628617,-72.52704616,85,Southern South America,8,Latin America
+CM,Cameroon,CMN,Cameroon,,,CMN,5.685796322,12.74325047,23,West-Central Tropical Africa,2,Africa
+CNT-OO,Connecticut,CNT,Connecticut,,CT,CNT,41.62574308,-72.72758095,75,Northeastern U.S.A.,7,North America
+CNY-OO,Canary Is.,CNY,Canary Is.,,,CNY,28.33813028,-15.67748558,21,Macaronesia,2,Africa
+COL-OO,Colorado,COL,Colorado,,CO,COL,38.99914653,-105.5337039,73,Northwestern U.S.A.,7,North America
+KM,Comoros,COM,Comoros,,,COM,-12.08508881,43.9794997,29,Western Indian Ocean,2,Africa
+KM,Comoros,COM-CO,Comoros,,,COM,-12.08508881,43.9794997,29,Western Indian Ocean,2,Africa
+YT,Mayotte,COM-MA,Mayotte,,,COM,-12.08508881,43.9794997,29,Western Indian Ocean,2,Africa
+CG,Congo,CON,Congo,,,CON,-0.840074754,15.22427245,23,West-Central Tropical Africa,2,Africa
+CK,Cook Islands,COO,Cook Is.,,,COO,-20.68746738,-158.7919122,61,South-Central Pacific,6,Pacific
+COR-OO,Corsica,COR,Corse,,,COR,42.15818981,9.105312296,12,Southwestern Europe,1,Europe
+COS-OO,Costa Rica (mainland),COS,Costa Rica,,,COS,9.970483318,-84.18900416,80,Central America,8,Latin America
+CPI-CL,Clipperton I.,CPI,Central American Pacific Is.,,,CPI,6.546287354,-91.88643742,80,Central America,8,Latin America
+CPI-CO,Cocos I.,CPI,Central American Pacific Is.,,,CPI,6.546287354,-91.88643742,80,Central America,8,Latin America
+CPI-MA,Malpelo I.,CPI,Central American Pacific Is.,,,CPI,6.546287354,-91.88643742,80,Central America,8,Latin America
+CPI-CL,Clipperton I.,CPI-CL,Clipperton I.,,,CPI,6.546287354,-91.88643742,80,Central America,8,Latin America
+CPI-CO,Cocos I.,CPI-CO,Cocos I.,,,CPI,6.546287354,-91.88643742,80,Central America,8,Latin America
+CPI-MA,Malpelo I.,CPI-MA,Malpelo I.,,,CPI,6.546287354,-91.88643742,80,Central America,8,Latin America
+ZA,South Africa,CPP,Cape Provinces,,,CPP,-30.90217924,22.53403917,27,Southern Africa,2,Africa
+CPP-EC,Eastern Cape Province,CPP-EC,Eastern Cape Province,,,CPP,-30.90217924,22.53403917,27,Southern Africa,2,Africa
+CPP-NC,Northern Cape Province,CPP-NC,Northern Cape Province,,,CPP,-30.90217924,22.53403917,27,Southern Africa,2,Africa
+CPP-WC,Western Cape,CPP-WC,Western Cape Province,,,CPP,-30.90217924,22.53403917,27,Southern Africa,2,Africa
+CPV-OO,Caprivi Strip,CPV,Caprivi Strip,,,CPV,-17.92034394,23.25700383,27,Southern Africa,2,Africa
+FM,"Micronesia, Federated States of ",CRL,Caroline Is.,,,CRL,7.212394877,146.7114782,62,Northwestern Pacific,6,Pacific
+FM,"Micronesia, Federated States of ",CRL-MF,Micronesia Federated States,,,CRL,7.212394877,146.7114782,62,Northwestern Pacific,6,Pacific
+PW,Palau,CRL-PA,Palau,,,CRL,7.212394877,146.7114782,62,Northwestern Pacific,6,Pacific
+CRZ-OO,Crozet Is.,CRZ,Crozet Is.,,,CRZ,-46.34319821,51.61850122,90,Subantarctic Islands,9,Antarctica
+CTA-OO,Chita,CTA,Chita,,,CTA,52.8406914,116.2008257,30,Siberia,3,temperate Asia
+CTM-OO,Chatham Is.,CTM,Chatham Is.,,,CTM,-43.95966232,-176.5029737,51,New Zealand,5,Australasia
+CU,Cuba,CUB,Cuba,,,CUB,21.62012559,-79.03522543,81,Caribbean,8,Latin America
+CV,Cabo Verde,CVI,Cape Verde,,,CVI,15.98732287,-24.10306511,21,Macaronesia,2,Africa
+CY,Cyprus,CYP,Cyprus,,,CYP,35.04300313,33.21867825,34,Western Asia,3,temperate Asia
+SK,Slovakia,CZE,Czechoslovakia,,,CZE,49.35117627,16.90966574,11,Middle Europe,1,Europe
+CZ,Czechia,CZE,Czechoslovakia,,,CZE,49.35117627,16.90966574,11,Middle Europe,1,Europe
+CZ,Czechia,CZE-CZ,Czech Republic,,,CZE,49.35117627,16.90966574,11,Middle Europe,1,Europe
+SK,Slovakia,CZE-SL,Slovakia,,,CZE,49.35117627,16.90966574,11,Middle Europe,1,Europe
+DEL-OO,Delaware,DEL,Delaware,,DE,DEL,38.99814067,-75.51281006,78,Southeastern U.S.A.,7,North America
+DK,Denmark,DEN,Denmark,,,DEN,55.96231824,10.05081371,10,Northern Europe,1,Europe
+DJ,Djibouti,DJI,Djibouti,,,DJI,11.7498223,42.57794604,24,Northeast Tropical Africa,2,Africa
+DO,Dominican Republic,DOM,Dominican Republic,,,DOM,18.89309066,-70.48543965,81,Caribbean,8,Latin America
+DSV-OO,Desventurados Is.,DSV,Desventurados Is.,,,DSV,-26.31159104,-79.9604038,85,Southern South America,8,Latin America
+EAI-OO,East Aegean Is.,EAI,East Aegean Is.,,,EAI,37.77924814,26.7956822,34,Western Asia,3,temperate Asia
+EAS-OO,Easter Is.,EAS,Easter Is.,,,EAS,-27.11727498,-109.3158806,61,South-Central Pacific,6,Pacific
+EC,Ecuador,ECU,Ecuador,,,ECU,-1.452910023,-78.39320695,83,Western South America,8,Latin America
+EG,Egypt,EGY,Egypt,,,EGY,26.35781078,29.5313701,20,Northern Africa,2,Africa
+EHM-AP,Arunachal Pradesh,EHM,East Himalaya,,,EHM,27.79711548,92.91094723,40,Indian Subcontinent,4,tropical Asia
+EHM-DJ,Darjiling,EHM,East Himalaya,,,EHM,27.79711548,92.91094723,40,Indian Subcontinent,4,tropical Asia
+EHM-SI,Sikkim,EHM,East Himalaya,,,EHM,27.79711548,92.91094723,40,Indian Subcontinent,4,tropical Asia
+EHM-AP,Arunachal Pradesh,EHM-AP,Arunachal Pradesh,,,EHM,27.79711548,92.91094723,40,Indian Subcontinent,4,tropical Asia
+BT,Bhutan,EHM-BH,Bhutan,,,EHM,27.79711548,92.91094723,40,Indian Subcontinent,4,tropical Asia
+EHM-DJ,Darjiling,EHM-DJ,Darjiling,,,EHM,27.79711548,92.91094723,40,Indian Subcontinent,4,tropical Asia
+EHM-SI,Sikkim,EHM-SI,Sikkim,,,EHM,27.79711548,92.91094723,40,Indian Subcontinent,4,tropical Asia
+SV,El Salvador,ELS,El Salvador,,,ELS,13.73614153,-88.86559446,80,Central America,8,Latin America
+EQG-OO,Equatorial Guinea (mainland),EQG,Equatorial Guinea,,,EQG,1.567921819,10.47599001,23,West-Central Tropical Africa,2,Africa
+ER,Eritrea,ERI,Eritrea,,,ERI,15.35884128,38.85291013,24,Northeast Tropical Africa,2,Africa
+ET,Ethiopia,ETH,Ethiopia,,,ETH,8.626140571,39.6160194,24,Northeast Tropical Africa,2,Africa
+FK,Falkland Islands (Malvinas),FAL,Falkland Is.,,,FAL,-51.7398244,-59.37234604,90,Subantarctic Islands,9,Antarctica
+FJ,Fiji,FIJ,Fiji,,,FIJ,-17.46392685,160.7916367,60,Southwestern Pacific,6,Pacific
+FI,Finland,FIN,Finland,,,FIN,64.49433632,26.2588367,10,Northern Europe,1,Europe
+FLA-OO,Florida,FLA,Florida,,FL,FLA,28.65142195,-82.48405094,78,Southeastern U.S.A.,7,North America
+FO,Faroe Islands,FOR,Føroyar,,,FOR,62.050314,-6.863636018,10,Northern Europe,1,Europe
+FR,France,FRA,France,,,FRA,46.63235293,2.449730155,12,Southwestern Europe,1,Europe
+FR,France,FRA-CI,Channel Is.,,,FRA,46.63235293,2.449730155,12,Southwestern Europe,1,Europe
+FR,France,FRA-FR,France,,,FRA,46.63235293,2.449730155,12,Southwestern Europe,1,Europe
+MC,Monaco,FRA-MO,Monaco,,,FRA,46.63235293,2.449730155,12,Southwestern Europe,1,Europe
+GF,French Guiana,FRG,French Guiana,,,FRG,3.924382847,-53.24126852,82,Northern South America,8,Latin America
+GA,Gabon,GAB,Gabon,,,GAB,-0.590675636,11.7971526,23,West-Central Tropical Africa,2,Africa
+GAL-OO,Galápagos,GAL,Galápagos,,,GAL,-0.562230836,-90.89331315,83,Western South America,8,Latin America
+GM,Gambia,GAM,"Gambia, The",,,GAM,13.4529394,-15.38562696,22,West Tropical Africa,2,Africa
+GEO-OO,Georgia,GEO,Georgia,,GA,GEO,32.65409017,-83.4466779,78,Southeastern U.S.A.,7,North America
+DE,Germany,GER,Germany,,,GER,51.11015178,10.39233019,11,Middle Europe,1,Europe
+ST,Sao Tome and Principe,GGI,Gulf of Guinea Is.,,,GGI,2.369405535,7.976244143,23,West-Central Tropical Africa,2,Africa
+GGI-AN,Annobón,GGI-AN,Annobón,,,GGI,2.369405535,7.976244143,23,West-Central Tropical Africa,2,Africa
+GGI-BI,Bioko,GGI-BI,Bioko,,,GGI,2.369405535,7.976244143,23,West-Central Tropical Africa,2,Africa
+GGI-PR,Principe,GGI-PR,Príncipe,,,GGI,2.369405535,7.976244143,23,West-Central Tropical Africa,2,Africa
+GGI-ST,Sâo Tomé,GGI-ST,São Tomé,,,GGI,2.369405535,7.976244143,23,West-Central Tropical Africa,2,Africa
+GH,Ghana,GHA,Ghana,,,GHA,7.959639297,-1.207050125,22,West Tropical Africa,2,Africa
+GIL-OO,Gilbert Is.,GIL,Gilbert Is.,,,GIL,-0.075627923,174.3217036,60,Southwestern Pacific,6,Pacific
+GW,Guinea-Bissau,GNB,Guinea-Bissau,,,GNB,12.01619646,-14.98748338,22,West Tropical Africa,2,Africa
+GL,Greenland,GNL,Greenland,GL,,GNL,74.71896346,-41.39096492,70,Subarctic America,7,North America
+GRB-OO,Great Britain,GRB,Great Britain,,,GRB,54.1326318,-2.667712547,10,Northern Europe,1,Europe
+GR,Greece,GRC,Greece,,,GRC,39.36723826,22.67457493,13,Southeastern Europe,1,Europe
+AE,United Arab Emirates,GST,Gulf States,,,GST,24.12052144,53.87451176,35,Arabian Peninsula,3,temperate Asia
+BH,Bahrain,GST,Gulf States,,,GST,24.12052144,53.87451176,35,Arabian Peninsula,3,temperate Asia
+QA,Qatar,GST,Gulf States,,,GST,24.12052144,53.87451176,35,Arabian Peninsula,3,temperate Asia
+BH,Bahrain,GST-BA,Bahrain,,,GST,24.12052144,53.87451176,35,Arabian Peninsula,3,temperate Asia
+QA,Qatar,GST-QA,Qatar,,,GST,24.12052144,53.87451176,35,Arabian Peninsula,3,temperate Asia
+AE,United Arab Emirates,GST-UA,United Arab Emirates,,,GST,24.12052144,53.87451176,35,Arabian Peninsula,3,temperate Asia
+GT,Guatemala,GUA,Guatemala,,,GUA,15.70230638,-90.35694443,80,Central America,8,Latin America
+GN,Guinea,GUI,Guinea,,,GUI,10.43853955,-10.94184026,22,West Tropical Africa,2,Africa
+GY,Guyana,GUY,Guyana,,,GUY,4.792379697,-58.97416751,82,Northern South America,8,Latin America
+HT,Haiti,HAI,Haiti,,,HAI,18.93893862,-72.68384348,81,Caribbean,8,Latin America
+HT,Haiti,HAI-HA,Haiti,,,HAI,18.93893862,-72.68384348,81,Caribbean,8,Latin America
+HAI-NI,Navassa I.,HAI-NI,Navassa I.,,,HAI,18.93893862,-72.68384348,81,Caribbean,8,Latin America
+HAW-HI,Hawaiian Is.,HAW,Hawaii,,HI,HAW,20.27443256,-156.3821741,63,North-Central Pacific,6,Pacific
+HAW-HI,Hawaiian Is.,HAW-HI,Hawaiian Is.,,,HAW,20.27443256,-156.3821741,63,North-Central Pacific,6,Pacific
+HAW-JI,Johnston I.,HAW-JI,Johnston I.,,,HAW,20.27443256,-156.3821741,63,North-Central Pacific,6,Pacific
+HAW-MI,Midway Is.,HAW-MI,Midway Is.,,,HAW,20.27443256,-156.3821741,63,North-Central Pacific,6,Pacific
+HBI-OO,Howland-Baker Is.,HBI,Howland-Baker Is.,,,HBI,0.605031764,-176.5780454,60,Southwestern Pacific,6,Pacific
+HM,Heard Island and McDonald Islands,HMD,Heard-McDonald Is.,,,HMD,-53.09067804,73.49727342,90,Subantarctic Islands,9,Antarctica
+HN,Honduras,HON,Honduras,,,HON,14.81592872,-86.6201546,80,Central America,8,Latin America
+HU,Hungary,HUN,Hungary,,,HUN,47.1665173,19.41351505,11,Middle Europe,1,Europe
+IS,Iceland,ICE,Iceland,,,ICE,64.99764841,-18.60571912,10,Northern Europe,1,Europe
+IDA-OO,Idaho,IDA,Idaho,,ID,IDA,44.39671877,-114.6539269,73,Northwestern U.S.A.,7,North America
+ILL-OO,Illinois,ILL,Illinois,,IL,ILL,40.12111514,-89.15471894,74,North-Central U.S.A.,7,North America
+IN,India,IND,India,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-AP,Andhra Pradesh,IND-AP,Andhra Pradesh,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-BI,Bihar,IND-BI,Bihar,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-CH,Chandigarh,IND-CH,Chandigarh,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-CT,Chattisgarh,IND-CT,Chhattisgarh,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-DD,Dadra-Nagar-Haveli,IND-DD,Dadra-Nagar-Haveli,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-DE,Delhi,IND-DE,Delhi,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-DI,Diu,IND-DI,Diu,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-DM,Daman,IND-DM,Daman,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-GO,Goa,IND-GO,Goa,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-GU,Gujarat,IND-GU,Gujarat,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-HA,Haryana,IND-HA,Haryana,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-JK,Jharkand,IND-JK,Jharkhand,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-KE,Kerala,IND-KE,Kerala,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-KL,Karaikal,IND-KL,Karaikal,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-KT,Karnataka,IND-KT,Karnataka,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-MH,Mahé,IND-MH,Mahe,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-MP,Madhya Pradesh,IND-MP,Madhya Pradesh,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-MR,Maharashtra,IND-MR,Maharashtra,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-OR,Orissa,IND-OR,Orissa,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-PO,Pondicherry,IND-PO,Pondicherry,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-PU,Punjab,IND-PU,Punjab,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-RA,Rajasthan,IND-RA,Rajasthan,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-TN,Tamil Nadu,IND-TN,Tamil Nadu,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-UP,Uttar Pradesh,IND-UP,Uttar Pradesh,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-WB,West Bengal,IND-WB,West Bengal,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+IND-YA,Yanam,IND-YA,Yanam,,,IND,21.72683562,78.38500961,40,Indian Subcontinent,4,tropical Asia
+INI-OO,Indiana,INI,Indiana,,IN,INI,39.91382309,-86.28535884,75,Northeastern U.S.A.,7,North America
+IOW-OO,Iowa,IOW,Iowa,,IA,IOW,42.07863115,-93.49640075,74,North-Central U.S.A.,7,North America
+IE,Ireland,IRE,Ireland,,,IRE,53.42679384,-7.896570492,10,Northern Europe,1,Europe
+IE,Ireland,IRE-IR,Ireland,,,IRE,53.42679384,-7.896570492,10,Northern Europe,1,Europe
+IRE-NI,Northern Ireland,IRE-NI,Northern Ireland,,,IRE,53.42679384,-7.896570492,10,Northern Europe,1,Europe
+IRK-OO,Irkutsk,IRK,Irkutsk,,,IRK,57.09665491,106.3584418,30,Siberia,3,temperate Asia
+IR,"Iran, Islamic Republic of",IRN,Iran,,,IRN,32.56479713,54.30142285,34,Western Asia,3,temperate Asia
+IQ,Iraq,IRQ,Iraq,,,IRQ,33.04801462,43.7722378,34,Western Asia,3,temperate Asia
+IT,Italy,ITA,Italy,,,ITA,43.52557329,12.15507355,13,Southeastern Europe,1,Europe
+ITA-IT,Italy (mainland),ITA-IT,Italy,,,ITA,43.52557329,12.15507355,13,Southeastern Europe,1,Europe
+SM,San Marino,ITA-SM,San Marino,,,ITA,43.52557329,12.15507355,13,Southeastern Europe,1,Europe
+VA,Holy See (Vatican City State),ITA-VC,Vatican City,,,ITA,43.52557329,12.15507355,13,Southeastern Europe,1,Europe
+CI,Côte d'Ivoire,IVO,Ivory Coast,,,IVO,7.631719608,-5.555505006,22,West Tropical Africa,2,Africa
+JM,Jamaica,JAM,Jamaica,,,JAM,18.15132857,-77.31974834,81,Caribbean,8,Latin America
+JP,Japan,JAP,Japan,,,JAP,37.6020908,138.0289485,38,Eastern Asia,3,temperate Asia
+JAP-HK,Hokkaido,JAP-HK,Hokkaido,,,JAP,37.6020908,138.0289485,38,Eastern Asia,3,temperate Asia
+JAP-HN,Honshu,JAP-HN,Honshu,,,JAP,37.6020908,138.0289485,38,Eastern Asia,3,temperate Asia
+JAP-KY,Kyushu,JAP-KY,Kyushu,,,JAP,37.6020908,138.0289485,38,Eastern Asia,3,temperate Asia
+JAP-SH,Shikoku,JAP-SH,Shikoku,,,JAP,37.6020908,138.0289485,38,Eastern Asia,3,temperate Asia
+JAW-OO,Jawa,JAW,Jawa,,,JAW,-7.288634373,110.0767031,42,Malesia,4,tropical Asia
+JNF-OO,Juan Fernández Is.,JNF,Juan Fernández Is.,,,JNF,-33.66269944,-79.537658,85,Southern South America,8,Latin America
+KAM-OO,Kamchatka,KAM,Kamchatka,,,KAM,58.92828799,163.0080135,31,Russian Far East,3,temperate Asia
+KAN-OO,Kansas,KAN,Kansas,,KS,KAN,38.48363463,-98.36925056,74,North-Central U.S.A.,7,North America
+KZ,Kazakhstan,KAZ,Kazakhstan,,,KAZ,48.16004423,67.30130123,32,Middle Asia,3,temperate Asia
+KEG-OO,Kerguelen,KEG,Kerguelen,,,KEG,-49.28875156,69.47951572,90,Subantarctic Islands,9,Antarctica
+KE,Kenya,KEN,Kenya,,,KEN,0.529779858,37.85786204,25,East Tropical Africa,2,Africa
+KER-OO,Kermadec Is.,KER,Kermadec Is.,,,KER,-29.28166036,-177.9154558,51,New Zealand,5,Australasia
+KG,Kyrgyzstan,KGZ,Kirgizistan,,,KGZ,41.46490869,74.55549193,32,Middle Asia,3,temperate Asia
+KHA-OO,Khabarovsk,KHA,Khabarovsk,,,KHA,54.58518626,137.129087,31,Russian Far East,3,temperate Asia
+KP,"Korea, Democratic People's Republic of",KOR,Korea,,,KOR,38.51116984,127.4609226,38,Eastern Asia,3,temperate Asia
+KR,"Korea, Republic of",KOR,Korea,,,KOR,38.51116984,127.4609226,38,Eastern Asia,3,temperate Asia
+KP,"Korea, Democratic People's Republic of",KOR-NK,North Korea,,,KOR,38.51116984,127.4609226,38,Eastern Asia,3,temperate Asia
+KR,"Korea, Republic of",KOR-SK,South Korea,,,KOR,38.51116984,127.4609226,38,Eastern Asia,3,temperate Asia
+KRA-OO,Krasnoyarsk,KRA,Krasnoyarsk,,,KRA,67.2499994,95.90105951,30,Siberia,3,temperate Asia
+KRI-OO,Kriti,KRI,Kriti,,,KRI,35.24379017,24.94808966,13,Southeastern Europe,1,Europe
+KRY-OO,Krym,KRY,Krym,,,KRY,45.27482524,34.3248095,14,Eastern Europe,1,Europe
+KTY-OO,Kentucky,KTY,Kentucky,,KY,KTY,37.52748969,-85.28771942,78,Southeastern U.S.A.,7,North America
+KUR-OO,Kuril Is.,KUR,Kuril Is.,,,KUR,46.9490112,150.7974815,31,Russian Far East,3,temperate Asia
+KW,Kuwait,KUW,Kuwait,,,KUW,29.34250656,47.59352635,35,Arabian Peninsula,3,temperate Asia
+KZN-OO,Kazan-retto,KZN,Kazan-retto,,,KZN,24.93904505,141.3086087,38,Eastern Asia,3,temperate Asia
+LAB-OO,Labrador,LAB,Labrador,NL_L,LB,LAB,54.28513132,-61.95852761,72,Eastern Canada,7,North America
+LA,Lao People's Democratic Republic,LAO,Laos,,,LAO,18.50244318,103.7634132,41,Indo-China,4,tropical Asia
+LR,Liberia,LBR,Liberia,,,LBR,6.448116623,-9.307850737,22,West Tropical Africa,2,Africa
+LB,Lebanon,LBS,Lebanon-Syria,,,LBS,34.95744231,38.37255385,34,Western Asia,3,temperate Asia
+SY,Syrian Arab Republic,LBS,Lebanon-Syria,,,LBS,34.95744231,38.37255385,34,Western Asia,3,temperate Asia
+LB,Lebanon,LBS-LB,Lebanon,,,LBS,34.95744231,38.37255385,34,Western Asia,3,temperate Asia
+SY,Syrian Arab Republic,LBS-SY,Syria,,,LBS,34.95744231,38.37255385,34,Western Asia,3,temperate Asia
+LY,Libya,LBY,Libya,,,LBY,27.04405009,18.02318175,20,Northern Africa,2,Africa
+LDV-OO,Laccadive Is.,LDV,Laccadive Is.,,,LDV,9.907591042,72.88334887,40,Indian Subcontinent,4,tropical Asia
+AG,Antigua and Barbuda,LEE,,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+AI,Anguilla,LEE,,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+BL,Saint Barthélemy,LEE,,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+BQ,"Bonaire, Sint Eustatius and Saba",LEE,,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+GP,Guadeloupe,LEE,,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+KN,Saint Kitts and Nevis,LEE,,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+LEE-AV,Aves I.,LEE,,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+MF,Saint Martin (French part),LEE,,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+MS,Montserrat,LEE,,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+VG,"Virgin Islands, British",LEE,,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+VI,"Virgin Islands, U.S.",LEE,,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+AG,Antigua and Barbuda,LEE-AB,Antigua-Barbuda,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+AI,Anguilla,LEE-AG,Anguilla,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+LEE-AV,Aves I.,LEE-AV,Aves I.,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+VG,"Virgin Islands, British",LEE-BV,British Virgin Is.,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+GP,Guadeloupe,LEE-GU,Guadeloupe,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+MS,Montserrat,LEE-MO,Montserrat,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+BQ,"Bonaire, Sint Eustatius and Saba",LEE-NL,Netherlands Leeward Is.,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+KN,Saint Kitts and Nevis,LEE-SK,St. Kitts-Nevis,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+BL,Saint Barthélemy,LEE-SM,St. Martin-St. Barthelemy,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+MF,Saint Martin (French part),LEE-SM,St. Martin-St. Barthelemy,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+VI,"Virgin Islands, U.S.",LEE-VI,Virgin Is.,,,LEE,16.92084641,-62.28954902,81,Caribbean,8,Latin America
+LS,Lesotho,LES,Lesotho,,,LES,-29.58100531,28.24284307,27,Southern Africa,2,Africa
+LIN,Line Islands,LIN,Line Is.,,,LIN,0.833544513,-157.2279334,61,South-Central Pacific,6,Pacific
+LIN-KI,Kiribati Line Is.,LIN-KI,Kiribati Line Is.,,,LIN,0.833544513,-157.2279334,61,South-Central Pacific,6,Pacific
+LIN-US,US Line Is.,LIN-US,U.S. Line Is.,,,LIN,0.833544513,-157.2279334,61,South-Central Pacific,6,Pacific
+LOU-OO,Louisiana,LOU,Louisiana,,LA,LOU,31.07581713,-92.01956256,78,Southeastern U.S.A.,7,North America
+LSI-LS,Lesser Sunda Is.,LSI,Lesser Sunda Is.,,,LSI,-8.633694634,123.0809057,42,Malesia,4,tropical Asia
+LSI-BA,Bali,LSI-BA,Bali,,,LSI,-8.633694634,123.0809057,42,Malesia,4,tropical Asia
+TL,Timor-Leste,LSI-ET,East Timor,,,LSI,-8.633694634,123.0809057,42,Malesia,4,tropical Asia
+LSI-LS,Lesser Sunda Is.,LSI-LS,Lesser Sunda Is.,,,LSI,-8.633694634,123.0809057,42,Malesia,4,tropical Asia
+MAG-OO,Magadan,MAG,Magadan,,,MAG,65.14920159,128.5394239,31,Russian Far East,3,temperate Asia
+MAI-OO,Maine,MAI,Maine,,ME,MAI,45.39587882,-69.22759999,75,Northeastern U.S.A.,7,North America
+MAN-OO,Manitoba,MAN,Manitoba,MB,MB,MAN,54.92648933,-97.43005757,71,Western Canada,7,North America
+MAQ-OO,Macquarie Is.,MAQ,Macquarie Is.,,,MAQ,-54.61329532,158.8921676,90,Subantarctic Islands,9,Antarctica
+MAS-OO,Massachusetts,MAS,Massachusetts,,MA,MAS,42.25862899,-71.80907678,75,Northeastern U.S.A.,7,North America
+MU,Mauritius,MAU,Mauritius,,,MAU,-20.19562027,57.55521154,29,Western Indian Ocean,2,Africa
+MCI-OO,Mozambique Channel Is.,MCI,Mozambique Channel Is.,,,MCI,-14.52701329,44.84032317,29,Western Indian Ocean,2,Africa
+MCS-OO,Marcus I.,MCS,Marcus I.,,,MCS,24.30723325,153.9526794,62,Northwestern Pacific,6,Pacific
+MG,Madagascar,MDG,Madagascar,,,MDG,-19.37352737,46.70598974,29,Western Indian Ocean,2,Africa
+MDR-OO,Madeira,MDR,Madeira,,,MDR,32.76736726,-16.94699093,21,Macaronesia,2,Africa
+MV,Maldives,MDV,Maldives,,,MDV,3.371680936,73.25213838,40,Indian Subcontinent,4,tropical Asia
+MIC-OO,Michigan,MIC,Michigan,,MI,MIC,44.88051006,-85.7362084,75,Northeastern U.S.A.,7,North America
+MIN-OO,Minnesota,MIN,Minnesota,,MN,MIN,46.34787407,-94.1991062,74,North-Central U.S.A.,7,North America
+ML,Mali,MLI,Mali,,,MLI,17.35036278,-3.524352079,22,West Tropical Africa,2,Africa
+MW,Malawi,MLW,Malawi,,,MLW,-13.21511579,34.30698695,26,South Tropical Africa,2,Africa
+MY,Malaysia,MLY,Malaya,,,MLY,4.028257809,102.1783995,42,Malesia,4,tropical Asia
+MLY-PM,Peninsular Malaysia,MLY-PM,Peninsular Malaysia,,,MLY,4.028257809,102.1783995,42,Malesia,4,tropical Asia
+SG,Singapore,MLY-SI,Singapore,,,MLY,4.028257809,102.1783995,42,Malesia,4,tropical Asia
+MNT-OO,Montana,MNT,Montana,,MT,MNT,47.03479245,-109.6239835,73,Northwestern U.S.A.,7,North America
+MOL-OO,Maluku,MOL,Maluku,,,MOL,-1.420618756,127.9904995,42,Malesia,4,tropical Asia
+MN,Mongolia,MON,Mongolia,,,MON,46.83520929,103.083029,37,Mongolia,3,temperate Asia
+MA,Morocco,MOR,Morocco,,,MOR,31.88413167,-6.317545518,20,Northern Africa,2,Africa
+MA,Morocco,MOR-MO,Morocco,,,MOR,31.88413167,-6.317545518,20,Northern Africa,2,Africa
+MOR-SP,Spanish North African Territories,MOR-SP,Spanish North African Territories,,,MOR,31.88413167,-6.317545518,20,Northern Africa,2,Africa
+MZ,Mozambique,MOZ,Mozambique,,,MOZ,-17.26020232,35.55224706,26,South Tropical Africa,2,Africa
+MPE-OO,Marion-Prince Edward Is.,MPE,Marion-Prince Edward Is.,,,MPE,-46.85955871,37.76015675,90,Subantarctic Islands,9,Antarctica
+GU,Guam,MRN,,,,MRN,14.90032954,145.1964194,62,Northwestern Pacific,6,Pacific
+MP,Northern Mariana Islands,MRN,,,,MRN,14.90032954,145.1964194,62,Northwestern Pacific,6,Pacific
+GU,Guam,MRN-GU,Guam,,,MRN,14.90032954,145.1964194,62,Northwestern Pacific,6,Pacific
+MP,Northern Mariana Islands,MRN-NM,Northern Marianas,,,MRN,14.90032954,145.1964194,62,Northwestern Pacific,6,Pacific
+MRQ-OO,Marquesas,MRQ,Marquesas,,,MRQ,-9.365536166,-139.5863238,61,South-Central Pacific,6,Pacific
+MH,Marshall Islands,MRS,Marshall Is.,,,MRS,8.421679955,168.6103943,62,Northwestern Pacific,6,Pacific
+MRY-OO,Maryland,MRY,Maryland,,MD,MRY,39.04679397,-76.79724029,78,Southeastern U.S.A.,7,North America
+MSI-OO,Mississippi,MSI,Mississippi,,MS,MSI,32.75582597,-89.67327133,78,Southeastern U.S.A.,7,North America
+MSO-OO,Missouri,MSO,Missouri,,MO,MSO,38.37437865,-92.49049605,74,North-Central U.S.A.,7,North America
+MR,Mauritania,MTN,Mauritania,,,MTN,20.25990345,-10.33225759,22,West Tropical Africa,2,Africa
+MX,Mexico,MXC,Mexico Central,,,MXC,19.13108595,-98.58581435,79,Mexico,7,North America
+MXC-DF,México Distrito Federal,MXC-DF,Mexico Distrito Federal,,,MXC,19.13108595,-98.58581435,79,Mexico,7,North America
+MXC-ME,México State,MXC-ME,Mexico State,,,MXC,19.13108595,-98.58581435,79,Mexico,7,North America
+MXC-MO,Morelos,MXC-MO,Morelos,,,MXC,19.13108595,-98.58581435,79,Mexico,7,North America
+MXC-PU,Puebla,MXC-PU,Puebla,,,MXC,19.13108595,-98.58581435,79,Mexico,7,North America
+MXC-TL,Tlaxcala,MXC-TL,Tlaxcala,,,MXC,19.13108595,-98.58581435,79,Mexico,7,North America
+MX,Mexico,MXE,Mexico Northeast,,,MXE,25.85226948,-103.0607519,79,Mexico,7,North America
+MXE-AG,Aguascalientes,MXE-AG,Aguascalientes,,,MXE,25.85226948,-103.0607519,79,Mexico,7,North America
+MXE-CO,Coahuila,MXE-CO,Coahuila,,,MXE,25.85226948,-103.0607519,79,Mexico,7,North America
+MXE-CU,Chihuahua,MXE-CU,Chihuahua,,,MXE,25.85226948,-103.0607519,79,Mexico,7,North America
+MXE-DU,Durango,MXE-DU,Durango,,,MXE,25.85226948,-103.0607519,79,Mexico,7,North America
+MXE-GU,Guanajuato,MXE-GU,Guanajuato,,,MXE,25.85226948,-103.0607519,79,Mexico,7,North America
+MXE-HI,Hidalgo,MXE-HI,Hidalgo,,,MXE,25.85226948,-103.0607519,79,Mexico,7,North America
+MXE-NL,Nuevo León,MXE-NL,Nuevo León,,,MXE,25.85226948,-103.0607519,79,Mexico,7,North America
+MXE-QU,Querétaro,MXE-QU,Querétaro,,,MXE,25.85226948,-103.0607519,79,Mexico,7,North America
+MXE-SL,San Luis Potosí,MXE-SL,San Luis Potosí,,,MXE,25.85226948,-103.0607519,79,Mexico,7,North America
+MXE-TA,Tamaulipas,MXE-TA,Tamaulipas,,,MXE,25.85226948,-103.0607519,79,Mexico,7,North America
+MXE-ZA,Zacatecas,MXE-ZA,Zacatecas,,,MXE,25.85226948,-103.0607519,79,Mexico,7,North America
+MX,Mexico,MXG,Mexico Gulf,,,MXG,19.37738436,-96.405429,79,Mexico,7,North America
+MXG-VC,Veracruz,MXG-VC,Veracruz,,,MXG,19.37738436,-96.405429,79,Mexico,7,North America
+MX,Mexico,MXI,Mexican Pacific Is.,,,MXI,24.96193755,-115.5597186,79,Mexico,7,North America
+MXI-GU,Guadalupe I.,MXI-GU,Guadalupe I.,,,MXI,24.96193755,-115.5597186,79,Mexico,7,North America
+MXI-RA,Rocas Alijos,MXI-RA,Rocas Alijos,,,MXI,24.96193755,-115.5597186,79,Mexico,7,North America
+MXI-RG,Revillagigedo Is.,MXI-RG,Revillagigedo Is.,,,MXI,24.96193755,-115.5597186,79,Mexico,7,North America
+MX,Mexico,MXN,Mexico Northwest,,,MXN,28.49122261,-111.3789858,79,Mexico,7,North America
+MXN-BC,Baja California,MXN-BC,Baja California,,,MXN,28.49122261,-111.3789858,79,Mexico,7,North America
+MXN-BS,Baja California Sur,MXN-BS,Baja California Sur,,,MXN,28.49122261,-111.3789858,79,Mexico,7,North America
+MXN-SI,Sinaloa,MXN-SI,Sinaloa,,,MXN,28.49122261,-111.3789858,79,Mexico,7,North America
+MXN-SO,Sonora,MXN-SO,Sonora,,,MXN,28.49122261,-111.3789858,79,Mexico,7,North America
+MX,Mexico,MXS,Mexico Southwest,,,MXS,18.84794655,-100.7023884,79,Mexico,7,North America
+MXS-CL,Colima,MXS-CL,Colima,,,MXS,18.84794655,-100.7023884,79,Mexico,7,North America
+MXS-GR,Guerrero,MXS-GR,Guerrero,,,MXS,18.84794655,-100.7023884,79,Mexico,7,North America
+MXS-JA,Jalisco,MXS-JA,Jalisco,,,MXS,18.84794655,-100.7023884,79,Mexico,7,North America
+MXS-MI,Michoacán,MXS-MI,Michoacan,,,MXS,18.84794655,-100.7023884,79,Mexico,7,North America
+MXS-NA,Nayarit,MXS-NA,Nayarit,,,MXS,18.84794655,-100.7023884,79,Mexico,7,North America
+MXS-OA,Oaxaca,MXS-OA,Oaxaca,,,MXS,18.84794655,-100.7023884,79,Mexico,7,North America
+MX,Mexico,MXT,Mexico Southeast,,,MXT,18.50799061,-90.55872947,79,Mexico,7,North America
+MXT-CA,Campeche,MXT-CA,Campeche,,,MXT,18.50799061,-90.55872947,79,Mexico,7,North America
+MXT-CI,Chiapas,MXT-CI,Chiapas,,,MXT,18.50799061,-90.55872947,79,Mexico,7,North America
+MXT-QR,Quintana Roo,MXT-QR,Quintana Roo,,,MXT,18.50799061,-90.55872947,79,Mexico,7,North America
+MXT-TB,Tabasco,MXT-TB,Tabasco,,,MXT,18.50799061,-90.55872947,79,Mexico,7,North America
+MXT-YU,Yucatán,MXT-YU,Yucatán,,,MXT,18.50799061,-90.55872947,79,Mexico,7,North America
+MM,Myanmar,MYA,Myanmar,,,MYA,21.14042438,96.50882912,41,Indo-China,4,tropical Asia
+NA,Namibia,NAM,Namibia,,,NAM,-22.23553957,17.07189693,27,Southern Africa,2,Africa
+NAT-OO,KwaZulu-Natal,NAT,KwaZulu-Natal,,,NAT,-28.7085677,30.72508497,27,Southern Africa,2,Africa
+NBR-OO,New Brunswick,NBR,New Brunswick,NB,NB,NBR,46.63101173,-66.37001739,72,Eastern Canada,7,North America
+NCA-OO,North Carolina,NCA,North Carolina,,NC,NCA,35.54958921,-79.38015679,78,Southeastern U.S.A.,7,North America
+NCB-OO,Nicobar Is.,NCB,Nicobar Is.,,,NCB,7.507164884,93.60166544,41,Indo-China,4,tropical Asia
+RUS-OO,South European Russia,NCS,North Caucasus,,,NCS,44.34380339,42.86217833,33,Caucasus,3,temperate Asia
+NCS-CH,Chechnya,NCS-CH,Chechnya,,,NCS,44.34380339,42.86217833,33,Caucasus,3,temperate Asia
+NCS-DA,Dagestan,NCS-DA,Dagestan,,,NCS,44.34380339,42.86217833,33,Caucasus,3,temperate Asia
+NCS-IN,Ingushetiya,NCS-IN,Ingushetiya,,,NCS,44.34380339,42.86217833,33,Caucasus,3,temperate Asia
+NCS-KB,Kabardino-Balkariya,NCS-KB,Kabardino-Balkariya,,,NCS,44.34380339,42.86217833,33,Caucasus,3,temperate Asia
+NCS-KC,Karachaevo-Cherkessiya,NCS-KC,Karacheyevo-Cherkessiya,,,NCS,44.34380339,42.86217833,33,Caucasus,3,temperate Asia
+NCS-KR,Krasnodar,NCS-KR,Krasnodar,,,NCS,44.34380339,42.86217833,33,Caucasus,3,temperate Asia
+NCS-SO,Severo-Osetiya,NCS-SO,Severo-Osetiya,,,NCS,44.34380339,42.86217833,33,Caucasus,3,temperate Asia
+NCS-ST,Stavropol,NCS-ST,Stavropol,,,NCS,44.34380339,42.86217833,33,Caucasus,3,temperate Asia
+NDA-OO,North Dakota,NDA,North Dakota,,ND,NDA,47.44750074,-100.4594152,74,North-Central U.S.A.,7,North America
+NEB-OO,Nebraska,NEB,Nebraska,,NE,NEB,41.52790501,-99.79214759,74,North-Central U.S.A.,7,North America
+NP,Nepal,NEP,Nepal,,,NEP,28.25300794,83.938516,40,Indian Subcontinent,4,tropical Asia
+NL,Netherlands,NET,Netherlands,,,NET,52.25357257,5.600984813,11,Middle Europe,1,Europe
+NEV-OO,Nevada,NEV,Nevada,,NV,NEV,39.35827474,-116.6521158,76,Southwestern U.S.A.,7,North America
+NF,Norfolk Island,NFK,Norfolk Is.,,,NFK,-29.5504624,166.1444772,50,Australia,5,Australasia
+NFK-LH,Lord Howe Is.,NFK-LH,Lord Howe I.,,,NFK,-29.5504624,166.1444772,50,Australia,5,Australasia
+NF,Norfolk Island,NFK-NI,Norfolk I.,,,NFK,-29.5504624,166.1444772,50,Australia,5,Australasia
+NFL-NE,Newfoundland I,NFL,Newfoundland,NL,,NFL,48.71653404,-56.02938217,72,Eastern Canada,7,North America
+NFL-NE,Newfoundland I,NFL-NE,Newfoundland,NL_N,,NFL,48.71653404,-56.02938217,72,Eastern Canada,7,North America
+PM,Saint Pierre and Miquelon,NFL-SP,St. Pierre-Miquelon,PM,,NFL,48.71653404,-56.02938217,72,Eastern Canada,7,North America
+NG,Nigeria,NGA,Nigeria,,,NGA,9.593624582,8.105318389,22,West Tropical Africa,2,Africa
+NE,Niger,NGR,Niger,,,NGR,17.42632346,9.397650573,22,West Tropical Africa,2,Africa
+NI,Nicaragua,NIC,Nicaragua,,,NIC,12.839712,-85.03470963,80,Central America,8,Latin America
+BQ,"Bonaire, Sint Eustatius and Saba",NLA,,,,NLA,12.18787645,-68.69280777,81,Caribbean,8,Latin America
+CW,Curaçao,NLA,,,,NLA,12.18787645,-68.69280777,81,Caribbean,8,Latin America
+BQ,"Bonaire, Sint Eustatius and Saba",NLA-BO,Bonaire,,,NLA,12.18787645,-68.69280777,81,Caribbean,8,Latin America
+CW,Curaçao,NLA-CU,Curaçao,,,NLA,12.18787645,-68.69280777,81,Caribbean,8,Latin America
+NNS-OO,Nansei-shoto,NNS,Nansei-shoto,,,NNS,25.77340565,126.6998898,38,Eastern Asia,3,temperate Asia
+NO,Norway,NOR,Norway,,,NOR,64.44787198,14.07512794,10,Northern Europe,1,Europe
+NR,Nauru,NRU,Nauru,,,NRU,-0.522073311,166.9300834,60,Southwestern Pacific,6,Pacific
+NSC-OO,Nova Scotia,NSC,Nova Scotia,NS,NS,NSC,45.14835243,-63.30227022,72,Eastern Canada,7,North America
+NSW-NS,New South Wales,NSW,New South Wales,,,NSW,-32.18031229,147.0187875,50,Australia,5,Australasia
+NSW-CT,Australian Capital Territory,NSW-CT,Australian Capital Territory,,,NSW,-32.18031229,147.0187875,50,Australia,5,Australasia
+NSW-NS,New South Wales,NSW-NS,New South Wales,,,NSW,-32.18031229,147.0187875,50,Australia,5,Australasia
+NTA-OO,Northern Territory,NTA,Northern Territory,,,NTA,-19.41428342,133.3652138,50,Australia,5,Australasia
+NU,Niue,NUE,Niue,,,NUE,-19.05190358,-169.8685868,60,Southwestern Pacific,6,Pacific
+NUN-OO,Nunavut,NUN,Nunavut,NU,NU,NUN,71.04867651,-88.91446902,70,Subarctic America,7,North America
+NC,New Caledonia,NWC,New Caledonia,,,NWC,-21.29461419,165.6718498,60,Southwestern Pacific,6,Pacific
+NWG-IJ,Papua,NWG,,,,NWG,-5.345952334,140.8323211,43,Papuasia,4,tropical Asia
+NWG-PN,Papua New Guinea (main island group),NWG,,,,NWG,-5.345952334,140.8323211,43,Papuasia,4,tropical Asia
+NWG-IJ,Papua,NWG-IJ,Irian Jaya,,,NWG,-5.345952334,140.8323211,43,Papuasia,4,tropical Asia
+NWG-PN,Papua New Guinea (main island group),NWG-PN,Papua New Guinea,,,NWG,-5.345952334,140.8323211,43,Papuasia,4,tropical Asia
+NWH-OO,New Hampshire,NWH,New Hampshire,,NH,NWH,43.68999511,-71.5792793,75,Northeastern U.S.A.,7,North America
+NWJ-OO,New Jersey,NWJ,New Jersey,,NJ,NWJ,40.18920093,-74.66262909,75,Northeastern U.S.A.,7,North America
+NWM-OO,New Mexico,NWM,New Mexico,,NM,NWM,34.42306424,-106.1076877,77,South-Central U.S.A.,7,North America
+NWT-OO,Northwest Territories,NWT,Northwest Territories,NT,NT,NWT,66.33106742,-118.9823435,70,Subarctic America,7,North America
+NWY-OO,New York,NWY,New York,,NY,NWY,42.99492034,-75.69458709,75,Northeastern U.S.A.,7,North America
+NZN-OO,North Is.,NZN,New Zealand North,,,NZN,-38.57756133,175.7272178,51,New Zealand,5,Australasia
+NZS-OO,South Is.,NZS,New Zealand South,,,NZS,-44.02210597,170.4796022,51,New Zealand,5,Australasia
+OFS-OO,Free State,OFS,Free State,,,OFS,-28.61014393,26.86433218,27,Southern Africa,2,Africa
+OGA-OO,Ogasawara-shoto,OGA,Ogasawara-shoto,,,OGA,27.00808255,142.1178032,38,Eastern Asia,3,temperate Asia
+OHI-OO,Ohio,OHI,Ohio,,OH,OHI,40.41552797,-82.70728238,75,Northeastern U.S.A.,7,North America
+OKL-OO,Oklahoma,OKL,Oklahoma,,OK,OKL,35.58437196,-97.50981445,74,North-Central U.S.A.,7,North America
+OM,Oman,OMA,Oman,,,OMA,20.60235556,56.11008523,35,Arabian Peninsula,3,temperate Asia
+ONT-OO,Ontario,ONT,Ontario,ON,ON,ONT,50.07309622,-85.83256685,72,Eastern Canada,7,North America
+ORE-OO,Oregon,ORE,Oregon,,OR,ORE,43.94031794,-120.5408757,73,Northwestern U.S.A.,7,North America
+PK,Pakistan,PAK,Pakistan,,,PAK,29.35662228,68.78919432,40,Indian Subcontinent,4,tropical Asia
+IL,Israel,PAL,,,,PAL,31.3079181,36.37619652,34,Western Asia,3,temperate Asia
+JO,Jordan,PAL,,,,PAL,31.3079181,36.37619652,34,Western Asia,3,temperate Asia
+PS,"Palestine, State of",PAL,,,,PAL,31.3079181,36.37619652,34,Western Asia,3,temperate Asia
+IL,Israel,PAL-IS,Israel,,,PAL,31.3079181,36.37619652,34,Western Asia,3,temperate Asia
+JO,Jordan,PAL-JO,Jordan,,,PAL,31.3079181,36.37619652,34,Western Asia,3,temperate Asia
+PA,Panama,PAN,Panama,,,PAN,8.505429137,-80.10899702,80,Central America,8,Latin America
+PY,Paraguay,PAR,Paraguay,,,PAR,-23.23612805,-58.39095073,85,Southern South America,8,Latin America
+PEI-OO,Prince Edward I.,PEI,Prince Edward I.,PE,PE,PEI,46.39620383,-63.24493637,72,Eastern Canada,7,North America
+PEN-OO,Pennsylvania,PEN,Pennsylvania,,PA,PEN,40.89843684,-77.83950118,75,Northeastern U.S.A.,7,North America
+PE,Peru,PER,Peru,,,PER,-9.163772192,-74.37540458,83,Western South America,8,Latin America
+PH,Philippines,PHI,Philippines,,,PHI,11.74740395,122.873632,42,Malesia,4,tropical Asia
+PHX-OO,Phoenix Is.,PHX,Phoenix Is.,,,PHX,-3.419467314,-171.7279731,60,Southwestern Pacific,6,Pacific
+PN,Pitcairn,PIT,Pitcairn Is.,,,PIT,-24.505797,-128.44279,61,South-Central Pacific,6,Pacific
+PL,Poland,POL,Poland,,,POL,52.12472508,19.4009187,11,Middle Europe,1,Europe
+PT,Portugal,POR,Portugal,,,POR,39.69200296,-7.962367688,12,Southwestern Europe,1,Europe
+PRM-OO,Primoryi,PRM,Primorye,,,PRM,45.16706365,134.7137746,31,Russian Far East,3,temperate Asia
+PR,Puerto Rico,PUE,Puerto Rico,,PR,PUE,18.22091539,-66.46614558,81,Caribbean,8,Latin America
+QLD-QU,Queensland,QLD,Queensland,,,QLD,-22.57373244,144.5481933,50,Australia,5,Australasia
+QLD-CS,Coral Sea Is. Territory,QLD-CS,Coral Sea Is. Territory,,,QLD,-22.57373244,144.5481933,50,Australia,5,Australasia
+QLD-QU,Queensland,QLD-QU,Queensland,,,QLD,-22.57373244,144.5481933,50,Australia,5,Australasia
+QUE-OO,Québec,QUE,Québec,QC,QC,QUE,53.38114914,-71.75499676,72,Eastern Canada,7,North America
+RE,Réunion,REU,Réunion,,,REU,-21.12162946,55.53821274,29,Western Indian Ocean,2,Africa
+RHO-OO,Rhode Island,RHO,Rhode I.,,RI,RHO,41.68389685,-71.55994566,75,Northeastern U.S.A.,7,North America
+ROD-OO,Rodrigues,ROD,Rodrigues,,,ROD,-19.71779025,63.41351669,29,Western Indian Ocean,2,Africa
+RO,Romania,ROM,Romania,,,ROM,45.84359796,24.96918232,13,Southeastern Europe,1,Europe
+RUC-OO,Central European Russia,RUC,Central European Russia,,,RUC,54.88373842,39.80245698,14,Eastern Europe,1,Europe
+RUE-OO,East European Russia,RUE,East European Russia,,,RUE,56.12331852,53.73073876,14,Eastern Europe,1,Europe
+RUN-OO,North European Russia,RUN,North European Russia,,,RUN,64.50418421,45.85434037,14,Eastern Europe,1,Europe
+RUS-OO,South European Russia,RUS,South European Russia,,,RUS,48.91779832,44.67469326,14,Eastern Europe,1,Europe
+RUW-OO,Northwest European Russia,RUW,Northwest European Russia,,,RUW,58.78055975,31.24102708,14,Eastern Europe,1,Europe
+RW,Rwanda,RWA,Rwanda,,,RWA,-1.997987311,29.91719523,23,West-Central Tropical Africa,2,Africa
+SAK-OO,Sakhalin,SAK,Sakhalin,,,SAK,50.3342599,142.7120755,31,Russian Far East,3,temperate Asia
+WS,Samoa,SAM,Samoa,,,SAM,-13.79663847,-172.0319288,60,Southwestern Pacific,6,Pacific
+AS,American Samoa,SAM-AS,American Samoa,,,SAM,-13.79663847,-172.0319288,60,Southwestern Pacific,6,Pacific
+WS,Samoa,SAM-WS,Samoa,,,SAM,-13.79663847,-172.0319288,60,Southwestern Pacific,6,Pacific
+SAR-OO,Sardegna,SAR,Sardegna,,,SAR,40.09088088,9.030029004,12,Southwestern Europe,1,Europe
+SAS-OO,Saskatchewan,SAS,Saskatchewan,SK,SK,SAS,54.41922757,-105.8900548,71,Western Canada,7,North America
+SA,Saudi Arabia,SAU,Saudi Arabia,,,SAU,24.02338171,44.58510242,35,Arabian Peninsula,3,temperate Asia
+SCA-OO,South Carolina,SCA,South Carolina,,SC,SCA,33.91755375,-80.90042082,78,Southeastern U.S.A.,7,North America
+SCI-OO,Society Is.,SCI,Society Is.,,,SCI,-17.45187799,-149.8832556,61,South-Central Pacific,6,Pacific
+SCS-PI,Paracel Is.,SCS,,,,SCS,13.0701461,114.3182544,41,Indo-China,4,tropical Asia
+SCS-SI,Spratly Is.,SCS,,,,SCS,13.0701461,114.3182544,41,Indo-China,4,tropical Asia
+SCS-PI,Paracel Is.,SCS-PI,Paracel Is.,,,SCS,13.0701461,114.3182544,41,Indo-China,4,tropical Asia
+SCS-SI,Spratly Is.,SCS-SI,Spratly Is.,,,SCS,13.0701461,114.3182544,41,Indo-China,4,tropical Asia
+SCZ-OO,Santa Cruz Is.,SCZ,Santa Cruz Is.,,,SCZ,-10.99208388,166.2240493,60,Southwestern Pacific,6,Pacific
+SDA-OO,South Dakota,SDA,South Dakota,,SD,SDA,44.43756367,-100.2198562,74,North-Central U.S.A.,7,North America
+SEL-OO,Selvagens,SEL,Selvagens,,,SEL,30.14296023,-15.86268648,21,Macaronesia,2,Africa
+SN,Senegal,SEN,Senegal,,,SEN,14.36697739,-14.46817708,22,West Tropical Africa,2,Africa
+SC,Seychelles,SEY,Seychelles,,,SEY,-4.70189449,55.5220677,29,Western Indian Ocean,2,Africa
+GS,South Georgia and the South Sandwich Islands,SGE,South Georgia,,,SGE,-54.35798161,-36.71862583,90,Subantarctic Islands,9,Antarctica
+SIC-SI,Sicilia,SIC,Sicilia,,,SIC,37.56596761,14.14647287,13,Southeastern Europe,1,Europe
+MT,Malta,SIC-MA,Malta,,,SIC,37.56596761,14.14647287,13,Southeastern Europe,1,Europe
+SIC-SI,Sicilia,SIC-SI,Sicilia,,,SIC,37.56596761,14.14647287,13,Southeastern Europe,1,Europe
+SL,Sierra Leone,SIE,Sierra Leone,,,SIE,8.560345771,-11.79209994,22,West Tropical Africa,2,Africa
+SIN-OO,Sinai,SIN,Sinai,,,SIN,29.70447198,33.7680386,34,Western Asia,3,temperate Asia
+SOA-OO,South Australia,SOA,South Australia,,,SOA,-30.10453814,135.8267162,50,Australia,5,Australasia
+SOC-OO,Socotra,SOC,Socotra,,,SOC,12.49162925,53.78351902,24,Northeast Tropical Africa,2,Africa
+SB,Solomon Islands,SOL,Solomon Is.,,,SOL,-8.147934436,158.3399851,43,Papuasia,4,tropical Asia
+SOL-NO,North Solomons,SOL-NO,North Solomons,,,SOL,-8.147934436,158.3399851,43,Papuasia,4,tropical Asia
+SOL-SO,South Solomons,SOL-SO,South Solomons,,,SOL,-8.147934436,158.3399851,43,Papuasia,4,tropical Asia
+SO,Somalia,SOM,Somalia,,,SOM,6.063705784,45.86255319,24,Northeast Tropical Africa,2,Africa
+ES,Spain,SPA,Spain,,,SPA,40.39416926,-3.551723404,12,Southwestern Europe,1,Europe
+AD,Andorra,SPA-AN,Andorra,,,SPA,40.39416926,-3.551723404,12,Southwestern Europe,1,Europe
+GI,Gibraltar,SPA-GI,Gibraltar,,,SPA,40.39416926,-3.551723404,12,Southwestern Europe,1,Europe
+SPA-SP,Spain (mainland),SPA-SP,Spain,,,SPA,40.39416926,-3.551723404,12,Southwestern Europe,1,Europe
+LK,Sri Lanka,SRL,Sri Lanka,,,SRL,7.612357088,80.70426571,40,Indian Subcontinent,4,tropical Asia
+SSA-OO,South Sandwich Is.,SSA,South Sandwich Is.,,,SSA,-58.17275834,-26.65310473,90,Subantarctic Islands,9,Antarctica
+STH-OO,Saint Helena (main island),STH,St.Helena,,,STH,-15.96202459,-5.717275315,28,Middle Atlantic Ocean,2,Africa
+SD,Sudan,SUD,Sudan,,,SUD,13.88720329,30.08706657,24,Northeast Tropical Africa,2,Africa
+SUL-OO,Sulawesi,SUL,Sulawesi,,,SUL,-2.104068429,121.2948301,42,Malesia,4,tropical Asia
+SUM-OO,Sumatera,SUM,Sumatera,,,SUM,-0.477595217,101.6400768,42,Malesia,4,tropical Asia
+SR,Suriname,SUR,Suriname,,,SUR,4.126707567,-55.91158943,82,Northern South America,8,Latin America
+SJ,Svalbard and Jan Mayen,SVA,Svalbard,,,SVA,78.8294471,18.37151643,10,Northern Europe,1,Europe
+SWC-CC,Colombian Caribbean Is.,SWC,,,,SWC,15.43870928,-85.14144436,81,Caribbean,8,Latin America
+SWC-HC,Honduran Caribbean Is.,SWC,,,,SWC,15.43870928,-85.14144436,81,Caribbean,8,Latin America
+SWC-NC,Nicaraguan Caribbean Is.,SWC,,,,SWC,15.43870928,-85.14144436,81,Caribbean,8,Latin America
+SWC-CC,Colombian Caribbean Is.,SWC-CC,Colombian Caribbean Is.,,,SWC,15.43870928,-85.14144436,81,Caribbean,8,Latin America
+SWC-HC,Honduran Caribbean Is.,SWC-HC,Honduran Caribbean Is.,,,SWC,15.43870928,-85.14144436,81,Caribbean,8,Latin America
+SWC-NC,Nicaraguan Caribbean Is.,SWC-NC,Nicaraguan Caribbean Is.,,,SWC,15.43870928,-85.14144436,81,Caribbean,8,Latin America
+SE,Sweden,SWE,Sweden,,,SWE,62.78773775,16.74115723,10,Northern Europe,1,Europe
+CH,Switzerland,SWI,Switzerland,,,SWI,46.80257618,8.234587165,11,Middle Europe,1,Europe
+SZ,Eswatini,SWZ,Swaziland,,,SWZ,-26.5621158,31.49719338,27,Southern Africa,2,Africa
+TAI-OO,"Taiwan, Province of China (main island)",TAI,Taiwan,,,TAI,23.74833247,120.9594018,38,Eastern Asia,3,temperate Asia
+TZ,"Tanzania, United Republic of",TAN,Tanzania,,,TAN,-6.270196782,34.8234036,25,East Tropical Africa,2,Africa
+TAS-OO,Tasmania,TAS,Tasmania,,,TAS,-41.94278479,146.6009979,50,Australia,5,Australasia
+TC,Turks and Caicos Islands,TCI,Turks-Caicos Is.,,,TCI,21.80869292,-71.88207917,81,Caribbean,8,Latin America
+AM,Armenia,TCS,,,,TCS,41.01420856,45.58312388,33,Caucasus,3,temperate Asia
+AZ,Azerbaijan,TCS,,,,TCS,41.01420856,45.58312388,33,Caucasus,3,temperate Asia
+GE,Georgia,TCS,,,,TCS,41.01420856,45.58312388,33,Caucasus,3,temperate Asia
+TCS-AB,Abkhaziya,TCS,,,,TCS,41.01420856,45.58312388,33,Caucasus,3,temperate Asia
+TCS-AD,Adzhariya,TCS,,,,TCS,41.01420856,45.58312388,33,Caucasus,3,temperate Asia
+TCS-AR,Armenia,TCS,,,,TCS,41.01420856,45.58312388,33,Caucasus,3,temperate Asia
+TCS-NA,Nakhichevan,TCS,,,,TCS,41.01420856,45.58312388,33,Caucasus,3,temperate Asia
+TCS-NK,Nagorno-Karabakh,TCS,,,,TCS,41.01420856,45.58312388,33,Caucasus,3,temperate Asia
+TCS-AB,Abkhaziya,TCS-AB,Abkhaziya,,,TCS,41.01420856,45.58312388,33,Caucasus,3,temperate Asia
+TCS-AD,Adzhariya,TCS-AD,Adzhariya,,,TCS,41.01420856,45.58312388,33,Caucasus,3,temperate Asia
+AM,Armenia,TCS-AR,Armenia,,,TCS,41.01420856,45.58312388,33,Caucasus,3,temperate Asia
+TCS-AR,Armenia,TCS-AR,Armenia,,,TCS,41.01420856,45.58312388,33,Caucasus,3,temperate Asia
+AZ,Azerbaijan,TCS-AZ,Azerbaijan,,,TCS,41.01420856,45.58312388,33,Caucasus,3,temperate Asia
+GE,Georgia,TCS-GR,Gruziya,,,TCS,41.01420856,45.58312388,33,Caucasus,3,temperate Asia
+TCS-NA,Nakhichevan,TCS-NA,Nakhichevan,,,TCS,41.01420856,45.58312388,33,Caucasus,3,temperate Asia
+TCS-NK,Nagorno-Karabakh,TCS-NK,Nagorno Karabakh,,,TCS,41.01420856,45.58312388,33,Caucasus,3,temperate Asia
+TDC-OO,Tristan da Cunha,TDC,Tristan da Cunha,,,TDC,-38.66545462,-11.15734365,90,Subantarctic Islands,9,Antarctica
+TEN-OO,Tennessee,TEN,Tennessee,,TN,TEN,35.85105204,-86.34752902,78,Southeastern U.S.A.,7,North America
+TEX-OO,Texas,TEX,Texas,,TX,TEX,31.49694154,-99.35743679,77,South-Central U.S.A.,7,North America
+TH,Thailand,THA,Thailand,,,THA,15.11989714,101.0149076,41,Indo-China,4,tropical Asia
+TM,Turkmenistan,TKM,Turkmenistan,,,TKM,39.12222047,59.38352408,32,Middle Asia,3,temperate Asia
+TG,Togo,TOG,Togo,,,TOG,8.534930227,0.975834462,22,West Tropical Africa,2,Africa
+TK,Tokelau,TOK,Tokelau-Manihiki,,,TOK,-9.770762035,-164.6701472,60,Southwestern Pacific,6,Pacific
+TOK-MA,Manihiki Is.,TOK-MA,Manihiki Is.,,,TOK,-9.770762035,-164.6701472,60,Southwestern Pacific,6,Pacific
+TOK-SW,Swains Is.,TOK-SW,Swains I.,,,TOK,-9.770762035,-164.6701472,60,Southwestern Pacific,6,Pacific
+TK,Tokelau,TOK-TO,Tokelau,,,TOK,-9.770762035,-164.6701472,60,Southwestern Pacific,6,Pacific
+TO,Tonga,TON,Tonga,,,TON,-19.98207653,-174.8245319,60,Southwestern Pacific,6,Pacific
+TT,Trinidad and Tobago,TRT,Trinidad-Tobago,,,TRT,10.46836429,-61.25263722,81,Caribbean,8,Latin America
+TUA-OO,Tuamotu,TUA,Tuamotu,,,TUA,-16.02348622,-145.2654942,61,South-Central Pacific,6,Pacific
+TUB-OO,Tubuai Is.,TUB,Tubuai Is.,,,TUB,-23.09392209,-150.0686054,61,South-Central Pacific,6,Pacific
+TUE-OO,Turkey-in-Europe,TUE,Turkey-in-Europe,,,TUE,41.26119862,27.29964162,13,Southeastern Europe,1,Europe
+TN,Tunisia,TUN,Tunisia,,,TUN,34.11124296,9.561555724,20,Northern Africa,2,Africa
+TR,Turkey,TUR,Turkey,,,TUR,38.98893748,35.43587039,34,Western Asia,3,temperate Asia
+TV,Tuvalu,TUV,Tuvalu,,,TUV,-7.587359998,178.2011101,60,Southwestern Pacific,6,Pacific
+TVA-OO,Tuva,TVA,Tuva,,,TVA,51.57947047,94.79308741,30,Siberia,3,temperate Asia
+TVL-GA,Gauteng,TVL,Northern Provinces,,,TVL,-25.26571051,28.07826685,27,Southern Africa,2,Africa
+TVL-MP,Mpumalanga,TVL,Northern Provinces,,,TVL,-25.26571051,28.07826685,27,Southern Africa,2,Africa
+TVL-NP,Limpopo Province,TVL,Northern Provinces,,,TVL,-25.26571051,28.07826685,27,Southern Africa,2,Africa
+TVL-NW,North-West Province,TVL,Northern Provinces,,,TVL,-25.26571051,28.07826685,27,Southern Africa,2,Africa
+TVL-GA,Gauteng,TVL-GA,Gauteng,,,TVL,-25.26571051,28.07826685,27,Southern Africa,2,Africa
+TVL-MP,Mpumalanga,TVL-MP,Mpumalanga,,,TVL,-25.26571051,28.07826685,27,Southern Africa,2,Africa
+TVL-NP,Limpopo Province,TVL-NP,Northern Province,,,TVL,-25.26571051,28.07826685,27,Southern Africa,2,Africa
+TVL-NW,North-West Province,TVL-NW,North-West Province,,,TVL,-25.26571051,28.07826685,27,Southern Africa,2,Africa
+TJ,Tajikistan,TZK,Tadzhikistan,,,TZK,38.52781577,71.04218428,32,Middle Asia,3,temperate Asia
+UG,Uganda,UGA,Uganda,,,UGA,1.28008215,32.38624065,25,East Tropical Africa,2,Africa
+UA,Ukraine,UKR,Ukraine,,,UKR,49.06577305,31.11581544,14,Eastern Europe,1,Europe
+MD,Moldova,UKR-MO,Moldova,,,UKR,49.06577305,31.11581544,14,Eastern Europe,1,Europe
+UKR-UK,Ukraine (main part),UKR-UK,Ukraine,,,UKR,49.06577305,31.11581544,14,Eastern Europe,1,Europe
+UY,Uruguay,URU,Uruguay,,,URU,-32.79956891,-56.01217767,85,Southern South America,8,Latin America
+UTA-OO,Utah,UTA,Utah,,UT,UTA,39.32520384,-111.6746324,76,Southwestern U.S.A.,7,North America
+UZ,Uzbekistan,UZB,Uzbekistan,,,UZB,41.75042059,63.16950908,32,Middle Asia,3,temperate Asia
+VU,Vanuatu,VAN,Vanuatu,,,VAN,-16.20215409,167.7055728,60,Southwestern Pacific,6,Pacific
+VE,"Venezuela, Bolivarian Republic of",VEN,Venezuela,,,VEN,7.118817222,-66.16904087,82,Northern South America,8,Latin America
+VER-OO,Vermont,VER,Vermont,,VT,VER,44.08247962,-72.65980015,75,Northeastern U.S.A.,7,North America
+VIC-OO,Victoria,VIC,Victoria,,,VIC,-36.85746645,144.3078569,50,Australia,5,Australasia
+VN,Viet Nam,VIE,Vietnam,,,VIE,16.65164518,106.3040302,41,Indo-China,4,tropical Asia
+VNA-OO,Venezuelan Antilles,VNA,Venezuelan Antilles,,,VNA,11.05814757,-64.34912638,81,Caribbean,8,Latin America
+VRG-OO,Virginia,VRG,Virginia,,VA,VRG,37.52180057,-78.82589678,78,Southeastern U.S.A.,7,North America
+WAK-OO,Wake Is.,WAK,Wake I.,,,WAK,19.30151617,166.638191,62,Northwestern Pacific,6,Pacific
+WF,Wallis and Futuna,WAL,Wallis-Futuna Is.,,,WAL,-13.78426596,-177.1439709,60,Southwestern Pacific,6,Pacific
+WAS-OO,Washington,WAS,Washington,,WA,WAS,47.38672446,-120.4312306,73,Northwestern U.S.A.,7,North America
+WAU-WA,Western Australia,WAU,Western Australia,,,WAU,-25.46606468,122.1782109,50,Australia,5,Australasia
+WAU-AC,Ashmore-Cartier Is.,WAU-AC,Ashmore-Cartier Is.,,,WAU,-25.46606468,122.1782109,50,Australia,5,Australasia
+WAU-WA,Western Australia,WAU-WA,Western Australia,,,WAU,-25.46606468,122.1782109,50,Australia,5,Australasia
+WDC-OO,District of Columbia,WDC,District of Columbia,,DC,WDC,38.91161047,-77.00958958,78,Southeastern U.S.A.,7,North America
+BT,Bhutan,WHM,West Himalaya,,,WHM,33.3215968,76.67316703,40,Indian Subcontinent,4,tropical Asia
+WHM-HP,Himachal Pradesh,WHM,West Himalaya,,,WHM,33.3215968,76.67316703,40,Indian Subcontinent,4,tropical Asia
+WHM-JK,Jammu-Kashmir,WHM,West Himalaya,,,WHM,33.3215968,76.67316703,40,Indian Subcontinent,4,tropical Asia
+WHM-UT,Uttaranchal,WHM,West Himalaya,,,WHM,33.3215968,76.67316703,40,Indian Subcontinent,4,tropical Asia
+WHM-HP,Himachal Pradesh,WHM-HP,Himachal Pradesh,,,WHM,33.3215968,76.67316703,40,Indian Subcontinent,4,tropical Asia
+WHM-JK,Jammu-Kashmir,WHM-JK,Jammu-Kashmir,,,WHM,33.3215968,76.67316703,40,Indian Subcontinent,4,tropical Asia
+WHM-UT,Uttaranchal,WHM-UT,Uttaranchal,,,WHM,33.3215968,76.67316703,40,Indian Subcontinent,4,tropical Asia
+BB,Barbados,WIN,,,,WIN,14.09530182,-60.99581399,81,Caribbean,8,Latin America
+DM,Dominica,WIN,,,,WIN,14.09530182,-60.99581399,81,Caribbean,8,Latin America
+GD,Grenada,WIN,,,,WIN,14.09530182,-60.99581399,81,Caribbean,8,Latin America
+LC,Saint Lucia,WIN,,,,WIN,14.09530182,-60.99581399,81,Caribbean,8,Latin America
+MQ,Martinique,WIN,,,,WIN,14.09530182,-60.99581399,81,Caribbean,8,Latin America
+VC,Saint Vincent and the Grenadines,WIN,,,,WIN,14.09530182,-60.99581399,81,Caribbean,8,Latin America
+BB,Barbados,WIN-BA,Barbados,,,WIN,14.09530182,-60.99581399,81,Caribbean,8,Latin America
+DM,Dominica,WIN-DO,Dominica,,,WIN,14.09530182,-60.99581399,81,Caribbean,8,Latin America
+GD,Grenada,WIN-GR,Grenada,,,WIN,14.09530182,-60.99581399,81,Caribbean,8,Latin America
+MQ,Martinique,WIN-MA,Martinique,,,WIN,14.09530182,-60.99581399,81,Caribbean,8,Latin America
+LC,Saint Lucia,WIN-SL,St. Lucia,,,WIN,14.09530182,-60.99581399,81,Caribbean,8,Latin America
+VC,Saint Vincent and the Grenadines,WIN-SV,St. Vincent,,,WIN,14.09530182,-60.99581399,81,Caribbean,8,Latin America
+WIS-OO,Wisconsin,WIS,Wisconsin,,WI,WIS,44.64217154,-89.73838902,74,North-Central U.S.A.,7,North America
+EH,Western Sahara,WSA,Western Sahara,,,WSA,24.6615821,-13.13671746,20,Northern Africa,2,Africa
+WSB-OO,West Siberia,WSB,West Siberia,,,WSB,62.53729779,72.11695974,30,Siberia,3,temperate Asia
+WVA-OO,West Virginia,WVA,West Virginia,,WV,WVA,38.64123998,-80.61195464,75,Northeastern U.S.A.,7,North America
+WYO-OO,Wyoming,WYO,Wyoming,,WY,WYO,42.99898778,-107.5398654,73,Northwestern U.S.A.,7,North America
+CX,Christmas Island,XMS,Christmas I.,,,XMS,-10.44411526,105.7036983,42,Malesia,4,tropical Asia
+YAK-OO,Yakutiya,YAK,Yakutskiya,,,YAK,66.17394158,130.1157928,30,Siberia,3,temperate Asia
+YE,Yemen,YEM,Yemen,,,YEM,15.83691321,47.5687601,35,Arabian Peninsula,3,temperate Asia
+YEM-NY,North Yemen,YEM-NY,North Yemen,,,YEM,15.83691321,47.5687601,35,Arabian Peninsula,3,temperate Asia
+YEM-SY,South Yemen,YEM-SY,South Yemen,,,YEM,15.83691321,47.5687601,35,Arabian Peninsula,3,temperate Asia
+BA,Bosnia and Herzegovina,YUG,Yugoslavia,,,YUG,44.16024112,18.72433855,13,Southeastern Europe,1,Europe
+HR,Croatia,YUG,Yugoslavia,,,YUG,44.16024112,18.72433855,13,Southeastern Europe,1,Europe
+ME,Montenegro,YUG,Yugoslavia,,,YUG,44.16024112,18.72433855,13,Southeastern Europe,1,Europe
+MK,North Macedonia,YUG,Yugoslavia,,,YUG,44.16024112,18.72433855,13,Southeastern Europe,1,Europe
+RS,Serbia,YUG,Yugoslavia,,,YUG,44.16024112,18.72433855,13,Southeastern Europe,1,Europe
+SI,Slovenia,YUG,Yugoslavia,,,YUG,44.16024112,18.72433855,13,Southeastern Europe,1,Europe
+YUG-KO,Kosovo,YUG,Yugoslavia,,,YUG,44.16024112,18.72433855,13,Southeastern Europe,1,Europe
+BA,Bosnia and Herzegovina,YUG-BH,Bosnia- Herzegovina,,,YUG,44.16024112,18.72433855,13,Southeastern Europe,1,Europe
+HR,Croatia,YUG-CR,Croatia,,,YUG,44.16024112,18.72433855,13,Southeastern Europe,1,Europe
+YUG-KO,Kosovo,YUG-KO,Kosovo,,,YUG,44.16024112,18.72433855,13,Southeastern Europe,1,Europe
+MK,North Macedonia,YUG-MA,Macedonia,,,YUG,44.16024112,18.72433855,13,Southeastern Europe,1,Europe
+ME,Montenegro,YUG-MN,Montenegro,,,YUG,44.16024112,18.72433855,13,Southeastern Europe,1,Europe
+RS,Serbia,YUG-SE,Serbia,,,YUG,44.16024112,18.72433855,13,Southeastern Europe,1,Europe
+SI,Slovenia,YUG-SL,Slovenia,,,YUG,44.16024112,18.72433855,13,Southeastern Europe,1,Europe
+YUK-OO,Yukon,YUK,Yukon,YT,YT,YUK,63.63575031,-135.4981483,70,Subarctic America,7,North America
+CD,"Congo, The Democratic Republic of the",ZAI,Zaire,,,ZAI,-2.876231321,23.6544568,23,West-Central Tropical Africa,2,Africa
+ZM,Zambia,ZAM,Zambia,,,ZAM,-13.45307891,27.79788138,26,South Tropical Africa,2,Africa
+ZW,Zimbabwe,ZIM,Zimbabwe,,,ZIM,-19.00000691,29.87176247,26,South Tropical Africa,2,Africa
+ECU-OO,Ecuador (mainland),,,,,,,,,,,
+EGY-OO,Egypt (African part),,,,,,,,,,,
+GB,United Kingdom,,,,,,,,,,,
+GG,Guernsey,,,,,,,,,,,
+GRC-OO,Greece (mainland),,,,,,,,,,,
+HON-OO,Honduras (mainland),,,,,,,,,,,
+ID,Indonesia,,,,,,,,,,,
+IM,Isle of Man,,,,,,,,,,,
+IO,British Indian Ocean Territory,,,,,,,,,,,
+JE,Jersey,,,,,,,,,,,
+KI,Kiribati,,,,,,,,,,,
+MAU-OO,Mauritius (main island),,,,,,,,,,,
+MYA-OO,Myanmar (mainland),,,,,,,,,,,
+NAM-OO,Namibia (main part),,,,,,,,,,,
+NIC-OO,Nicaragua (mainland),,,,,,,,,,,
+NLA-BO,Bonaire,,,,,,,,,,,
+NLA-SA,Saba,,,,,,,,,,,
+NLA-SE,Sint Eustatius,,,,,,,,,,,
+NZ,New Zealand,,,,,,,,,,,
+PF,French Polynesia,,,,,,,,,,,
+PG,Papua New Guinea (main island group),NWG,,,,,,,,,,
+POR-OO,Portugal (mainland),,,,,,,,,,,
+PUE-OO,Puerto Rico (main island),,,,,,,,,,,
+RU,Russian Federation,,,,,,,,,,,
+RU-CA,Central Asian Russia,,,,,,,,,,,
+RU-EA,Eastern Asian Russia,,,,,,,,,,,
+RU-EU,European Russia,,,,,,,,,,,
+SAM-AS,American Samoa,,,,,,,,,,,
+SEY-OO,Seychelles (main island group),,,,,,,,,,,
+SGE-OO,South Georgia,,,,,,,,,,,
+SH,"Saint Helena, Ascension and Tristan da Cunha",,,,,,,,,,,
+SS,South Sudan,,,,,,,,,,,
+SX,Sint Maarten (Dutch part),,,,,,,,,,,
+TCS-GR,Gruziya,,,,,,,,,,,
+TF,French Southern Territories,,,,,,,,,,,
+TUR-OO,Turkey-in-Asia,,,,,,,,,,,
+TW,"Taiwan, Province of China",,,,,,,,,,,
+UM,United States Minor Outlying Islands,,,,,,,,,,,
+US,United States,,,,,,,,,,,
+VEN-OO,Venezuela (mainland),,,,,,,,,,,
+YUG-SE,Serbia,,,,,,,,,,,
+ZA,South Africa,,,,,,,,,,,

@@ -21,16 +21,11 @@ detach("package:bit64")
 # Purpose: Waits for GBIF data compile to complete, then initiates download.
 GBIF_download_main <- function () {
   # Check GBIF_toggle
-  if (GBIF_toggle == "Y") {
+
     # Wait for GBIF to compile data for download
     gbif.out1 <- occ_download_wait(gbif.out)
     # Download data
     GBIF_download()
-  } else if (GBIF_old_toggle == "Y"){
-    # Rederine GBIF_key_results
-    GBIF_key_result <- read.csv(file = "Back_end/Downloaded_Datasets/GBIF_key_result.csv")
-    print("Previous GBIF keyset loaded.")
-  }
   # Load data into R environment
   GBIF_data_load()
 }

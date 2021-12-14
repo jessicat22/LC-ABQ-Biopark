@@ -9,6 +9,8 @@
 #### Load Packages ####
 #### Load packages ####
 packages <- c("rgbif","dplyr")
+library("rgbif")
+library("dplyr")
 
 #lapply(packages, package.check)
 
@@ -16,14 +18,15 @@ packages <- c("rgbif","dplyr")
 GBIF_search_main <- function (){
   # Prepare GBIF queries
   GBIF_qprep()
-  print(GBIF_users)
+  #works
+  print(gbif_user)
   # Generate pred fields and initiates search
   gbif.out <<- occ_download(pred_in("taxonKey", GBIF_queries),
                            pred("hasCoordinate", TRUE),
                            pred("hasGeospatialIssue", FALSE),
-                           user = output$GBIF_users,
-                           pwd = output$GBIF_password,
-                           email = output$GBIF_emails)
+                           user = gbif_user,
+                           pwd = gbif_password,
+                           email = gbif_email)
   
   # Save GBIF_key_results as .csv file
   print("GBIF search initiated.")
@@ -51,9 +54,11 @@ GBIF_key_check <- function (name) {
 
 GBIF_qprep <- function (){
   # Search GBIF for species key
+
   GBIF_key_result1 <- lapply(spec.list$Species, GBIF_key_check)
   # Rename key files with species id
   names(GBIF_key_result1) <- spec.list$id
+ 
   
   # Reformat results as a table
   GBIF_key_result <- data.frame(bind_rows(GBIF_key_result1, .id="name"))
@@ -70,7 +75,7 @@ GBIF_qprep <- function (){
   GBIF_key_result <<- GBIF_key_result
   
   # Write GBIF_key_result as global variable
-  write.csv(GBIF_key_result, file = "Back_end/Datasets/GBIF_key_result.csv")
+  write.csv(GBIF_key_result, file = "Back_end/Downloaded_Datasets/GBIF_key_result.csv")
 
   # Asign queries to global variable for tables
   GBIF_queries <<- GBIF_key_result$usageKey[!is.na(GBIF_key_result$usageKey)]

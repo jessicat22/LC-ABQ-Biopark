@@ -31,9 +31,10 @@ source("Back_end/Dependent_scripts/base_functions.R")
 print("baseloaded")
 #### Prompt for user credentials ####
 #source("Back_end/Dependent_scripts/Credentials_Prompt.R")
+source("Back_end/Dependent_scripts/species_input_load.R")
 source("Back_end/Dependent_scripts/GBIF_search_initiate.R")
 #### Load Species List ####
-source("Back_end/Dependent_scripts/species_input_load.R")
+#source("Back_end/Dependent_scripts/species_input_load.R")
 
 # Subset rows for testing purposes
 # Comment out this line to run entire list

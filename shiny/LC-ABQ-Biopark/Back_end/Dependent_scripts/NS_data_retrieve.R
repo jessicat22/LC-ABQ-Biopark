@@ -1,5 +1,6 @@
 #### NatureServe Data Retrieve ####
 ## Version 3.1
+#current error foes not get to ns data retrive 
 # Started: 1 April 2021
 # Last worked on: 30 June 2021
 # Author: Clay Meredith

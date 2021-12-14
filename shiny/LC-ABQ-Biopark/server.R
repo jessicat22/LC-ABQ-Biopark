@@ -47,7 +47,7 @@ shinyServer(function(input, output){
     output$GBIF_users <- renderText({
        req(input$submit_GBIF)
        isolate(input$GBIF_User)
-      # gbif_user <<- input$GBIF_User
+       gbif_user <<- input$GBIF_User
        })
     
     output$GBIF_emails <- renderText({
@@ -89,7 +89,7 @@ shinyServer(function(input, output){
     #submit button variables set to their variable names when big submit is pressed 
   output$sample<- renderTable({
     req(input$submit_file)
-    rendercsvuser = data.frame(
+    allfields.template <<- data.frame(
       Var_Name = c("presence_code","seasonal_code",
                    "orgin_code","pop.data.qual","aoo just",
                    "eoo just", "del year","sens", 
@@ -114,6 +114,9 @@ shinyServer(function(input, output){
                 isolate(input$pop.narrative), isolate(input$threats.narrative),
                 isolate(input$throttle.points), input$throttle_level
                ))
+   gbif_user <<- input$GBIF_User
+   gbif_email <<- input$GBIF_email
+   gbif_password <<- input$GBIF_Password
    source("LC_pipeline_main.R")
     
     # write.table(rendercsvuser, file = "sample.csv")

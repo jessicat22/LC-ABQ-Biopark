@@ -28,7 +28,7 @@ DEPENDENCIES_main <- function () {
     "Back_end/Dependencies/assessments_template.csv"))
   assessments.template <<- assessments.template[0,]
   # Load allfields template
-  allfields.template <<- data.frame(read.csv("Back_end/Dependencies/allfields_template.csv"))
+  #allfields.template <<- data.frame(read.csv("Back_end/Dependencies/allfields_template.csv"))
   # Run Geospatial import if GBIF toggle is active
   
   # Assign batch number

@@ -31,7 +31,9 @@ NS_tax_main <- function () {
   NS_ID_search()
   print("NatureServe IDs obtained.")
   NS_count_results()
+  print("ns count results")
   NS_id_populate()
+  print("ns id populate")
 }
 
 # Parameters: spec.list$id (list)
@@ -77,23 +79,33 @@ NS_count_results <- function (){
 #          closest match, but this may not always be accurate.
 NS_id_populate <- function () {
   # Bind rows for results
-  NS_id_temp <- data.frame(bind_rows(NS_tax_raw,.id="names"))
+  NS_id_temp <- data.frame(bind_rows(NS_tax_raw, .id="names"))
+
   # Populate NatServ ID
   NS_taxonomy$ns_id <<- NS_id_temp$id[match(
     NS_taxonomy$id,NS_id_temp$names)]
   # Populate NatServ uri
   NS_taxonomy$ns_uri <<- NS_id_temp$uri[match(
-    NS_taxonomy$id,NS_id_temp$names)]
+    NS_taxonomy$id,NS_id_temp$names)] 
   # Populate NatServ binomial
   NS_taxonomy$ns_binom <<- NS_id_temp$scientificname[match(
     NS_taxonomy$id,NS_id_temp$names)]
+  print(NS_taxonomy$ns_biom)
   # Populate column for match type
   NS_taxonomy$match_type <<- NS_taxonomy$name_entered ==
     NS_taxonomy$ns_binom
+  
   NS_taxonomy$match_type[which(
     is.na(NS_taxonomy$match_type))] <<- "No result"
+  
+  NS_taxonomy$match_type[which(
+    NS_taxonomy$match_type == NULL)] <<- "No result"
+  
+  print(NS_taxonomy$match_type)
+  
   NS_taxonomy$match_type[which(
     NS_taxonomy$match_type==TRUE)] <<- "Exact Match"
+  
   NS_taxonomy$match_type[which(
     NS_taxonomy$match_type==FALSE)] <<- "Inexact Match"
 

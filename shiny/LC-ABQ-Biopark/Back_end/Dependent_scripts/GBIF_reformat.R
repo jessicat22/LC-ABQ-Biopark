@@ -8,6 +8,8 @@
 #              table to adhere to IUCN standards.
 
 # Load dependent functions
+library("rgbif")
+library(stringr)
 source("Back_end/Dependent_scripts/Occurrence_reformat.R")
 
 #### GBIF Main Funciton ####
@@ -50,7 +52,6 @@ GBIF_manipulate_main <- function (){
   # Extract elevation data
   GBIF_elevation <<- elevation_extract(GBIF_accepted)
   
-  
   # Remove working tables
   rm(GBIF_accepted, pos=1)
   rm(GBIF_ALL, pos=1)
@@ -78,6 +79,7 @@ GBIF_raw_subset <- function () {
   
   # Subset columns to be manipulated
   GBIF_ALL <<- GBIF_raw[,-which(names(GBIF_raw) %ni% gbif_keeps)]
+  print("knows gbif all")
 }
 
 # Assign relevant ID numbers
@@ -126,7 +128,10 @@ GBIF_reject <- function(){
                    "ELEVATION_NON_NUMERIC","COORDINATE_OUT_OF_RANGE",
                    "ELEVATION_NOT_METRIC","ELEVATION_UNLIKELY","ZERO_COORDINATE")
   # Find rejected strings in issues column
+  print(gbif_reject_parameters)
   GBIF_rejects <- str_detect(gbif_reject_parameters,GBIF_ALL$issue)
+  print("gets past rejects variable gbif_reject_param")
+ # print(GBIF_rejects)
   GBIF_rejects[which(is.na(GBIF_rejects))] <- FALSE
   # Subset only occurrences lacking these issues
   GBIF_ALL <- GBIF_ALL[which(GBIF_rejects==FALSE),]
@@ -162,9 +167,16 @@ GBIF_citation_generate <- function(){
   # Identifiy most recent download
   gbif_key <- rownames(recent_gbif[which.max(recent_gbif$mtime) & 
                                      !recent_gbif$isdir,])[1]
+  
+
   gbif_key <- substring(gbif_key, 30, nchar(gbif_key)-4)
+  
   # Retrieve metadata for download
+  print(gbif_key)
+  gbif_key <- str_remove(gbif_key,"/")
   gbif_meta_res <- occ_download_meta(gbif_key)
+  print("gbif key")
+  print(gbif_key)
   # Extract citation data from metadata
   cite_gbif_raw <- gbif_citation(gbif_meta_res)
   # extract DOI from GBIF dataset

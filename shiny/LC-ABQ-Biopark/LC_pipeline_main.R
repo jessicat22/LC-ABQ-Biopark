@@ -27,6 +27,7 @@ version_no <- "3.1.1"
 #source("server.R")
 #source("ui.R")
 # Load base functions
+inat <<- "Y"
 source("Back_end/Dependent_scripts/base_functions.R")
 print("baseloaded")
 #### Prompt for user credentials ####
@@ -38,7 +39,7 @@ source("Back_end/Dependent_scripts/GBIF_search_initiate.R")
 
 # Subset rows for testing purposes
 # Comment out this line to run entire list
-spec.list <- spec.list[c(7,16),]
+#spec.list <- spec.list[c(1,4),]
 
 #### Initiate GBIF Search ####
 
@@ -47,7 +48,7 @@ spec.list <- spec.list[c(7,16),]
 #### Load dependent data ####
 
 # Load dependent data
-#source("Back_end/Dependent_scripts/data_load.R")
+source("Back_end/Dependent_scripts/data_load.R")
 
 #### Taxonomic search functions ####
 # ITIS Taxonomy Check #

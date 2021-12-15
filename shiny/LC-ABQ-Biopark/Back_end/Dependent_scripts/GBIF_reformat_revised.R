@@ -8,6 +8,7 @@
 #              table to adhere to IUCN standards.
 
 # Load dependent functions
+library("rgbif")
 source("Back_end/Dependent_scripts/Occurrence_reformat.R")
 
 #### GBIF Main Funciton ####

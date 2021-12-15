@@ -8,21 +8,25 @@
 #              loads data into spec.list
 
 # If taxonom.csv file exists, assign it to spec.list
-if(!is.na(match("taxonomy.csv", tolower(list.files("User_inputs/"))))){
-  spec.list <- data.frame(read.csv(
-    "User_Inputs/taxonomy.csv"))
-  # Rename columns to match existing code
-  names(spec.list)[names(spec.list) == 'species'] <- "specific_epithet"
-  names(spec.list)[names(spec.list) == 'Redlist_id'] <- "iucn_id"
-  names(spec.list)[names(spec.list) == 'internal_taxon_name'] <- "Species"
-  names(spec.list)[names(spec.list) == 'taxonomicAuthority'] <- "author"
-
-} else 
-  # Load spec_list.csv
-{## List must be a single column .csv file with the header "Species"
-  spec.list <- data.frame(read.csv(
-    "User_Inputs/spec_list.csv"))
-}
+# if(!is.na(match("taxonomy.csv", tolower(list.files("User_inputs/"))))){
+#   spec.list <- data.frame(read.csv(
+#     "User_Inputs/taxonomy.csv"))
+#   # Rename columns to match existing code
+#   names(spec.list)[names(spec.list) == 'species'] <- "specific_epithet"
+#   names(spec.list)[names(spec.list) == 'Redlist_id'] <- "iucn_id"
+#   names(spec.list)[names(spec.list) == 'internal_taxon_name'] <- "Species"
+#   names(spec.list)[names(spec.list) == 'taxonomicAuthority'] <- "author"
+# 
+# } else 
+#   # Load spec_list.csv
+# {## List must be a single column .csv file with the header "Species"
+#   spec.list <- data.frame(read.csv(
+#     "User_Inputs/spec_list.csv"))
+# }
+names(spec.list)[names(spec.list) == 'species'] <- "specific_epithet"
+names(spec.list)[names(spec.list) == 'Redlist_id'] <- "iucn_id"
+names(spec.list)[names(spec.list) == 'internal_taxon_name'] <- "Species"
+names(spec.list)[names(spec.list) == 'taxonomicAuthority'] <- "author"
 
 # Remove no-break spaces
 spec.list$Species <- remove_no_breaks(spec.list$Species)

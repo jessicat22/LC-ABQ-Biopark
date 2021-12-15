@@ -11,7 +11,7 @@
 source("Back_end/Dependent_scripts/FNA_Search_Script/src/query.R")
 
 # Load plyr package
-library(plyr)
+library("plyr")
 
 #### Compiled Search Function ####
 fna_search_main <- function (){
@@ -26,10 +26,11 @@ fna_search_main <- function (){
   if(!all(fna_tax_check$match_type=="No Match")){
   # Determine number of subtaxa for each taxon
   fna_subtaxa_number()
-  
+  print("main after fna subtaxa number before retrive")
   #### FNA Subtaxon search ####
   # Retrieve subtaxa
   fna_subtaxa_retrieve()
+    
   # Merge subtaxa and reorganize
   fna_subtaxa_merge()
   #### FNA Data retrieval ####
@@ -63,7 +64,7 @@ fna_search_main <- function (){
     fna_tax_check$entered_name!="SUBTAXON"),]
   
   # Delete dummy output file
-  file.remove("Outputs/output_file_name.csv")
+  #file.remove("Outputs/output_file_name.csv")
   
   #### FNA Citations ####
   fna_citation_build()
@@ -76,7 +77,7 @@ fna_search_main <- function (){
   rm(fna_sub_res,pos = ".GlobalEnv")
   } else {
     # Delete dummy output file
-    file.remove("Outputs/output_file_name.csv")
+    #file.remove("Outputs/output_file_name.csv")
     print("No matches found in Flora of North America")}
 }
 
@@ -208,9 +209,11 @@ fna_subtaxa_number <- function(){
 
 # Search for subtaxa                     
 fna_subtaxa_retrieve <- function (){
+  print("fna_subtax_ret212")
   
   if(all(fna_tax_check$num_subtaxa == 0)){##all zeros
     print("subtaxa not found");
+    fna_sub_res <<- paste("no subtaxa")
     return;
   }
   else{
@@ -222,6 +225,7 @@ fna_subtaxa_retrieve <- function (){
     # Search for all subtaxa
     fna_sub_res <<- mapply(ask_query_titles,fna_subtaxa$query,
                            "Outputs/output_file_name.csv")
+    print(fna_sub_res)
     
     # Append species ID numbers to results
     # If one species returned, fna_sub_res will be a matrix,
@@ -236,7 +240,7 @@ fna_subtaxa_retrieve <- function (){
     else {    
       print("one species with subtaxa")
       # Reformat results into single data frame
-      fna_sub_res <- data.frame(fna_sub_res)
+      fna_sub_res <<- data.frame(fna_sub_res)
       # Rename columns with species ID
       names(fna_sub_res) <- fna_tax_check$id[which(
         fna_tax_check$num_subtaxa>0)]

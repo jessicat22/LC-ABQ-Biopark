@@ -10,7 +10,7 @@
 packages <- c("keyring")
 packages <- c("bit64","rgbif","data.table","stringr")
 library(shiny)
-library(rgbif)
+library("rgbif")
 library("keyring")
 # Define server logic 
 shinyServer(function(input, output){
@@ -72,6 +72,7 @@ shinyServer(function(input, output){
           limit = 20,
           start = 0
           )
+       "successful login"
             
     })
     
@@ -117,6 +118,8 @@ shinyServer(function(input, output){
    gbif_user <<- input$GBIF_User
    gbif_email <<- input$GBIF_email
    gbif_password <<- input$GBIF_Password
+   TaxonomyFile <- input$taxonomy
+   spec.list <<- data.frame(read.csv(TaxonomyFile$datapath, header = input$header))
    source("LC_pipeline_main.R")
     
     # write.table(rendercsvuser, file = "sample.csv")

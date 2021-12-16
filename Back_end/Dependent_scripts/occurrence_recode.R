@@ -94,7 +94,7 @@ POW_occurrence_recode <- function() {
 #          Recodes PRESENCE fields. Recodes ORIGIN fields.
 #          Removes unused columns.
 VC_occurrence_recode <- function () {
-  if (exists("VC_occurrence") & length(VC_occurrence)>0) {
+  if (exists("VC_occurrence") & length(VC_occurrence)>1) {
     # Index VC Code to return IUCN occ code
     VC_occurrence$occ <-
       occ.codes$iucn_code[match(VC_occurrence$CountryOccurrenceLookup,

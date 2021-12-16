@@ -17,6 +17,16 @@
 packages <- c("sf","lwgeom","red","rgeos","geosphere")
 
 lapply(packages, package.check)
+library(sf)   
+#library(terra)
+library(dplyr)
+library(spData)
+# Spatial calculations
+library(lwgeom) # EOO minimum convex polygon calculation
+library(red)    # AOO calculations
+library(rgeos)  # Centroid calculation
+library(geosphere) # Distance calculations for centroid distance
+
 # library(sf)     # Spatial calculations
 # library(lwgeom) # EOO minimum convex polygon calculation
 # library(red)    # AOO calculations

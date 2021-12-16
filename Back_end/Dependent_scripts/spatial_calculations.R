@@ -17,11 +17,15 @@
 packages <- c("sf","lwgeom","red","rgeos","geosphere")
 
 lapply(packages, package.check)
-# library(sf)     # Spatial calculations
-# library(lwgeom) # EOO minimum convex polygon calculation
-# library(red)    # AOO calculations
-# library(rgeos)  # Centroid calculation
-# library(geosphere) # Distance calculations for centroid distance
+library(sf)   
+library(terra)
+library(dplyr)
+library(spData)
+# Spatial calculations
+ library(lwgeom) # EOO minimum convex polygon calculation
+ library(red)    # AOO calculations
+ library(rgeos)  # Centroid calculation
+ library(geosphere) # Distance calculations for centroid distance
 
 #### Main Function ####
 
@@ -30,11 +34,12 @@ lapply(packages, package.check)
 # GBIF_point_data <- GBIF_point_data_hold
 
 SPATIAL_CALCULATIONS_MAIN <- function (){
-  print("Performing spatial calculations.")
+  
   # Turn off s2 processing
   sf::sf_use_s2(FALSE)
   GBIF_lat_long_duplicate()
   WGSRPD_index()
+  print("goes past index")
   WGSRPD_lvl1_add()
   WGSRPD_convert()
   POINT_data_origin_recalculate()

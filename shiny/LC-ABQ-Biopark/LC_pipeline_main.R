@@ -83,6 +83,7 @@ source("Back_end/Dependent_scripts/GBIF_download.R")
 
 
 # Reformat GBIF data for export and merge DC data if available
+#error checked up to this point one warning 
 if (exists("GBIF_raw")) {
   source("Back_end/Dependent_scripts/GBIF_reformat.R")
   if (exists("DC_point_data")) {
@@ -90,23 +91,27 @@ if (exists("GBIF_raw")) {
   }
   
 }
-
+# Warning: Error in <-: 'names' attribute [5] must be the same length as the vector [3]
+#           106: VC_occurrence_recode [Back_end/Dependent_scripts/occurrence_recode.R#108]
+#           105: OCCURRENCE_RECODE_MAIN [Back_end/Dependent_scripts/occurrence_recode.R#19]
 # Recode occurrence fields and create countries table
 source("Back_end/Dependent_scripts/occurrence_recode.R")
+print("done")
 
 # Geospatial calculations
-source("Back_end/Dependent_scripts/spatial_calculations.R")
-
-# Collect spatial calculation data
-if(spatial_collect_toggle == "Y"){
-source("Back_end/Testing_scripts/spatial_variable_test.R")
-}
-
-# Run European Mask
-source("Back_end/Dependent_scripts/Euro_mask_eoo_recalculate.R")
+# source("Back_end/Dependent_scripts/spatial_calculations.R")
+# 
+# # Collect spatial calculation data
+# spacial_collect_toggle = "N"
+# if(spatial_collect_toggle == "Y"){
+# source("Back_end/Testing_scripts/spatial_variable_test.R")
+# }
+# 
+# # Run European Mask
+# source("Back_end/Dependent_scripts/Euro_mask_eoo_recalculate.R")
 
 # Table exports
-source("Back_end/Dependent_scripts/SIS_connect_file_generator.R")
+#source("Back_end/Dependent_scripts/SIS_connect_file_generator.R")
 
 #### Next Steps ####
 

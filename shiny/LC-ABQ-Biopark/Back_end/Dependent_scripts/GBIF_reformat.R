@@ -129,7 +129,9 @@ GBIF_reject <- function(){
                    "ELEVATION_NOT_METRIC","ELEVATION_UNLIKELY","ZERO_COORDINATE")
   # Find rejected strings in issues column
   print(gbif_reject_parameters)
-  GBIF_rejects <- str_detect(gbif_reject_parameters,GBIF_ALL$issue)
+  #warning statment Warning in stri_detect_regex(string, pattern, negate = negate, opts_regex = opts(pattern)) :
+  #     longer object length is not a multiple of shorter object length
+  GBIF_rejects <- str_detect(GBIF_ALL$issue,gbif_reject_parameters)
   print("gets past rejects variable gbif_reject_param")
  # print(GBIF_rejects)
   GBIF_rejects[which(is.na(GBIF_rejects))] <- FALSE

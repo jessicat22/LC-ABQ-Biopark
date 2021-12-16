@@ -19,6 +19,23 @@ lapply(packages, package.check)
 # Purpose: 
 SIS_table_generator_main <- function (){
   # Export synonyms from NS and POWO
+  GBIF_natives <- GBIF_point_data
+  # Subset native points
+  GBIF_natives <- GBIF_natives[GBIF_natives$ORIGIN==1,]
+  # Convert to sf
+  GBIF_natives <<- st_as_sf(GBIF_natives)
+  GBIF_realms <- realm.ref(GBIF_natives)
+  # Index taxon IDs
+  GBIF_realms$row.id <- GBIF_natives$ID_NO[GBIF_realms$row.id]
+  # Index realms
+  GBIF_realms$col.id <- realms$REALM[GBIF_realms$col.id]
+  # Rename realms table
+  names(GBIF_realms) <- c("ID_NO","realm")
+  # Remove duplicates
+  GBIF_realms <- unique(GBIF_realms[which(!is.na(GBIF_realms$realm)),])
+  # Convert to global variable
+  realm_results <<- GBIF_realms
+  
   synonyms_table <- data.frame(synonym_export())
   synonyms_table <- unnest(synonyms_table, cols = c(speciesName, infraType, infrarankName))
   write.csv(synonyms_table, 

@@ -201,9 +201,11 @@ shinyUI(fluidPage(# Application title
             h4("Contents of Optional DarwinCore File:"),
             tableOutput("DarwinCore"),
             
-            h4("Contents of user input csv"),
+            h4("Contents of User Input csv"),
             tableOutput("sample"),
-            h4("contents below sample")
+            h4("download data"),
+            downloadHandler("DownloadFile","outputs")
+           
             
             # downloadButton("downloadData", "Download"),
             

@@ -160,14 +160,14 @@ shinyUI(fluidPage(# Application title
                 splitLayout(
                     radioButtons("precision_method", "Precision Method:",
                                  c("Single" = "single", "Double" = "Double"), (selected = "single"),(inline = TRUE)),
-                    checkboxInput("min.decimals", "Min Decimals",1),
+    
                     checkboxInput("throttle.points","Throttle Points",1)
                 ),
                br(),
                tags$hr(),
                br(),
                
-                sliderInput("min.decimals",label = h5("Minimum Decimals:"),
+                sliderInput("min_decimals",label = h5("Minimum Decimals:"),
                             min = 0, max = 10, value = 4),
                 
                 sliderInput("uncertainty_tolerance", label = h5("Uncertainty Tolerance"),
@@ -201,10 +201,18 @@ shinyUI(fluidPage(# Application title
             h4("Contents of Optional DarwinCore File:"),
             tableOutput("DarwinCore"),
             
-            h4("Contents of User Input csv"),
-            tableOutput("sample"),
+            h4("Contents of allfields"),
+            tableOutput("all_fields"),
+            
             h4("download data"),
-            downloadHandler("DownloadFile","outputs")
+            downloadHandler("DownloadFile","all_fields"),
+            
+            h4("POW Result"),
+            tableOutput("POW_result"),
+            
+            tableOutput("sample")
+            
+    
            
             
             # downloadButton("downloadData", "Download"),

@@ -108,7 +108,7 @@ shinyServer(function(input, output){
                 isolate(input$eoo_just), isolate(input$del_year),isolate(input$sens),
                 isolate(input$inat),isolate(input$nothreats),isolate(input$threats.unknown),
                 isolate(input$rationale.text),isolate(input$threats.text),isolate(input$outlier_threshold),
-                isolate(input$uncertainty_tolerance),isolate(input$min.decimals),
+                isolate(input$uncertainty_tolerance),isolate(input$min_decimals),
                 isolate(input$precision_method),
                 isolate(input$occurrenceRemarks_introduced), isolate(input$is.restricted.eoo.cutoff),
                 isolate(input$is.restricted.aoo.cutoff), isolate(input$is.restricted.justification),
@@ -124,6 +124,18 @@ shinyServer(function(input, output){
     
     # write.table(rendercsvuser, file = "sample.csv")
     })
+  output$POW_result<-renderTable({
+    req(input$submit_file)
+    
+   POW_results
+    
+  })
+  output$all_fields<-renderTable({
+    req(input$submit_file)
+    
+    allfields.template
+    
+  })
    #  output$userEmail <-renderText({
    #      paste("email", input$GBIF_email)
    #  })

@@ -136,6 +136,19 @@ shinyServer(function(input, output){
     allfields.template
     
   })
+  
+  output$POW_result<-renderTable({
+    req(input$submit_file)
+    
+    POW_results
+    
+  })
+  output$POW_result<-renderTable({
+    req(input$submit_file)
+    
+    POW_results
+    
+  })
    #  output$userEmail <-renderText({
    #      paste("email", input$GBIF_email)
    #  })

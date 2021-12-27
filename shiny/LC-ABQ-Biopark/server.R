@@ -124,12 +124,7 @@ shinyServer(function(input, output){
     
     # write.table(rendercsvuser, file = "sample.csv")
     })
-  output$POW_result<-renderTable({
-    req(input$submit_file)
-    
-   POW_results
-    
-  })
+
   output$all_fields<-renderTable({
     req(input$submit_file)
     
@@ -143,10 +138,53 @@ shinyServer(function(input, output){
     POW_results
     
   })
-  output$POW_result<-renderTable({
+  
+  #synonym tables
+  output$NS_syn<-renderTable({
     req(input$submit_file)
     
-    POW_results
+    NS_synonyms
+    
+  })
+  
+  output$POW_syn<-renderTable({
+    req(input$submit_file)
+    
+    POW_synonyms
+    
+  })
+  
+  #occurence tables 
+  output$NS_occur<-renderTable({
+    req(input$submit_file)
+    
+    NS_occ
+    
+  })
+  
+  output$POW_occur<-renderTable({
+    req(input$submit_file)
+    
+    POW_occurrence
+    
+  })
+  
+  #common names
+  output$NS_cn<-renderTable({
+    req(input$submit_file)
+    
+    NS_common_names
+    
+  })
+  output$ITIS_cn<-renderTable({
+    req(input$submit_file)
+    ITIS_common_names
+    
+  })
+  
+  output$VC_cn<-renderTable({
+    req(input$submit_file)
+    VC_common_names
     
   })
    #  output$userEmail <-renderText({

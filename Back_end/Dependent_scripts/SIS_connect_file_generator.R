@@ -21,6 +21,8 @@ SIS_table_generator_main <- function (){
   # Export synonyms from NS and POWO
   synonyms_table <- data.frame(synonym_export())
   synonyms_table <- unnest(synonyms_table, cols = c(speciesName, infraType, infrarankName))
+  # Remove species field (necessary due to error in SIS Connect which is unlikely to be fixed)
+  synonyms_table$speciesName <- ""
   write.csv(synonyms_table, 
             paste("Outputs/Synonyms_batch_", 
                   default_vals$value[which(default_vals$var_name == "batch_no")],

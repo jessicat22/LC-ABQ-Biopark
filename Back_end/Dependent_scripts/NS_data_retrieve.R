@@ -47,7 +47,6 @@ NS_data_main <- function () {
   NS_data_raw <<- NS_data_retrieve()
   # Restructure data
   NS_data <- NS_data_restructure()
-  # NS_occurrence <- NS_occ_retrieve(NS_data_raw)
   NS_occurrence <- NS_occ_restructure(NS_data_raw)
   NS_occurrence <- NS_occurrence_recode(NS_occurrence)
   NS_common_temp <- NS_common_extract()
@@ -255,30 +254,6 @@ NS_occurrence_recode <- function(x) {
   }
   return(NS_occurrence)
 }
-# NS_occurrence_recode <- function (x) {
-#   # Recode presence field. Historic records
-#   # (SH) are considered to be "Presence Uncertain" (IUCN code 3). 
-#   # Extirpated (SX) records are considered to be "Presumed Extinct" 
-#   # (IUCN code 4).
-#   NS_occ_temp <- x
-#   
-#   NS_occ_temp$presence <- NS_occ_temp$rank
-#   NS_occ_temp$presence[which(NS_occ_temp$presence == "SX")] <- 4
-#   NS_occ_temp$presence[which(NS_occ_temp$presence == "SH")] <- 3
-#   NS_occ_temp$presence[which(NS_occ_temp$presence %ni% c("3","4"))] <- 1
-#   
-#   # Recode origin field.
-#   NS_occ_temp$origin <- NS_occ_temp$native
-#   NS_occ_temp$origin[which(NS_occ_temp$origin == TRUE)] <- 1
-#   NS_occ_temp$origin[which(NS_occ_temp$origin != TRUE)] <- 3
-#   NS_occ_temp <- NS_occ_temp[ , -which(names(NS_occ_temp) == "native")]
-#   
-#   # Populate seasonality field. Field only used in migratory animal
-#   # species. All plants are coded as "Resident" (1).
-#   NS_occ_temp$seasonality <- 1
-#   
-#   return(NS_occ_temp)
-# }
 
 # Parameters: 
 # Returns: 

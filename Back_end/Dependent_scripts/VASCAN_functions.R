@@ -257,11 +257,7 @@ VC_occurrence_recode <- function () {
                                     "SEASONALITY","source","occ")]
   # Convert to global variable
   VC_occurrence <<- VC_occurrence
-  
-
 }
-
-
 
 #### Execute Functions ####
 VC_main()

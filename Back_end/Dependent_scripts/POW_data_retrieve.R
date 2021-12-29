@@ -290,6 +290,9 @@ POW_synonyms_reformat <- function () {
   POW_synonyms$infraType <- lapply(POW_synonyms$infraType, standardize_level)
   # Assign NA value for species level
   POW_synonyms$infraType[which(lapply(POW_synonyms$infraType,class)=="list")] <- NA
+  # Reorder table
+  POW_synonyms <- POW_synonyms[,c("internal_taxon_id","name","speciesAuthor","speciesName",
+                  "infraType", "infrarankName", "infrarankAuthor")]
   # Set table as global variable
   POW_synonyms <<- POW_synonyms
 }

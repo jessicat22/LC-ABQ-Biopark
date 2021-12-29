@@ -14,50 +14,12 @@ source("Back_end/Dependent_scripts/Occurrence_reformat.R")
 #### Main Function ####
 OCCURRENCE_RECODE_MAIN <- function (){
   print("Recoding occurrence records.")
-  NS_occurrence_recode()
+  # NS_occurrence_recode()
   POW_occurrence_recode()
   VC_occurrence_recode()
   occurrence_merge()
   countries_table_remove_duplicates()
   countries_table_add_nationals()
-}
-
-#### Occurrence recode lower functions ####
-# Parameters: NS_occ (table)
-# Returns: NS_occ (table)
-# Throws: none
-# Purpose: 
-NS_occurrence_recode <- function() {
-  if (exists("NS_occ")) {
-    NS_occ$source <- "NatureServe"
-    # Recode country codes to WGSRPD
-    NS_occ$WGSRPD3 <-
-      occ.codes$lvl3_display[match(NS_occ$occ, occ.codes$ns_codes)]
-    # Recode country codes to match IUCN formatting
-    NS_occ$occ <-
-      occ.codes$iucn_code[match(NS_occ$occ, occ.codes$ns_codes)]
-    # Build origin column
-    NS_occ$ORIGIN <- NA
-    # Recode origin column
-    NS_occ$ORIGIN[which(NS_occ$native)] <- 1
-    NS_occ$ORIGIN[which(!NS_occ$native)] <- 3
-    # Build PRESENCE column
-    NS_occ$PRESENCE <- NA
-    # Recode presence column
-    NS_occ$PRESENCE[which(NS_occ$rank == "SX")] <- 4
-    NS_occ$PRESENCE[which(NS_occ$rank == "SH")] <- 3
-    NS_occ$PRESENCE[which(is.na(NS_occ$PRESENCE))] <- 1
-
-    # Remove improperly coded records (occurrence codes not translatable)
-    NS_occ <- NS_occ[which(!is.na(NS_occ$occ)), ]
-    # Add SEASONALITY column
-    NS_occ$SEASONALITY <- 1
-    # Remove unused columns
-    NS_occ <<-
-      NS_occ[, which(names(NS_occ) %in% 
-                       c("id", "occ", "source", "ORIGIN", "PRESENCE",
-                         "SEASONALITY","WGSRPD3"))]
-  }
 }
 
 # Parameters: POW_occ (table)
@@ -94,7 +56,7 @@ POW_occurrence_recode <- function() {
 #          Recodes PRESENCE fields. Recodes ORIGIN fields.
 #          Removes unused columns.
 VC_occurrence_recode <- function () {
-  if (exists("VC_occurrence") & length(VC_occurrence)>0) {
+  if (exists("VC_occurrence") & nrow(VC_occurrence)>0) {
     # Index VC Code to return IUCN occ code
     VC_occurrence$occ <-
       occ.codes$iucn_code[match(VC_occurrence$CountryOccurrenceLookup,
@@ -128,7 +90,7 @@ VC_occurrence_recode <- function () {
   }
 }
 
-# Parameters: VC_occurrence (table), NS_occ (table), POW_occurrence (table)
+# Parameters: VC_occurrence (table), NS_occurrence (table), POW_occurrence (table)
 # Returns: countries_table (table)
 # Throws: none
 # Purpose: Merge occurrence data tables
@@ -136,8 +98,8 @@ occurrence_merge <- function () {
   # Build table template from whatever tables exist
   if (exists("POW_occurrence")) {
     countries_table <- POW_occurrence[0, ]
-  } else if (exists("NS_occ")) {
-    countries_table <- NS_occ[0, ]
+  } else if (exists("NS_occurrence")) {
+    countries_table <- NS_occurrence[0, ]
   } else if (exists("VC_occurrence")) {
     countries_table <- VC_occurrence[0, ]
   }
@@ -146,8 +108,8 @@ occurrence_merge <- function () {
   if (exists("POW_occurrence")) {
     countries_table <- rbind(countries_table, POW_occurrence)
   }
-  if (exists("NS_occ")) {
-    countries_table <- rbind(countries_table, NS_occ)
+  if (exists("NS_occurrence")) {
+    countries_table <- rbind(countries_table, NS_occurrence)
   }
   if (exists("VC_occurrence")) {
     countries_table <- rbind(countries_table, VC_occurrence)

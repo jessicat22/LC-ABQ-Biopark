@@ -46,16 +46,21 @@ NS_data_main <- function () {
   # Search NS taxonomy for accepted species data
   NS_data_raw <<- NS_data_retrieve()
   # Restructure data
-  NS_data_restructure()
-  NS_occ_retrieve(NS_data_raw)
-  NS_occ_restructure()
-  NS_occurrence_recode()
-  NS_common_extract()
-  NS_common_reformat()
-  NS_syn_reformat()
-  NS_synonyms <<- NS_synonym_reformat2()
-  NS_author_extract()
-  if(nrow(NS_occ)>0){references <<- NS_citations_generate()}
+  NS_data <- NS_data_restructure()
+  # NS_occurrence <- NS_occ_retrieve(NS_data_raw)
+  NS_occurrence <- NS_occ_restructure(NS_data_raw)
+  NS_occurrence <- NS_occurrence_recode(NS_occurrence)
+  NS_common_temp <- NS_common_extract()
+  NS_common_names <- NS_common_reformat(NS_common_temp)
+  NS_synonyms <- NS_syn_reformat(NS_data_raw)
+  NS_synonyms <- NS_synonym_reformat2(NS_synonyms)
+  NS_taxonomy <- NS_author_extract(NS_data)
+  # Assign global variables
+  NS_occurrence <<- NS_occurrence
+  NS_common_names <<- NS_common_names
+  NS_synonyms <<- NS_synonyms
+  # Generate citations
+  if(nrow(NS_occurrence)>0){references <<- NS_citations_generate(NS_occurrence)}
   print("NatureServe Data reformatted.")
 }
 
@@ -130,14 +135,14 @@ NS_data_format <- function (x) {
 #          into single data frame.
 NS_data_restructure <- function (){
   # Restructure NS_data to extract relevant fields
-  NS_data <<- lapply(NS_data_raw, NS_data_format)
+  NS_data <- lapply(NS_data_raw, NS_data_format)
   
   # Rename list elements with species ID
   names(NS_data) <- names(NS_data_raw)
 
   # Collapse ns_dat to single data frame
-  NS_data <<- data.frame(bind_rows(NS_data, .id="internal_taxon_id"))
-  
+  NS_data <- data.frame(bind_rows(NS_data, .id="internal_taxon_id"))
+  return(NS_data)
 }
 
 # Parameters: 
@@ -146,82 +151,131 @@ NS_data_restructure <- function (){
 # Purpose: Reformat NatureServe occurrence records from raw data from
 #          NS_data_retrieve. Run in NS_occ_restructure
 NS_occ_retrieve <- function (x) {
-  NS_occ <<- if (length(x$elementNationals$elementSubnationals)==1){
+  NS_temp <- x
+  NS_temp <- if (length(NS_temp$elementNationals$elementSubnationals)==1){
     data.frame(
       occ =
-        x$elementNationals$elementSubnationals[[1]]$subnation$subnationCode,
-      native = x$elementNationals$elementSubnationals[[1]]$speciesSubnational$native,
-      rank = x$elementNationals$elementSubnationals[[1]]$roundedSRank
+        NS_temp$elementNationals$elementSubnationals[[1]]$subnation$subnationCode,
+      native = NS_temp$elementNationals$elementSubnationals[[1]]$speciesSubnational$native,
+      rank = NS_temp$elementNationals$elementSubnationals[[1]]$roundedSRank
     )
-  } else if (length(x$elementNationals$elementSubnationals)==2){
+  } else if (length(NS_temp$elementNationals$elementSubnationals)==2){
     data.frame(occ =
-                 c(x$elementNationals$elementSubnationals[[1]]$subnation$subnationCode,
-                   x$elementNationals$elementSubnationals[[2]]$subnation$subnationCode),
+                 c(NS_temp$elementNationals$elementSubnationals[[1]]$subnation$subnationCode,
+                   NS_temp$elementNationals$elementSubnationals[[2]]$subnation$subnationCode),
                native =
-                 c(x$elementNationals$elementSubnationals[[1]]$speciesSubnational$native,
-                   x$elementNationals$elementSubnationals[[2]]$speciesSubnational$native),
+                 c(NS_temp$elementNationals$elementSubnationals[[1]]$speciesSubnational$native,
+                   NS_temp$elementNationals$elementSubnationals[[2]]$speciesSubnational$native),
                rank =
-                 c(x$elementNationals$elementSubnationals[[1]]$roundedSRank,
-                   x$elementNationals$elementSubnationals[[2]]$roundedSRank)
+                 c(NS_temp$elementNationals$elementSubnationals[[1]]$roundedSRank,
+                   NS_temp$elementNationals$elementSubnationals[[2]]$roundedSRank)
     )
     
-  } else if (length(x$elementNationals$elementSubnationals)==3){
+  } else if (length(NS_temp$elementNationals$elementSubnationals)==3){
     data.frame(occ =
-                 c(x$elementNationals$elementSubnationals[[1]]$subnation$subnationCode,
-                   x$elementNationals$elementSubnationals[[2]]$subnation$subnationCode,
-                   x$elementNationals$elementSubnationals[[3]]$subnation$subnationCode),
+                 c(NS_temp$elementNationals$elementSubnationals[[1]]$subnation$subnationCode,
+                   NS_temp$elementNationals$elementSubnationals[[2]]$subnation$subnationCode,
+                   NS_temp$elementNationals$elementSubnationals[[3]]$subnation$subnationCode),
                native =
-                 c(x$elementNationals$elementSubnationals[[1]]$speciesSubnational$native,
-                   x$elementNationals$elementSubnationals[[2]]$speciesSubnational$native,
-                   x$elementNationals$elementSubnationals[[3]]$speciesSubnational$native),
+                 c(NS_temp$elementNationals$elementSubnationals[[1]]$speciesSubnational$native,
+                   NS_temp$elementNationals$elementSubnationals[[2]]$speciesSubnational$native,
+                   NS_temp$elementNationals$elementSubnationals[[3]]$speciesSubnational$native),
                rank =
-                 c(x$elementNationals$elementSubnationals[[1]]$roundedSRank,
-                   x$elementNationals$elementSubnationals[[2]]$roundedSRank,
-                   x$elementNationals$elementSubnationals[[3]]$roundedSRank)
+                 c(NS_temp$elementNationals$elementSubnationals[[1]]$roundedSRank,
+                   NS_temp$elementNationals$elementSubnationals[[2]]$roundedSRank,
+                   NS_temp$elementNationals$elementSubnationals[[3]]$roundedSRank)
     )
     
   }
+  
+  return(NS_temp)
 }
 
 # Parameters: NS_data_raw (list of tables), NS_occ_retrieve (function)
 # Returns: NS_occ (table)
 # Throws: none
 # Purpose: Restructure occurrence data and build single table
-NS_occ_restructure <- function () {
+NS_occ_restructure <- function (x) {
   # Retrieve occurrence data from raw data download
-  NS_occ <- lapply(NS_data_raw,NS_occ_retrieve)
+  NS_occurrence <- lapply(x,NS_occ_retrieve)
   # Rename list elements with species id from input species
-  names(NS_occ) <- 
+  names(NS_occurrence) <- 
     NS_taxonomy$id[which(NS_taxonomy$match_type != "No result")]
   
   # Collapse into single data frame
-  NS_occ <<- data.frame(bind_rows(NS_occ, .id="id"))
+  NS_occurrence <- data.frame(bind_rows(NS_occurrence, .id="id"))
+
+  return(NS_occurrence)
 }
 
 # Parameters: NS_occ (table)
 # Returns: NS_occ (table, restructured)
 # Throws: none
 # Purpose: Recode occurrence fields according to IUCN standards.
-NS_occurrence_recode <- function () {
-  # Recode presence field. Historic records
-  # (SH) are considered to be "Presence Uncertain" (IUCN code 3). 
-  # Extirpated (SX) records are considered to be "Presumed Extinct" 
-  # (IUCN code 4).
-  NS_occ$presence <- NS_occ$rank
-  NS_occ$presence[which(NS_occ$presence == "SX")] <- 4
-  NS_occ$presence[which(NS_occ$presence == "SH")] <- 3
-  NS_occ$presence[which(NS_occ$presence %ni% c("3","4"))] <- 1
-  
-  # Recode origin field.
-  NS_occ$origin <- NS_occ$native
-  NS_occ$origin[which(NS_occ$origin == TRUE)] <- 1
-  NS_occ$origin[which(NS_occ$origin != TRUE)] <- 3
-  NS_occ <- NS_occ[ , -which(names(NS_occ) == "native")]
-  
-  # Populate seasonality field. Field only used in migratory animal
-  # species. All plants are coded as "Resident" (1).
-  NS_occ$seasonality <- 1
+
+#### Occurrence recode lower functions ####
+# Parameters: NS_occurrence (table)
+# Returns: NS_occurrence (table)
+# Throws: none
+# Purpose:
+NS_occurrence_recode <- function(x) {
+  if (exists("x")) {
+    NS_occurrence <- x
+    NS_occurrence$source <- "NatureServe"
+    # Recode country codes to WGSRPD
+    NS_occurrence$WGSRPD3 <-
+      occ.codes$lvl3_display[match(NS_occurrence$occ, occ.codes$ns_codes)]
+    # Recode country codes to match IUCN formatting
+    NS_occurrence$occ <-
+      occ.codes$iucn_code[match(NS_occurrence$occ, occ.codes$ns_codes)]
+    # Build origin column
+    NS_occurrence$ORIGIN <- NA
+    # Recode origin column
+    NS_occurrence$ORIGIN[which(NS_occurrence$native)] <- 1
+    NS_occurrence$ORIGIN[which(!NS_occurrence$native)] <- 3
+    # Build PRESENCE column
+    NS_occurrence$PRESENCE <- NA
+    # Recode presence column
+    NS_occurrence$PRESENCE[which(NS_occurrence$rank == "SX")] <- 4
+    NS_occurrence$PRESENCE[which(NS_occurrence$rank == "SH")] <- 3
+    NS_occurrence$PRESENCE[which(is.na(NS_occurrence$PRESENCE))] <- 1
+    
+    # Remove improperly coded records (occurrence codes not translatable)
+    NS_occurrence <- NS_occurrence[which(!is.na(NS_occurrence$occ)), ]
+    # Add SEASONALITY column
+    NS_occurrence$SEASONALITY <- 1
+    # Remove unused columns
+    NS_occurrence <-
+      NS_occurrence[, which(names(NS_occurrence) %in%
+                              c("id", "occ", "source", "ORIGIN", "PRESENCE",
+                                "SEASONALITY","WGSRPD3"))]
+  }
+  return(NS_occurrence)
 }
+# NS_occurrence_recode <- function (x) {
+#   # Recode presence field. Historic records
+#   # (SH) are considered to be "Presence Uncertain" (IUCN code 3). 
+#   # Extirpated (SX) records are considered to be "Presumed Extinct" 
+#   # (IUCN code 4).
+#   NS_occ_temp <- x
+#   
+#   NS_occ_temp$presence <- NS_occ_temp$rank
+#   NS_occ_temp$presence[which(NS_occ_temp$presence == "SX")] <- 4
+#   NS_occ_temp$presence[which(NS_occ_temp$presence == "SH")] <- 3
+#   NS_occ_temp$presence[which(NS_occ_temp$presence %ni% c("3","4"))] <- 1
+#   
+#   # Recode origin field.
+#   NS_occ_temp$origin <- NS_occ_temp$native
+#   NS_occ_temp$origin[which(NS_occ_temp$origin == TRUE)] <- 1
+#   NS_occ_temp$origin[which(NS_occ_temp$origin != TRUE)] <- 3
+#   NS_occ_temp <- NS_occ_temp[ , -which(names(NS_occ_temp) == "native")]
+#   
+#   # Populate seasonality field. Field only used in migratory animal
+#   # species. All plants are coded as "Resident" (1).
+#   NS_occ_temp$seasonality <- 1
+#   
+#   return(NS_occ_temp)
+# }
 
 # Parameters: 
 # Returns: 
@@ -282,8 +336,10 @@ NS_common_extract <- function (){
                                            .id="internal_taxon_id"))
   
   # Bind into single data frame
-  NS_common_names <<- rbind(NS_common_names,
+  NS_common_names <- rbind(NS_common_names,
                             NS_primary_names)
+  
+  return(NS_common_names)
 }
 
 # Parameters: NS_common_names
@@ -292,28 +348,30 @@ NS_common_extract <- function (){
 # Purpose: Reformat common names. Changes results to title case, removes 
 #          duplicates, and converts language signifier according to 
 #          IUCN standards. Source column is used for downstream prioritization.
-NS_common_reformat <- function () {
+NS_common_reformat <- function (x) {
+  
+  NS_common_temp <- x
   
   # Reformat into title case
-  NS_common_names$name <- tools::toTitleCase(NS_common_names$name)
+  NS_common_temp$name <- tools::toTitleCase(NS_common_temp$name)
   
   # Remove duplicates
-  NS_common_names <- unique(NS_common_names)
+  NS_common_temp <- unique(NS_common_temp)
   
   ### Convert common name languages
-  NS_common_names$language[which(
-    NS_common_names$language=="EN")] <- "English"
-  NS_common_names$language[which(
-    NS_common_names$language=="FR")] <- "French"
-  NS_common_names$language[which(
-    NS_common_names$language=="ES")] <- "Spanish; Castilian"
+  NS_common_temp$language[which(
+    NS_common_temp$language=="EN")] <- "English"
+  NS_common_temp$language[which(
+    NS_common_temp$language=="FR")] <- "French"
+  NS_common_temp$language[which(
+    NS_common_temp$language=="ES")] <- "Spanish; Castilian"
   
   # Add source column
-  NS_common_names$source <- paste("NatureServe",
+  NS_common_temp$source <- paste("NatureServe",
                                   format(Sys.time(), "%Y"), sep=" ")
   
-  # Convert to global variable
-  NS_common_names <<- NS_common_names
+  # Return results
+  return(NS_common_temp)
 }
 
 #### Synonyms ####
@@ -330,20 +388,22 @@ NS_syn_extract <- function (x) {
 # Returns: NS_synonyms (table)
 # Throws: none
 # Purpose: Execute synonym retrieval and consolidate into single data frame.
-NS_syn_reformat <- function () {
+NS_syn_reformat <- function (x) {
   # Execute search
-  NS_synonyms <- lapply(NS_data_raw, NS_syn_extract)
+  NS_synonyms <- lapply(x, NS_syn_extract)
   # Consolodate into single data frame with species identifier
-  NS_synonyms <<- data.frame(bind_rows(NS_synonyms,.id="id"))
+  NS_synonyms <- data.frame(bind_rows(NS_synonyms,.id="id"))
+  return(NS_synonyms)
 }
 
 # Parameters: NS_taxonomy (table)
 # Returns: NS_data (table)
 # Throws: none
 # Purpose: Add author field to taxonomic summary (NS_taxonomy)
-NS_author_extract <- function () {
+NS_author_extract <- function (x) {
   NS_taxonomy$ns_authority[which(
-    NS_taxonomy$match_type != "No result")] <<- NS_data$ns_aut
+    NS_taxonomy$match_type != "No result")] <- x$ns_aut
+  return(NS_taxonomy)
 }
 
 # Parameters: NS_synonyms (table)
@@ -351,17 +411,18 @@ NS_author_extract <- function () {
 # Throws: none
 # Purpose: Synonym table restructure
 #          Divides trinomial string and re-routes author fields
-NS_synonym_reformat2 <- function (){
+NS_synonym_reformat2 <- function (x){
+  NS_synonyms <- x
   # Remove formatted synonym column
-  NS_synonyms$formattedSynonym <<- NULL
+  NS_synonyms$formattedSynonym <- NULL
   # # Add genus column
   # NS_synonyms$genus <<- lapply(NS_synonyms$synonym,genus_extract)
   # Add species column
-  NS_synonyms$speciesName <<- lapply(NS_synonyms$synonym,species_extract)
+  NS_synonyms$speciesName <- lapply(NS_synonyms$synonym,species_extract)
   # Add infraspecific level column
-  NS_synonyms$infraType <<- lapply(NS_synonyms$synonym,infra_level_extract)
+  NS_synonyms$infraType <- lapply(NS_synonyms$synonym,infra_level_extract)
   # Add infraspecific epithet column
-  NS_synonyms$infrarankName <<- 
+  NS_synonyms$infrarankName <- 
     lapply(NS_synonyms$synonym,infraspecific_extract)
   # Assign infrarank author columns
   NS_synonyms$infrarankAuthor <- NA
@@ -390,7 +451,8 @@ NS_synonym_reformat2 <- function (){
 # Returns: references (table)
 # Throws: none
 # Purpose: Add NS citations to references table
-NS_citations_generate <- function (){
+NS_citations_generate <- function (x){
+  NS_occ <- x
   # Identify taxa using NS data
   NS_ids <- unique(NS_occ$id)
   # Generate references

@@ -36,7 +36,7 @@ source("Back_end/Dependent_scripts/species_input_load.R")
 
 # Subset rows for testing purposes
 # Comment out this line to run entire list
-spec.list <- spec.list[c(141:160),]
+# spec.list <- spec.list[c(141:160),]
 
 #### Initiate GBIF Search ####
 if(GBIF_toggle == "Y") {

@@ -393,7 +393,10 @@ distribution_citations_generate <- function (){
 }
 
 ASSESSMENT_TABLE_BUILD <- function (x){
-  
+  # Load assessment template
+  assessments.template <- data.frame(read.csv(
+    "Back_end/Dependencies/assessments_template.csv"))
+  assessments.template <- assessments.template[0,]
   # Build assessments table
   assessments <- rbind(assessments.template, 
                        assessments.template[rep(1, nrow(spec.list)), ])
@@ -515,6 +518,8 @@ ASSESSMENT_TABLE_BUILD <- function (x){
 }
 
 ALLFIELDS_TABLE_BUILD <- function (x){
+    # Load allfields template
+  allfields.template <- data.frame(read.csv("Back_end/Dependencies/allfields_template.csv"))
   # Build allfields table
   allfields <- rbind(allfields.template, 
                      allfields.template[rep(1, nrow(spec.list)), ])
@@ -527,8 +532,6 @@ ALLFIELDS_TABLE_BUILD <- function (x){
       "-", 
       spec.list$AOO_max[match(spec.list$id[which(
         !is.na(spec.list$AOO_min))], allfields$internal_taxon_id)])
-  
-  
   # Round EOO
   spec.list$EOO_max <- signif(as.numeric(spec.list$EOO_max), digits = 3)
   spec.list$EOO_min <- signif(as.numeric(spec.list$EOO_min), digits = 3)

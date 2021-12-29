@@ -23,12 +23,6 @@ DEPENDENCIES_main <- function () {
   DEPENDENCIES_load_defaults()
   # load reference key and create references table
   DEPENDENCIES_load_table_keys()
-  # Load assessment template
-  assessments.template <- data.frame(read.csv(
-    "Back_end/Dependencies/assessments_template.csv"))
-  assessments.template <<- assessments.template[0,]
-  # Load allfields template
-  allfields.template <<- data.frame(read.csv("Back_end/Dependencies/allfields_template.csv"))
   # Run Geospatial import if GBIF toggle is active
   if (GBIF_toggle == "Y" || GBIF_old_toggle == "Y") {
     DEPENDENCIES_GEOSPATIAL_main()

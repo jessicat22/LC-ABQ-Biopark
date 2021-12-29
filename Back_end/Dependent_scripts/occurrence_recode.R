@@ -14,52 +14,9 @@ source("Back_end/Dependent_scripts/Occurrence_reformat.R")
 #### Main Function ####
 OCCURRENCE_RECODE_MAIN <- function (){
   print("Recoding occurrence records.")
-  # NS_occurrence_recode()
-  VC_occurrence_recode()
   occurrence_merge()
   countries_table_remove_duplicates()
   countries_table_add_nationals()
-}
-
-# Parameters: VC_occurrence (table)
-# Returns: VC_occurrence (table)
-# Throws: none
-# Purpose: Recodes occurrence codes from VASCAN to IUCN. 
-#          Recodes PRESENCE fields. Recodes ORIGIN fields.
-#          Removes unused columns.
-VC_occurrence_recode <- function () {
-  if (exists("VC_occurrence") & nrow(VC_occurrence)>0) {
-    # Index VC Code to return IUCN occ code
-    VC_occurrence$occ <-
-      occ.codes$iucn_code[match(VC_occurrence$CountryOccurrenceLookup,
-                                occ.codes$vc_codes)]
-    # Index VC code to return WGSRPD3 code
-    VC_occurrence$WGSRPD3 <-
-      occ.codes$lvl3_display[match(VC_occurrence$CountryOccurrenceLookup,
-                                occ.codes$vc_codes)]
-    
-    # Drop unused column and rename remaining columns
-    names(VC_occurrence) <- c("id", "WGSRPD3", "ORIGIN", "PRESENCE",
-                              "occ")
-    VC_occurrence <- VC_occurrence[, which(names(VC_occurrence) %in%
-                                      c("id", "WGSRPD3", "ORIGIN", "PRESENCE", "occ"))]
-    # Recode origin fields
-    VC_occurrence$ORIGIN[which(VC_occurrence$ORIGIN == "native")] <- 1
-    VC_occurrence$ORIGIN[which(VC_occurrence$ORIGIN == "introduced")] <- 3
-    VC_occurrence$ORIGIN[which(VC_occurrence$ORIGIN == "")] <- 5
-    # Recode presence fields
-    VC_occurrence$PRESENCE[which(VC_occurrence$PRESENCE == "native")] <- 1
-    VC_occurrence$PRESENCE[which(VC_occurrence$PRESENCE == "excluded")] <- 6
-    VC_occurrence$PRESENCE[which(VC_occurrence$PRESENCE == "doubtful")] <- 6
-    VC_occurrence$PRESENCE[which(VC_occurrence$PRESENCE == "introduced")] <- 1
-    VC_occurrence$PRESENCE[which(VC_occurrence$PRESENCE == "ephemeral")] <- 6
-    VC_occurrence$PRESENCE[which(VC_occurrence$PRESENCE == "extirpated")] <- 6
-    # Add source column and SEASONALITY column
-    VC_occurrence$source <- "VASCAN"
-    VC_occurrence$SEASONALITY <- 1
-    # Convert to global variable
-    VC_occurrence <<- VC_occurrence
-  }
 }
 
 # Parameters: VC_occurrence (table), NS_occurrence (table), POW_occurrence (table)

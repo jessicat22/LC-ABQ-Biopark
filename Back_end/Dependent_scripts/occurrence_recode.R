@@ -15,38 +15,10 @@ source("Back_end/Dependent_scripts/Occurrence_reformat.R")
 OCCURRENCE_RECODE_MAIN <- function (){
   print("Recoding occurrence records.")
   # NS_occurrence_recode()
-  POW_occurrence_recode()
   VC_occurrence_recode()
   occurrence_merge()
   countries_table_remove_duplicates()
   countries_table_add_nationals()
-}
-
-# Parameters: POW_occ (table)
-# Returns: POW_occ (table)
-# Throws: none
-# Purpose: Recodes occurrence codes from WGSRPD to IUCN. Removes unused columns.
-POW_occurrence_recode <- function() {
-  if (exists("POW_occurrence")) {
-    # Add source field
-    POW_occurrence$source <- "Kew"
-    # Index POWO Code to return IUCN occ code
-    POW_occurrence$occ <-
-      occ.codes$iucn_code[match(POW_occurrence$CountryOccurrenceLookup,
-                                occ.codes$CountryOccurrenceLookup)]
-    # Rename columns
-    names(POW_occurrence) <- c("id","WGSRPD3","name","ORIGIN","PRESENCE",
-                              "SEASONALITY","source","occ")
-    POW_occurrence$CountryOccurrenceLookup
-    
-    # Remove unused name field
-    POW_occurrence <<-
-      POW_occurrence[,-which(
-        names(POW_occurrence) %in% c(
-          "name"
-          )
-      )]
-  }
 }
 
 # Parameters: VC_occurrence (table)

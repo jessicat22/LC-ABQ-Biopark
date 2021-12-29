@@ -249,6 +249,9 @@ NS_occurrence_recode <- function(x) {
       NS_occurrence[, which(names(NS_occurrence) %in%
                               c("id", "occ", "source", "ORIGIN", "PRESENCE",
                                 "SEASONALITY","WGSRPD3"))]
+    NS_occurrence <- NS_occurrence[,c("id","WGSRPD3","ORIGIN","PRESENCE",
+                                      "SEASONALITY","source","occ")]
+    
   }
   return(NS_occurrence)
 }

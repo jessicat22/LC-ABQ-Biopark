@@ -20,7 +20,7 @@ POW_data_main <- function(){
   # Execute POWO search
   POW_data <<- lapply(POW_taxonomy$fqId,POW_data_query_catch)
   # Rename list elements with internal id
-  names(POW_data) <<- POW_data$id
+  names(POW_data) <<- POW_taxonomy$id
   # Extract native occurrence data
   # Reformat native occurrence data
   POW_native_occ_reformat()

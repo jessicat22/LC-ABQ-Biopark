@@ -7,7 +7,11 @@
 # Description: Script runs dependent scripts to determine user parameters, load data,
 # search databases, and generate SIS Connect output files.
 
-version_no <- "3.1.1"
+# Clear all objects
+rm(list = ls())
+
+# Assign version number
+version_no <- "3.1.2"
 
 # # Notes
 # 

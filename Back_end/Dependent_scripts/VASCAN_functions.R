@@ -204,14 +204,16 @@ VC_occurrence_reformat <- function () {
 VC_citations_generate <- function (){
   # Identify taxa using GBIF data
   VC_ids <- unique(VC_occurrence$id)
-  # Generate references
-  VC_citations <- ref.key[which(ref.key$keywords == "VASCAN"),]
-  VC_citations <- rbind(VC_citations, VC_citations[rep(1, length(VC_ids)),])
-  # Append ids to table
-  VC_citations$internal_taxon_id <- VC_ids
-  # Bind to references table
-  references <- rbind(references, VC_citations)
-  return(references)
+  if (length(VC_ids)>0){
+    # Generate references
+    VC_citations <- ref.key[which(ref.key$keywords == "VASCAN"),]
+    VC_citations <- rbind(VC_citations, VC_citations[rep(1, length(VC_ids)-1),])
+    # Append ids to table
+    VC_citations$internal_taxon_id <- VC_ids
+    # Bind to references table
+    references <- rbind(references, VC_citations)
+    return(references)
+  }
 }
 
 # Parameters: VC_occurrence (table)

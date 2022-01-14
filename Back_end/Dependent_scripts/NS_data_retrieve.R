@@ -48,16 +48,21 @@ NS_data_main <- function () {
   # Restructure data
   NS_data <- NS_data_restructure()
   NS_occurrence <- NS_occ_restructure(NS_data_raw)
-  NS_occurrence <- NS_occurrence_recode(NS_occurrence)
+  if(nrow(NS_occurrence>0)){
+    NS_occurrence <- NS_occurrence_recode(NS_occurrence)
+    NS_occurrence <<- NS_occurrence
+  }
   NS_common_temp <- NS_common_extract()
-  NS_common_names <- NS_common_reformat(NS_common_temp)
+  if(nrow(NS_common_temp)>0){
+    NS_common_names <- NS_common_reformat(NS_common_temp)
+    NS_common_names <<- NS_common_names
+  }
   NS_synonyms <- NS_syn_reformat(NS_data_raw)
-  NS_synonyms <- NS_synonym_reformat2(NS_synonyms)
-  NS_taxonomy <- NS_author_extract(NS_data)
-  # Assign global variables
-  NS_occurrence <<- NS_occurrence
-  NS_common_names <<- NS_common_names
-  NS_synonyms <<- NS_synonyms
+  if(nrow(NS_synonyms)>0){ 
+    NS_synonyms <- NS_synonym_reformat2(NS_synonyms)
+    NS_taxonomy <- NS_author_extract(NS_data)
+    NS_synonyms <<- NS_synonyms}
+
   # Generate citations
   if(nrow(NS_occurrence)>0){references <<- NS_citations_generate(NS_occurrence)}
   print("NatureServe Data reformatted.")

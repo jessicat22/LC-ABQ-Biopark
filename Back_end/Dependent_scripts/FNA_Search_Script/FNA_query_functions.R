@@ -44,8 +44,8 @@ fna_search_main <- function (){
   # Retrieve conservation flags
   fna_conservation_retrieve()
   # Aggregate subtaxa elevation values and fill at species level
-  fna_elevation_clean()
-  merge_fna_elevation()
+  fna_elev <- fna_elevation_clean()
+  merge_fna_elevation(fna_elev)
   # Merge habitat narratives for subtaxa
   if ("SUBTAXON" %in% fna_tax_check$entered_name)
   {fna_habitat_merge()}
@@ -438,14 +438,15 @@ fna_elevation_clean <- function(){
   elev_max <- aggregate(elev_upper~id, fna_elev_data,max,na.rm=TRUE)
   
   # Merge elevation data
-  fna_elev_data <<- merge(elev_min, elev_max)
+  fna_elev_data <- merge(elev_min, elev_max)
   print("elevation reformat complete")
+  return(fna_elev_data)
 }
 
 # Merge fna elevation with fna taxonomy data
-merge_fna_elevation <- function () {
+merge_fna_elevation <- function (x) {
   fna_tax_check <<-
-    merge(fna_tax_check,fna_elev_data,by = "id",all.x=TRUE)
+    merge(fna_tax_check,x,by = "id",all.x=TRUE)
   # Remove elevation bounds for subtaxa
   fna_tax_check$elev_min[which(fna_tax_check$entered_name=="SUBTAXON")] <<- NA
   fna_tax_check$elev_upper[which(fna_tax_check$entered_name=="SUBTAXON")] <<- NA
@@ -455,7 +456,7 @@ merge_fna_elevation <- function () {
 # Generate in-text citation
 fna_in_text <- function(){
   # Load FNA citation key
-  fna_citations <<- data.frame(read.csv(
+  fna_citations <- data.frame(read.csv(
     "Back_end/Dependent_scripts/FNA_Search_Script/fna_key.csv"), 
     stringsAsFactors = FALSE)
   fna_tax_check$in_text <- NA
@@ -495,15 +496,12 @@ fna_citation_build <- function(){
   # references1 <- ref.key[0,]
   fna_hits <- fna_tax_check$id[which(
     !is.na(fna_tax_check$fna_vol))]
-  print(fna_hits)
   # Cross-reference fna results with citation list
   fna_references_used <- 
     ref.key[match(fna_tax_check$fna_vol[which(!is.na(
       fna_tax_check$fna_vol))], ref.key$keywords),]
-  print(fna_references_used)
   # Append taxon id
   fna_references_used$internal_taxon_id <- fna_hits
-  print(fna_references_used)
   # Remove duplicates
   if (!is.null(fna_references_used)){
     references <<- rbind(references, 

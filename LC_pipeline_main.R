@@ -7,7 +7,11 @@
 # Description: Script runs dependent scripts to determine user parameters, load data,
 # search databases, and generate SIS Connect output files.
 
-version_no <- "3.1.1"
+# Clear all objects
+rm(list = ls())
+
+# Assign version number
+version_no <- "3.1.2"
 
 # # Notes
 # 
@@ -36,7 +40,7 @@ source("Back_end/Dependent_scripts/species_input_load.R")
 
 # Subset rows for testing purposes
 # Comment out this line to run entire list
-spec.list <- spec.list[c(61:65),]
+# spec.list <- spec.list[c(141:160),]
 
 #### Initiate GBIF Search ####
 if(GBIF_toggle == "Y") {
@@ -114,8 +118,8 @@ if(spatial_collect_toggle == "Y"){
 source("Back_end/Testing_scripts/spatial_variable_test.R")
 }
 
-# Run European Mask
-source("Back_end/Dependent_scripts/Euro_mask_eoo_recalculate.R")
+# # Run European Mask
+# source("Back_end/Dependent_scripts/Euro_mask_eoo_recalculate.R")
 
 # Table exports
 source("Back_end/Dependent_scripts/SIS_connect_file_generator.R")

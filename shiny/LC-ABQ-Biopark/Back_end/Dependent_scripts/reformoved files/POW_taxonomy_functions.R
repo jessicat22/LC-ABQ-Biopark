@@ -19,27 +19,27 @@ lapply(packages, package.check)
 
 #### Main Function ####
 POW_tax_main <- function (){
-  print("Searching Kew POWO for taxonomy match.")
+  print("Reformatting Kew POWO results")
   # Build POW Results Table
-  POW_results <- data.frame(spec_id = spec.list$id)
+  POW_results <<- data.frame(spec_id = spec.list$id)
   # Run search function
   POW_raw_data <<- lapply(spec.list$Species,POW_search_throttled)
   # Append species ID to POW results
-  POW_data <- POW_id_append(POW_raw_data)
+  POW_id_append()
   # Bind results into single list of data frames
-  POW_data <- POW_data_combine(POW_data)
+  POW_data <<- POW_data_combine()
   # Count number of POW results for each taxon
-  POW_results <- POW_count_results(POW_results,POW_data)
+  POW_count_results()
   # Add column for data entered
-  POW_data <- POW_data_entered(POW_data)
+  POW_data_entered()
   # Split POW_data into list of tables
-  POW_data <- POW_data_split(POW_data)
+  POW_data_split()
   # Flag match type
   POW_data <- lapply(POW_data, POW_taxonomy_parse)
   # Subset data based on match type
   POW_data <- lapply(POW_data,POW_subset_results)
   # Recombine data into single data frame
-  POW_taxonomy <<- bind_rows(POW_data, .id = "id")
+  POW_data <<- bind_rows(POW_data, .id = "id")
 }
 
 # Parameters: 
@@ -61,20 +61,18 @@ POW_search_throttled <- function (x) {
 # Returns: POW_data
 # Throws: none
 # Purpose: Append species ID numbers to raw results
-POW_id_append <- function(x) {
-  POW_data_temp <- x
-  
+POW_id_append <- function() {
   # Rename raw results with species id numbers
-  names(POW_data_temp) <- spec.list$id
+  names(POW_raw_data) <- spec.list$id
   # Subset only species with returned results
-  POW_data_temp <- POW_data_temp[which(!is.na(POW_data_temp))]
+  POW_raw_data <- POW_raw_data[which(!is.na(POW_raw_data))]
   # Add species id number to meta list
-  for (i in 1:length(POW_data_temp)) {
+  for (i in 1:length(POW_raw_data)) {
     #nrow(spec.list)
-    POW_data_temp[[i]]$meta$internal_taxon_id <- spec.list$id[i]
-    POW_data_temp[[i]]$meta$input_name <- spec.list$Species[i]
+    POW_raw_data[[i]]$meta$internal_taxon_id <- spec.list$id[i]
+    POW_raw_data[[i]]$meta$input_name <- spec.list$Species[i]
   }
-  return(POW_data_temp)
+  POW_data <<- POW_raw_data
 }
 
 # Parameters: 
@@ -90,58 +88,52 @@ pow_collate <- function (x){
 # Returns: POW_data
 # Throws: none
 # Purpose: Collapse data fields into single list of data frames
-POW_data_combine <- function (x){
-  foo <- lapply(x, pow_collate)
-  names(foo) <- names(x)
-  foo <- bind_rows(foo, .id = "id")
-  return(foo)
+POW_data_combine <- function (){
+  foo <- lapply(POW_data, pow_collate)
+  names(foo) <- names(POW_data)
+  bind_rows(foo, .id = "id")
 }
 
 # Parameters: POW_data
 # Returns: POW_results (adds n_results column)
 # Throws: none
 # Purpose: Add count of species results to POW_results
-POW_count_results <- function (x,y){
-  POW_temp <- x
+POW_count_results <- function (){
   # Count number of results for each taxon
-  temp <- data.frame(table(y$id))
+  temp <- data.frame(table(POW_data$id))
   # Create number of results column
-  POW_temp$n_results <- 0
+  POW_results$n_results <- 0
   # Add column for number of results
-  POW_temp$n_results[which(POW_temp$spec_id %in% temp$Var1)] <- 
-    temp$Freq[which(temp$Var1 %in% POW_temp$spec_id)]
-  # Return results
-  return(POW_temp)
+  POW_results$n_results[which(POW_results$spec_id %in% temp$Var1)] <- 
+    temp$Freq[which(temp$Var1 %in% POW_results$spec_id)]
+  # Assign as global variable
+  POW_results <<- POW_results 
 }
 
 # Parameters: POW_data (table)
 # Returns: POW_data
 # Throws: none
 # Purpose: Add columns for entered species name, and authority
-POW_data_entered <- function (x){
-  POW_temp <- x
+POW_data_entered <- function (){
   # Append binomial from spec.list to POW results
-  POW_temp$name_entered <- spec.list$Species[match(POW_temp$id,spec.list$id)]
+  POW_data$name_entered <- spec.list$Species[match(POW_data$id,spec.list$id)]
   # Append authority from spec.list to POW results
-  POW_temp$author_entered <- spec.list$author[match(POW_temp$id,spec.list$id)]
+  POW_data$author_entered <- spec.list$author[match(POW_data$id,spec.list$id)]
   # Build column for match type
-  POW_temp$match_type <- NA
+  POW_data$match_type <- NA
   # Assign to global variable
-  return(POW_temp)
+  POW_data <<- POW_data
 }
 
 # Parameters: POW_data (table)
 # Returns: POW_data (list of tables)
 # Throws: none
 # Purpose: Splits POW_data from single table to list of tables
-POW_data_split <- function (x){
-  POW_temp <- x
+POW_data_split <- function (){
   # Divide POW_data into list of lists
-  POW_temp <- split(POW_temp , f = POW_temp$id)
+  POW_data <- split(POW_data , f = POW_data$id)
   # Convert list elements to data frames
-  POW_temp <- lapply(POW_temp, function(y){data.frame(y)})
-  # Return result
-  return(POW_temp)
+  POW_data <<- lapply(POW_data, function(x){data.frame(x)})
 }
 
 # Parameters: POW_data (list of table)

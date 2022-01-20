@@ -14,7 +14,7 @@
 #### Load Packages ####
 #### Load packages ####
 packages <- c("sf","rgdal","downloader")
-
+library(rgdal)
 lapply(packages, package.check)
 
 #### Main function ####
@@ -23,10 +23,13 @@ DEPENDENCIES_main <- function () {
   DEPENDENCIES_load_defaults()
   # load reference key and create references table
   DEPENDENCIES_load_table_keys()
+  # Load assessment template
+  assessments.template <- data.frame(read.csv(
+    "Back_end/Dependencies/assessments_template.csv"))
+  assessments.template <<- assessments.template[0,]
+  # Load allfields template
+  #allfields.template <<- data.frame(read.csv("Back_end/Dependencies/allfields_template.csv"))
   # Run Geospatial import if GBIF toggle is active
-  if (GBIF_toggle == "Y" || GBIF_old_toggle == "Y") {
-    DEPENDENCIES_GEOSPATIAL_main()
-  }
   # Assign batch number
   batch_no <- data.frame(var_name = "batch_no",
                          value = as.numeric(format(Sys.time(),"%y%m%d%H%M%S")))
@@ -42,7 +45,7 @@ DEPENDENCIES_main <- function () {
 #          NA values (Namibia) imported from occurrence tables as "NA"
 DEPENDENCIES_load_defaults <- function () {
   # Load default_values.csv
-  default_vals <<- data.frame(read.csv("User_inputs/Default_values.csv"))
+  default_vals <<- data.frame(read.csv("User_Inputs/Default_values.csv"))
   # Add version number
   version_no2 <- data.frame("version_number",version_no,
                             "Software version number used in this analysis", NA)
@@ -97,6 +100,7 @@ DEPENDENCIES_load_table_keys <- function () {
 #### Geospatial load main function ####
 DEPENDENCIES_GEOSPATIAL_main <- function (){
   LOAD_WGSRPD()
+  print("WGSRPD loaded")
   LOAD_REALMS()
   LOAD_HOTSPOTS()
 }
@@ -115,8 +119,9 @@ LOAD_WGSRPD <- function () {
       download(
         "https://github.com/tdwg/wgsrpd/archive/master.zip",
         dest = "Back_end/Dependencies/Geospatial_data/master.zip",
-        mode = "wb"
-      )
+        mode = "wb")
+        print("downloading WGSRPD")
+      
       # Unzip file
       unzip("Back_end/Dependencies/Geospatial_data/master.zip", 
             exdir="Back_end/Dependencies/Geospatial_data", overwrite = TRUE)
@@ -127,6 +132,8 @@ LOAD_WGSRPD <- function () {
     lvl3 <<-
       st_as_sf(readOGR(dsn = "Back_end/Dependencies/Geospatial_data/wgsrpd-master/level3"))
   }
+  lvl3 <<-
+    st_as_sf(readOGR(dsn = "Back_end/Dependencies/Geospatial_data/wgsrpd-master/level3"))
 }
 
 # Parameters: 

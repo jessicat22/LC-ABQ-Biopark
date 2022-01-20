@@ -11,7 +11,7 @@
 source("Back_end/Dependent_scripts/FNA_Search_Script/src/query.R")
 
 # Load plyr package
-library(plyr)
+library("plyr")
 
 #### Compiled Search Function ####
 fna_search_main <- function (){
@@ -26,10 +26,11 @@ fna_search_main <- function (){
   if(!all(fna_tax_check$match_type=="No Match")){
   # Determine number of subtaxa for each taxon
   fna_subtaxa_number()
-  
+  print("main after fna subtaxa number before retrive")
   #### FNA Subtaxon search ####
   # Retrieve subtaxa
   fna_subtaxa_retrieve()
+    
   # Merge subtaxa and reorganize
   fna_subtaxa_merge()
   #### FNA Data retrieval ####
@@ -44,8 +45,8 @@ fna_search_main <- function (){
   # Retrieve conservation flags
   fna_conservation_retrieve()
   # Aggregate subtaxa elevation values and fill at species level
-  fna_elev <- fna_elevation_clean()
-  merge_fna_elevation(fna_elev)
+  fna_elevation_clean()
+  merge_fna_elevation()
   # Merge habitat narratives for subtaxa
   if ("SUBTAXON" %in% fna_tax_check$entered_name)
   {fna_habitat_merge()}
@@ -63,7 +64,7 @@ fna_search_main <- function (){
     fna_tax_check$entered_name!="SUBTAXON"),]
   
   # Delete dummy output file
-  file.remove("Outputs/output_file_name.csv")
+  #file.remove("Outputs/output_file_name.csv")
   
   #### FNA Citations ####
   fna_citation_build()
@@ -76,7 +77,7 @@ fna_search_main <- function (){
   rm(fna_sub_res,pos = ".GlobalEnv")
   } else {
     # Delete dummy output file
-    file.remove("Outputs/output_file_name.csv")
+    #file.remove("Outputs/output_file_name.csv")
     print("No matches found in Flora of North America")}
 }
 
@@ -208,9 +209,11 @@ fna_subtaxa_number <- function(){
 
 # Search for subtaxa                     
 fna_subtaxa_retrieve <- function (){
+  print("fna_subtax_ret212")
   
   if(all(fna_tax_check$num_subtaxa == 0)){##all zeros
     print("subtaxa not found");
+    fna_sub_res <<- paste("no subtaxa")
     return;
   }
   else{
@@ -222,6 +225,7 @@ fna_subtaxa_retrieve <- function (){
     # Search for all subtaxa
     fna_sub_res <<- mapply(ask_query_titles,fna_subtaxa$query,
                            "Outputs/output_file_name.csv")
+    print(fna_sub_res)
     
     # Append species ID numbers to results
     # If one species returned, fna_sub_res will be a matrix,
@@ -236,7 +240,7 @@ fna_subtaxa_retrieve <- function (){
     else {    
       print("one species with subtaxa")
       # Reformat results into single data frame
-      fna_sub_res <- data.frame(fna_sub_res)
+      fna_sub_res <<- data.frame(fna_sub_res)
       # Rename columns with species ID
       names(fna_sub_res) <- fna_tax_check$id[which(
         fna_tax_check$num_subtaxa>0)]
@@ -438,15 +442,14 @@ fna_elevation_clean <- function(){
   elev_max <- aggregate(elev_upper~id, fna_elev_data,max,na.rm=TRUE)
   
   # Merge elevation data
-  fna_elev_data <- merge(elev_min, elev_max)
+  fna_elev_data <<- merge(elev_min, elev_max)
   print("elevation reformat complete")
-  return(fna_elev_data)
 }
 
 # Merge fna elevation with fna taxonomy data
-merge_fna_elevation <- function (x) {
+merge_fna_elevation <- function () {
   fna_tax_check <<-
-    merge(fna_tax_check,x,by = "id",all.x=TRUE)
+    merge(fna_tax_check,fna_elev_data,by = "id",all.x=TRUE)
   # Remove elevation bounds for subtaxa
   fna_tax_check$elev_min[which(fna_tax_check$entered_name=="SUBTAXON")] <<- NA
   fna_tax_check$elev_upper[which(fna_tax_check$entered_name=="SUBTAXON")] <<- NA
@@ -456,7 +459,7 @@ merge_fna_elevation <- function (x) {
 # Generate in-text citation
 fna_in_text <- function(){
   # Load FNA citation key
-  fna_citations <- data.frame(read.csv(
+  fna_citations <<- data.frame(read.csv(
     "Back_end/Dependent_scripts/FNA_Search_Script/fna_key.csv"), 
     stringsAsFactors = FALSE)
   fna_tax_check$in_text <- NA
@@ -496,12 +499,15 @@ fna_citation_build <- function(){
   # references1 <- ref.key[0,]
   fna_hits <- fna_tax_check$id[which(
     !is.na(fna_tax_check$fna_vol))]
+  print(fna_hits)
   # Cross-reference fna results with citation list
   fna_references_used <- 
     ref.key[match(fna_tax_check$fna_vol[which(!is.na(
       fna_tax_check$fna_vol))], ref.key$keywords),]
+  print(fna_references_used)
   # Append taxon id
   fna_references_used$internal_taxon_id <- fna_hits
+  print(fna_references_used)
   # Remove duplicates
   if (!is.null(fna_references_used)){
     references <<- rbind(references, 

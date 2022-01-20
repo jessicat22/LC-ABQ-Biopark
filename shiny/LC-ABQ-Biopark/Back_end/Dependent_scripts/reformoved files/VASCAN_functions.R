@@ -41,12 +41,9 @@ VC_main <- function (){
   VC_common_reformat()
   # Extract and reformat occurrence data
   VC_occurrence_reformat()
-  # Recode VC occurrence data
-  VC_occurrence_recode()
   # Generate citations
   if(length(VC_occurrence)>1){
     references <<- VC_citations_generate()}
-  print("VASCAN search complete.")
 }
 
 #### VASCAN Functions ####
@@ -156,17 +153,9 @@ VC_common_reformat <- function () {
     VC_data$vc_match_type!="no match")], 
     VC_extract_common)
   # Reformat as single table
-  VC_common_names <- data.frame(bind_rows(VC_common_names, 
+  VC_common_names <<- data.frame(bind_rows(VC_common_names, 
                                            .id="internal_taxon_id"))
-  # Convert names to title case
-  VC_common_names$name <- str_to_title(VC_common_names$name)
-  # Convert language to accepted versions
-  VC_common_names$language[which(VC_common_names$language == "fr")] <- "French"
-  VC_common_names$language[which(VC_common_names$language == "en")] <- "English"
-  # Add source column
-  VC_common_names$source <- "VASCAN"
-  # Set as global variable
-  VC_common_names <<- VC_common_names
+  
 }
 
 # Parameters: 
@@ -190,11 +179,8 @@ VC_occurrence_reformat <- function () {
     VC_data$vc_match_type!="no match")], 
     VC_extract_occurrence)
   # Reformat as single table
-  VC_occurrence <- data.frame(bind_rows(VC_occurrence, 
+  VC_occurrence <<- data.frame(bind_rows(VC_occurrence, 
                                          .id="internal_taxon_id"))
-  # Set to global variable
-  VC_occurrence <<- VC_occurrence
-  
 }
 
 # Parameters: VC_occurrence (table)
@@ -203,62 +189,15 @@ VC_occurrence_reformat <- function () {
 # Purpose: Add VC citations to references table
 VC_citations_generate <- function (){
   # Identify taxa using GBIF data
-  VC_ids <- unique(VC_occurrence$id)
-  if (length(VC_ids)>0){
-    # Generate references
-    VC_citations <- ref.key[which(ref.key$keywords == "VASCAN"),]
-    VC_citations <- rbind(VC_citations, VC_citations[rep(1, length(VC_ids)-1),])
-    # Append ids to table
-    VC_citations$internal_taxon_id <- VC_ids
-    # Bind to references table
-    references <- rbind(references, VC_citations)
-    return(references)
-  }
-}
-
-# Parameters: VC_occurrence (table)
-# Returns: VC_occurrence (table)
-# Throws: none
-# Purpose: Recodes occurrence codes from VASCAN to IUCN. 
-#          Recodes PRESENCE fields. Recodes ORIGIN fields.
-#          Removes unused columns.
-VC_occurrence_recode <- function () {
-  if (exists("VC_occurrence") & nrow(VC_occurrence)>0) {
-    # Index VC Code to return IUCN occ code
-    VC_occurrence$occ <-
-      occ.codes$iucn_code[match(VC_occurrence$CountryOccurrenceLookup,
-                                occ.codes$vc_codes)]
-    # Index VC code to return WGSRPD3 code
-    VC_occurrence$WGSRPD3 <-
-      occ.codes$lvl3_display[match(VC_occurrence$CountryOccurrenceLookup,
-                                   occ.codes$vc_codes)]
-    
-    # Drop unused column and rename remaining columns
-    names(VC_occurrence) <- c("id", "WGSRPD3", "ORIGIN", "PRESENCE",
-                              "occ")
-    VC_occurrence <- VC_occurrence[, which(names(VC_occurrence) %in%
-                                             c("id", "WGSRPD3", "ORIGIN", "PRESENCE", "occ"))]
-    # Recode origin fields
-    VC_occurrence$ORIGIN[which(VC_occurrence$ORIGIN == "native")] <- 1
-    VC_occurrence$ORIGIN[which(VC_occurrence$ORIGIN == "introduced")] <- 3
-    VC_occurrence$ORIGIN[which(VC_occurrence$ORIGIN == "")] <- 5
-    # Recode presence fields
-    VC_occurrence$PRESENCE[which(VC_occurrence$PRESENCE == "native")] <- 1
-    VC_occurrence$PRESENCE[which(VC_occurrence$PRESENCE == "excluded")] <- 6
-    VC_occurrence$PRESENCE[which(VC_occurrence$PRESENCE == "doubtful")] <- 6
-    VC_occurrence$PRESENCE[which(VC_occurrence$PRESENCE == "introduced")] <- 1
-    VC_occurrence$PRESENCE[which(VC_occurrence$PRESENCE == "ephemeral")] <- 6
-    VC_occurrence$PRESENCE[which(VC_occurrence$PRESENCE == "extirpated")] <- 6
-    # Add source column and SEASONALITY column
-    VC_occurrence$source <- "VASCAN"
-    VC_occurrence$SEASONALITY <- 1
-
-  }
-  # Reorder columns
-  VC_occurrence <- VC_occurrence[,c("id","WGSRPD3","ORIGIN","PRESENCE",
-                                    "SEASONALITY","source","occ")]
-  # Convert to global variable
-  VC_occurrence <<- VC_occurrence
+  VC_ids <- unique(VC_occurrence$internal_taxon_id)
+  # Generate references
+  VC_citations <- ref.key[which(ref.key$keywords == "VASCAN"),]
+  VC_citations <- rbind(VC_citations, VC_citations[rep(1, length(VC_ids)-1), ])
+  # Append ids to table
+  VC_citations$internal_taxon_id <- VC_ids
+  # Bind to references table
+  references <- rbind(references, VC_citations)
+  return(references)
 }
 
 #### Execute Functions ####

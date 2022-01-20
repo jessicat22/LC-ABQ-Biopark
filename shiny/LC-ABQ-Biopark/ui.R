@@ -18,8 +18,12 @@ shinyUI(fluidPage(# Application title
   tabsetPanel(
     
     tabPanel(
-      "Home", fluid = T
-    ),
+      "Home", fluid = T, 
+      h1("Welcome to the LC-Pipeline test site! "),
+      h2("In Colaboration with the EPICS program at UNM and the ABQ BioPark LC-Pipeline has gone online!"),
+      h3("The next tab is the input and run tab in which you input and run the program"),
+      h3("App is currently under major construction and not in a major version :)")
+      ),
     
     
     tabPanel(

@@ -19,10 +19,25 @@ lapply(packages, package.check)
 # Purpose: 
 SIS_table_generator_main <- function (){
   # Export synonyms from NS and POWO
+  GBIF_natives <- GBIF_point_data
+  # Subset native points
+  GBIF_natives <- GBIF_natives[GBIF_natives$ORIGIN==1,]
+  # Convert to sf
+  GBIF_natives <<- st_as_sf(GBIF_natives)
+  GBIF_realms <- realm.ref(GBIF_natives)
+  # Index taxon IDs
+  GBIF_realms$row.id <- GBIF_natives$ID_NO[GBIF_realms$row.id]
+  # Index realms
+  GBIF_realms$col.id <- realms$REALM[GBIF_realms$col.id]
+  # Rename realms table
+  names(GBIF_realms) <- c("ID_NO","realm")
+  # Remove duplicates
+  GBIF_realms <- unique(GBIF_realms[which(!is.na(GBIF_realms$realm)),])
+  # Convert to global variable
+  realm_results <<- GBIF_realms
+  
   synonyms_table <- data.frame(synonym_export())
   synonyms_table <- unnest(synonyms_table, cols = c(speciesName, infraType, infrarankName))
-  # Remove species field (necessary due to error in SIS Connect which is unlikely to be fixed)
-  synonyms_table$speciesName <- ""
   write.csv(synonyms_table, 
             paste("Outputs/Synonyms_batch_", 
                   default_vals$value[which(default_vals$var_name == "batch_no")],
@@ -393,10 +408,7 @@ distribution_citations_generate <- function (){
 }
 
 ASSESSMENT_TABLE_BUILD <- function (x){
-  # Load assessment template
-  assessments.template <- data.frame(read.csv(
-    "Back_end/Dependencies/assessments_template.csv"))
-  assessments.template <- assessments.template[0,]
+  
   # Build assessments table
   assessments <- rbind(assessments.template, 
                        assessments.template[rep(1, nrow(spec.list)), ])
@@ -518,8 +530,6 @@ ASSESSMENT_TABLE_BUILD <- function (x){
 }
 
 ALLFIELDS_TABLE_BUILD <- function (x){
-    # Load allfields template
-  allfields.template <- data.frame(read.csv("Back_end/Dependencies/allfields_template.csv"))
   # Build allfields table
   allfields <- rbind(allfields.template, 
                      allfields.template[rep(1, nrow(spec.list)), ])
@@ -532,6 +542,8 @@ ALLFIELDS_TABLE_BUILD <- function (x){
       "-", 
       spec.list$AOO_max[match(spec.list$id[which(
         !is.na(spec.list$AOO_min))], allfields$internal_taxon_id)])
+  
+  
   # Round EOO
   spec.list$EOO_max <- signif(as.numeric(spec.list$EOO_max), digits = 3)
   spec.list$EOO_min <- signif(as.numeric(spec.list$EOO_min), digits = 3)

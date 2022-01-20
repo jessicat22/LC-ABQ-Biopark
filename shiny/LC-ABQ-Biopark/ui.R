@@ -13,8 +13,15 @@ shinyUI(fluidPage(# Application title
     h1("LC-Pipeline Test Site", align = "center")
   ),
   
+ 
   
   tabsetPanel(
+    
+    tabPanel(
+      "Home", fluid = T
+    ),
+    
+    
     tabPanel(
       "Input and Run",
       fluid = T,
@@ -23,45 +30,46 @@ shinyUI(fluidPage(# Application title
       sidebarLayout(#start of sidebar panel
         sidebarPanel(
           tabsetPanel(
-            tabPanel("inputs", source(file = "User_Inputs/UI/UI_inputTab1.R", local = T)[1]),
-            tabPanel("occ", source(file = "User_Inputs/UI/UI_inputTab2.R", local = T)[1]),
+            tabPanel("Inputs", source(file = "User_Inputs/UI/UI_inputTab1.R", local = T)[1]),
+            tabPanel("Occ", source(file = "User_Inputs/UI/UI_inputTab2.R", local = T)[1]),
             tabPanel("Threats", source(file = "User_Inputs/UI/UI_inputTab3.R", local = T)[1]),
-            tabPanel("more Toggles", source(file = "User_Inputs/UI/UI_inputTab4.R", local = T)[1])
+            tabPanel("More Toggles", source(file = "User_Inputs/UI/UI_inputTab4.R", local = T)[1])
             
           )
         ),
         
         # Main panel for displaying outputs ----
-        mainPanel(source(
-          file = "User_Inputs/UI/UI_mainPannel.R", local = T
-        )[1]))
+        mainPanel(source(file = "User_Inputs/UI/UI_mainPannel.R", local = T)[1]))
     ),
     
     tabPanel(
-      "Output Tables",
+      "Output Tables for testing",
       fluid = T,
       mainPanel(
       h3("download all fields data"),
       downloadHandler("DownloadFile", "all_fields"),
       
       h3("Synonym Tables"),
+      h4("Nature Serve"),
       tableOutput("NS_syn"),
+      h4("POW"),
       tableOutput("POW_syn"),
       
       h3("Occurrence Tables"),
+      h4("Nature Serve"),
       tableOutput("NS_occur"),
+      h4("POW"),
       tableOutput("POW_occur"),
       
       h3("Common Names Tables"),
+      h4("Nature Serve"),
       tableOutput("NS_cn"),
+      h4("POW"),
       tableOutput("POW_cn"),
       tableOutput("VC_cn"),
       
-      
-      h3("POW Result"),
-      tableOutput("POW_result"),
-      
-      tableOutput("sample")
+      h3("table is done running?"),
+     tableOutput("sample")
       )
       
       
@@ -79,5 +87,8 @@ shinyUI(fluidPage(# Application title
       # verbatimTextOutput("value"),
       # textOutput("usertxt"),
       # textOutput("userEmail")
+    ),
+    tabPanel(
+      "File Downloads", fluid = T
     )
   )))

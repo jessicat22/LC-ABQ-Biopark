@@ -44,24 +44,6 @@ shinyServer(function(input, output){
    #})
     
     #output gbif cred
-    output$GBIF_users <- renderText({
-       req(input$submit_GBIF)
-       isolate(input$GBIF_User)
-       gbif_user <<- input$GBIF_User
-       })
-    
-    output$GBIF_emails <- renderText({
-       req(input$submit_GBIF)
-       isolate(input$GBIF_email)
-       #gbif_email <<- input$GBIF_email
-       })
-    
-    output$GBIF_password <- renderText({
-       req(input$submit_GBIF)
-       isolate(input$GBIF_Password)
-       
-       #set to keychain
-       })
     
     
     output$gbif_success <- renderPrint({
@@ -129,13 +111,6 @@ shinyServer(function(input, output){
     req(input$submit_file)
     
     allfields.template
-    
-  })
-  
-  output$POW_result<-renderTable({
-    req(input$submit_file)
-    
-    POW_results
     
   })
   

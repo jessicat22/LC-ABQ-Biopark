@@ -16,7 +16,12 @@ tableOutput("contentsOfTaxonomy"),
 
 #darwincore
 h4("Contents of Optional DarwinCore File:"),
-tableOutput("DarwinCore"),
+tableOutput("DarwinCore")
 
-h4("Contents of allfields"),
-tableOutput("all_fields"))
+# h4("Contents of allfields"),
+# tableOutput("all_fields"),
+# h3("sorced Files that have been ran are:"),
+# tableOutput("sample"),
+# textOutput("GBIF_init"),
+# textOutput("spec_load")
+)

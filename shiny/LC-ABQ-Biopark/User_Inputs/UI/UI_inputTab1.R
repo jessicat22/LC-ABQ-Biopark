@@ -47,6 +47,7 @@ tags$hr(),
 textOutput("gbif_success"),
 tags$hr(),
 
-actionButton("submit_file", "Submit -> Run Program"))
+actionButton("submit_file", "Submit -> Run Program")
+)
 
 

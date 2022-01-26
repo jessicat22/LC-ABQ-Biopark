@@ -42,7 +42,7 @@ DEPENDENCIES_main <- function () {
 #          NA values (Namibia) imported from occurrence tables as "NA"
 DEPENDENCIES_load_defaults <- function () {
   # Load default_values.csv
-  default_vals <<- data.frame(read.csv("User_inputs/Default_values.csv"))
+  default_vals <<- data.frame(read.csv("User_Inputs/Default_values.csv"))
   # Add version number
   version_no2 <- data.frame("version_number",version_no,
                             "Software version number used in this analysis", NA)

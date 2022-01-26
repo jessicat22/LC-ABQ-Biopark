@@ -5,10 +5,9 @@ account: lc-abq-biopark
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4704167
-bundleId: 5438876
+bundleId: 5512422
 url: https://lc-abq-biopark.shinyapps.io/lc-abq-biopark/
-when: 1641435233.67688
-lastSyncTime: 1641435233.67689
+when: 1643240938.95054
+lastSyncTime: 1643240938.95056
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: Outputs/.DS_Store|Outputs/commonnames_batch_211216005318.csv|Outputs/output_file_name.csv|Outputs/Synonyms_batch_211216005318.csv|UI_mainPannel.R

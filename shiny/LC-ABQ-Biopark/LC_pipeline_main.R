@@ -27,6 +27,7 @@ version_no <- "3.1.1"
 #source("server.R")
 #source("ui.R")
 # Load base functions
+rm(list = ls())
 inat <<- "Y"
 source("Back_end/Dependent_scripts/base_functions.R")
 print("baseloaded")
@@ -99,7 +100,7 @@ source("Back_end/Dependent_scripts/occurrence_recode.R")
 print("done")
 
 # Geospatial calculations
-# source("Back_end/Dependent_scripts/spatial_calculations.R")
+ source("Back_end/Dependent_scripts/spatial_calculations.R")
 # 
 # # Collect spatial calculation data
 # spacial_collect_toggle = "N"

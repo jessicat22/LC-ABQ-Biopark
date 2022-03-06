@@ -45,19 +45,19 @@ shinyServer(function(input, output){
     
     #output gbif cred
     
-    
-  #   output$gbif_success <- renderPrint({
-  #      req(input$submit_GBIF)
-  #       occ_download_list(
-  #         user = input$GBIF_User,
-  #         pwd = input$GBIF_Password,
-  #         limit = 20,
-  #         start = 0
-  #         )
-  #      "successful login"
-  #           
-  #   })
-  #   
+    ###beginning of commented code 
+    output$gbif_success <- renderPrint({
+       req(input$submit_GBIF)
+        occ_download_list(
+          user = input$GBIF_User,
+          pwd = input$GBIF_Password,
+          limit = 20,
+          start = 0
+          )
+       "successful login"
+
+    })
+
   #   
   #   #with everything from csv file create a csv and append each row in order 
   #   #when submit button is pressed req(input$submit_file)

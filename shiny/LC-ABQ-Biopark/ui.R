@@ -5,10 +5,15 @@
 # Author: JT
 # File: UI.r
 # Description: User interface for LC app 
+
 citation(package = "rgbif")
 library(shiny)
 library(rgbif)
+
+#makes the title for the application
+#bug with application name 
 shinyUI(fluidPage(# Application title
+  title = "LC Pipeline Test Site",
   titlePanel(
     h1("LC-Pipeline Test Site", align = "center")
   ),
@@ -23,7 +28,8 @@ shinyUI(fluidPage(# Application title
       h2("In Colaboration with the EPICS program at UNM and the ABQ BioPark LC-Pipeline has gone online!"),
       h3("The next tab is the input and run tab in which you input and run the program"),
       h3("App is currently under major construction and not in a major version :)"),
-      h2("current version is a input file only test to go into stable versions v1.0")
+      h2("current version is a input file only test to go into stable versions v1.0"),
+      h3("has the ability to: input file, gbif info ")
       ),
     
     

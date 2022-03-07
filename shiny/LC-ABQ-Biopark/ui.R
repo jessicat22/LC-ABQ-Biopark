@@ -81,7 +81,7 @@ shinyUI(fluidPage(# Application title
       
       h3("sorced Files that have been ran are:"),
       tableOutput("sample"),
-      textOutput("")
+      textOutput("spec_load")
       )
       
       

@@ -70,50 +70,50 @@ shinyServer(function(input, output){
   #   
   # 
   #   #submit button variables set to their variable names when big submit is pressed 
-  # output$sample<- renderPrint({
-  #   req(input$submit_file)
-  #   inat <<- "Y"
-  #   allfields.template <<- data.frame(
-  #     Var_Name = c("presence_code","seasonal_code",
-  #                  "orgin_code","pop.data.qual","aoo just",
-  #                  "eoo just", "del year","sens", 
-  #                  "inat","nothreats","threats.unkown",
-  #                  "rationale.text","threats.text", "outlier_threshold",
-  #                  "uncertainty_tolerance","min_decimals",
-  #                  "precision_method",
-  #                  "occurrenceRemarks_introduced","is.restricted.eoo.cutoff",
-  #                  "is.restricted.aoo.cutoff","is.restricted.justification",
-  #                 "pop.narrative", "threats.narrative",
-  #                  "throttle_points","throttle_level"
-  #                  ),
-  #     Value = c(isolate(input$presence_code), isolate(input$seasonal_code), 
-  #               isolate(input$origin_code), input$pop.data.qual, isolate(input$aoo_just),
-  #               isolate(input$eoo_just), isolate(input$del_year),isolate(input$sens),
-  #               isolate(input$inat),isolate(input$nothreats),isolate(input$threats.unknown),
-  #               isolate(input$rationale.text),isolate(input$threats.text),isolate(input$outlier_threshold),
-  #               isolate(input$uncertainty_tolerance),isolate(input$min_decimals),
-  #               isolate(input$precision_method),
-  #               isolate(input$occurrenceRemarks_introduced), isolate(input$is.restricted.eoo.cutoff),
-  #               isolate(input$is.restricted.aoo.cutoff), isolate(input$is.restricted.justification),
-  #               isolate(input$pop.narrative), isolate(input$threats.narrative),
-  #               isolate(input$throttle.points), input$throttle_level
-  #              ))
-  #  gbif_user <<- input$GBIF_User
-  #  gbif_email <<- input$GBIF_email
-  #  gbif_password <<- input$GBIF_Password
-  #  TaxonomyFile <- input$taxonomy
-  #  spec.list <<- data.frame(read.csv(TaxonomyFile$datapath, header = input$header))
-  #  source("Back_end/Dependent_scripts/base_functions.R")
-  #   "base loaded"
-  #   # write.table(rendercsvuser, file = "sample.csv")
-  #   })
-  # 
-  # output$spec_load<-renderPrint({
-  #   req(input$submit_file)
-  #   source("Back_end/Dependent_scripts/species_input_load.R")
-  #   "specinput loaded"
-  #   
-  # })
+   output$sample<- renderPrint({
+     req(input$submit_file)
+     inat <<- "Y"
+     allfields.template <<- data.frame(
+       Var_Name = c("presence_code","seasonal_code",
+                    "orgin_code","pop.data.qual","aoo just",
+                    "eoo just", "del year","sens", 
+                    "inat","nothreats","threats.unkown",
+                    "rationale.text","threats.text", "outlier_threshold",
+                    "uncertainty_tolerance","min_decimals",
+                    "precision_method",
+                    "occurrenceRemarks_introduced","is.restricted.eoo.cutoff",
+                    "is.restricted.aoo.cutoff","is.restricted.justification",
+                   "pop.narrative", "threats.narrative",
+                    "throttle_points","throttle_level"
+                    ),
+       Value = c(isolate(input$presence_code), isolate(input$seasonal_code), 
+                isolate(input$origin_code), input$pop.data.qual, isolate(input$aoo_just),
+                isolate(input$eoo_just), isolate(input$del_year),isolate(input$sens),
+                isolate(input$inat),isolate(input$nothreats),isolate(input$threats.unknown),
+                isolate(input$rationale.text),isolate(input$threats.text),isolate(input$outlier_threshold),
+                isolate(input$uncertainty_tolerance),isolate(input$min_decimals),
+                isolate(input$precision_method),
+                isolate(input$occurrenceRemarks_introduced), isolate(input$is.restricted.eoo.cutoff),
+                isolate(input$is.restricted.aoo.cutoff), isolate(input$is.restricted.justification),
+                isolate(input$pop.narrative), isolate(input$threats.narrative),
+                isolate(input$throttle.points), input$throttle_level
+               ))
+   gbif_user <<- input$GBIF_User
+   gbif_email <<- input$GBIF_email
+   gbif_password <<- input$GBIF_Password
+   TaxonomyFile <- input$taxonomy
+   spec.list <<- data.frame(read.csv(TaxonomyFile$datapath, header = input$header))
+   source("Back_end/Dependent_scripts/base_functions.R")
+    "base loaded"
+    # write.table(rendercsvuser, file = "sample.csv")
+    })
+
+  output$spec_load<-renderPrint({
+    req(input$submit_file)
+    source("Back_end/Dependent_scripts/species_input_load.R")
+    "specinput loaded"
+
+  })
   # output$GBIF_init<-renderPrint({
   #   req(input$submit_file)
   #   source("Back_end/Dependent_scripts/GBIF_search_initiate.R")

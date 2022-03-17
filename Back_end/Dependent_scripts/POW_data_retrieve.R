@@ -215,10 +215,12 @@ POW_syn_compile <- function (){
   # Execute synonym extract
   POW_synonyms <- lapply(POW_data, POW_syn_extract)
   # Remove unused list elements
-  POW_synonyms <- POW_synonyms[-which(is.na(POW_synonyms))]
+  if (length(-which(is.na(POW_synonyms)))>0){
+    POW_synonyms <- 
+    POW_synonyms[-which(is.na(POW_synonyms))]
+  }
   # Collapse synonyms to single dataframe
   POW_synonyms <<- data.frame(bind_rows(POW_synonyms, .id = "internal_taxon_id"))
-  
 }
 
 # Parameters: POW_synonyms

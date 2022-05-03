@@ -83,7 +83,7 @@ shinyUI(fluidPage(# Application title
       tableOutput("sample"),
       textOutput("spec_load"),
       textOutput("GBIF_init"),
-      textOutput("all_fields")
+      textOutput("data_load")
       
       )
       

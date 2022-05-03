@@ -49,6 +49,7 @@ source("Back_end/Dependent_scripts/GBIF_search_initiate.R")
 #### Load dependent data ####
 
 # Load dependent data
+
 source("Back_end/Dependent_scripts/data_load.R")
 
 #### Taxonomic search functions ####

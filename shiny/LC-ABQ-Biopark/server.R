@@ -124,10 +124,10 @@ shinyServer(function(input, output){
 
   })
   # 
-   output$all_fields<-renderTable({
+   output$data_load<-renderTable({
      req(input$submit_file)
-     
-     allfields.template
+     source("Back_end/Dependent_scripts/data_load.R")
+     "Data Loaded"
      
    })
 

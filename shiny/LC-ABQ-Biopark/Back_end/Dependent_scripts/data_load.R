@@ -14,7 +14,7 @@
 #### Load Packages ####
 #### Load packages ####
 packages <- c("sf","rgdal","downloader")
-
+version_no <- "3.1.2"
 lapply(packages, package.check)
 
 #### Main function ####
@@ -24,9 +24,9 @@ DEPENDENCIES_main <- function () {
   # load reference key and create references table
   DEPENDENCIES_load_table_keys()
   # Run Geospatial import if GBIF toggle is active
-  if (GBIF_toggle == "Y" || GBIF_old_toggle == "Y") {
-    DEPENDENCIES_GEOSPATIAL_main()
-  }
+  # GBIF_toggle == "Y" || GBIF_old_toggle == "Y") {
+  #DEPENDENCIES_GEOSPATIAL_main()
+  #}
   # Assign batch number
   batch_no <- data.frame(var_name = "batch_no",
                          value = as.numeric(format(Sys.time(),"%y%m%d%H%M%S")))

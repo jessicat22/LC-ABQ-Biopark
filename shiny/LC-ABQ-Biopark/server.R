@@ -98,9 +98,12 @@ shinyServer(function(input, output){
                 isolate(input$pop.narrative), isolate(input$threats.narrative),
                 isolate(input$throttle.points), input$throttle_level
                ))
-   gbif_user <<- input$GBIF_User
-   gbif_email <<- input$GBIF_email
-   gbif_password <<- input$GBIF_Password
+   gbif_user <<- "jtorres22"
+     #input$GBIF_User
+   gbif_email <<- "jtorres22@unm.edu"
+     #input$GBIF_email
+   gbif_password <<- "corona01"
+     #input$GBIF_Password
    TaxonomyFile <- input$taxonomy
    spec.list <<- data.frame(read.csv(TaxonomyFile$datapath, header = input$header))
    source("Back_end/Dependent_scripts/base_functions.R")
@@ -114,28 +117,28 @@ shinyServer(function(input, output){
     "specinput loaded"
 
   })
-  # output$GBIF_init<-renderPrint({
-  #   req(input$submit_file)
-  #   source("Back_end/Dependent_scripts/GBIF_search_initiate.R")
-  #   "GBIF_initiated"
-  #   
-  # })
+  output$GBIF_init<-renderPrint({
+    req(input$submit_file)
+    source("Back_end/Dependent_scripts/GBIF_search_initiate.R")
+    "GBIF_initiated"
+
+  })
   # 
-  # output$all_fields<-renderTable({
-  #   req(input$submit_file)
-  #   
-  #   allfields.template
-  #   
-  # })
-  # 
+   output$all_fields<-renderTable({
+     req(input$submit_file)
+     
+     allfields.template
+     
+   })
+
   # #synonym tables
   # output$NS_syn<-renderTable({
   #   req(input$submit_file)
-  #   
-  #   NS_synonyms
-  #   
-  # })
   # 
+  #   NS_synonyms
+  # 
+  # })
+
   # output$POW_syn<-renderTable({
   #   req(input$submit_file)
   #   

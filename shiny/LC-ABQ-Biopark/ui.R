@@ -28,8 +28,8 @@ shinyUI(fluidPage(# Application title
       h2("In Colaboration with the EPICS program at UNM and the ABQ BioPark LC-Pipeline has gone online!"),
       h3("The next tab is the input and run tab in which you input and run the program"),
       h3("App is currently under major construction and not in a major version :)"),
-      h2("current version is a input file only test to go into stable versions v1.0"),
-      h3("has the ability to: input file, gbif info ")
+      h2("v3.0.2"),
+      h3("has the ability to: input file, gbif info, base package load, spec load")
       ),
     
     
@@ -81,7 +81,10 @@ shinyUI(fluidPage(# Application title
       
       h3("sorced Files that have been ran are:"),
       tableOutput("sample"),
-      textOutput("spec_load")
+      textOutput("spec_load"),
+      textOutput("GBIF_init"),
+      textOutput("all_fields")
+      
       )
       
       

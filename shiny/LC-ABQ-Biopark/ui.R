@@ -60,32 +60,33 @@ shinyUI(fluidPage(# Application title
       h3("download all fields data"),
       downloadHandler("DownloadFile", "all_fields"),
       
-      h3("Synonym Tables"),
-      h4("Nature Serve"),
-      tableOutput("NS_syn"),
-      h4("POW"),
-      tableOutput("POW_syn"),
-      
-      h3("Occurrence Tables"),
-      h4("Nature Serve"),
-      tableOutput("NS_occur"),
-      h4("POW"),
-      tableOutput("POW_occur"),
-      
-      h3("Common Names Tables"),
-      h4("Nature Serve"),
-      tableOutput("NS_cn"),
-      h4("POW"),
-      tableOutput("POW_cn"),
-      tableOutput("VC_cn"),
+      # h3("Synonym Tables"),
+      # h4("Nature Serve"),
+      # tableOutput("NS_syn"),
+      # h4("POW"),
+      # tableOutput("POW_syn"),
+      # 
+      # h3("Occurrence Tables"),
+      # h4("Nature Serve"),
+      # tableOutput("NS_occur"),
+      # h4("POW"),
+      # tableOutput("POW_occur"),
+      # 
+      # h3("Common Names Tables"),
+      # h4("Nature Serve"),
+      # tableOutput("NS_cn"),
+      # h4("POW"),
+      # tableOutput("POW_cn"),
+      # tableOutput("VC_cn"),
       
       h3("sorced Files that have been ran are:"),
       tableOutput("sample"),
       textOutput("spec_load"),
       textOutput("GBIF_init"),
-      textOutput("data_load")
+      textOutput("data_load"),
+      textOutput("ITIS_functions_server")#,
+      #textOutput("VASCAN_functions")
       
-      )
       
       
       
@@ -102,6 +103,7 @@ shinyUI(fluidPage(# Application title
       # verbatimTextOutput("value"),
       # textOutput("usertxt"),
       # textOutput("userEmail")
+      )
     ),
     tabPanel(
       "File Downloads", fluid = T

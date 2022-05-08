@@ -123,13 +123,27 @@ shinyServer(function(input, output){
     "GBIF_initiated"
 
   })
-  # 
-   output$data_load<-renderTable({
+  
+   output$data_load<-renderPrint({
      req(input$submit_file)
      source("Back_end/Dependent_scripts/data_load.R")
      "Data Loaded"
      
    })
+   
+   output$ITIS_functions_server<-renderPrint({
+     req(input$submit_file)
+     try(source("Back_end/Dependent_scripts/ITIS_functions.R"))
+     "ITIS Functions"
+     
+   })
+   
+   # output$VASCAN_functions<-renderTable({
+   #   req(input$submit_file)
+   #   try(source("Back_end/Dependent_scripts/VASCAN_functions.R"))
+   #   "VASCAN Functions"
+   #   
+   # })
 
   # #synonym tables
   # output$NS_syn<-renderTable({

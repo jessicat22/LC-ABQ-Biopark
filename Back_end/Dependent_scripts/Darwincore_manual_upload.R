@@ -20,46 +20,74 @@ source("Back_end/Dependent_scripts/Occurrence_reformat.R")
 #### DC Main Funciton ####
 
 DC_manual_upload_main <- function (){
-  # Load data from .zip files
-  DC_data <<- DC_unzip_all()
+
+    # Load data from .zip files
+  DC_zip_data <- DC_unzip_all()
+  
   # Load data from .csv files
-  DC_data <<- DC_individual_file_load()
+  DC_csv_data <- DC_individual_file_load()
+
+  # Check for lengths of lists and merge if necessary
+  if (length(DC_zip_data) > 0){
+    if(length(DC_csv_data) > 0){
+      # If both lists contain data, append lists
+      DC_data <- c(DC_zip_data, DC_csv_data)
+      print("DarwinCore zip and csv file data loaded")
+    } else {
+      # If only zip data exists, set as DC_data
+      DC_data <- DC_zip_data
+      print("DarwinCore zip data file loaded")
+    }
+  } else {
+    if(length(DC_csv_data) > 0){
+      # If both lists contain data, append lists
+      DC_data <- DC_csv_data
+      print("DarwinCore csv file data loaded")
+    } else {
+    print("DarwinCore Data Not Found")
+    }
+  }
+
   # Look up id numbers for DC data and append id to name field
-  DC_data <<- DC_id_lookup(DC_data)
-  # Convert to single table and set as global variable
-  DC_data <<- DC_data_collapse(DC_data)
+  if(length(DC_data) < 1 ){
+    DC_data <- DC_id_lookup(DC_data)
+  }
+  # Check DC-id_lookup to see if it returns DC_data. if so set as variable
+  
+# Convert to single table and set as global variable
+  DC_data <- DC_data_collapse(DC_data)
   # Check if any matched records exist
   if (!all(is.na(unique(DC_data$internal_taxon_id)))){
     # Flag species with DC data
-    spec.list <<- DC_record_list()
+    spec.list <<- DC_record_list(DC_data)
     # Export raw data
-    DC_raw_export()
+    DC_raw_export(DC_data)
     # Collapse data and remove problematic records
-    DC_accepted <<- DC_data_clean(DC_data)
+    DC_accepted <- DC_data_clean(DC_data)
     # Remove unused columns
-    DC_accepted <<- DC_data_subset(DC_accepted)
+    DC_accepted <- DC_data_subset(DC_accepted)
     # Remove probable cultivated specimens
-    DC_accepted <<- remove_cultivated_specimens(DC_accepted)
+    DC_accepted <- remove_cultivated_specimens(DC_accepted)
     # Reformat ID numbers
-    DC_accepted <<- institution_id_reformat(DC_accepted)
+    DC_accepted <- institution_id_reformat(DC_accepted)
     # Recode origin field
-    DC_accepted <<- occurrence_origin_reformat(DC_accepted)
+    DC_accepted <- occurrence_origin_reformat(DC_accepted)
     # Add columns with default values
-    DC_accepted <<- occurrence_standard_columns(DC_accepted)
+    DC_accepted <- occurrence_standard_columns(DC_accepted)
     # Rename columns to adhere to IUCN standards
-    DC_accepted <<- occurrence_column_rename(DC_accepted)
+    DC_accepted <- occurrence_column_rename(DC_accepted)
     # Reclassify columns as numeric
-    DC_accepted <<- occurrence_column_reclassify(DC_accepted)
+    DC_accepted <- occurrence_column_reclassify(DC_accepted)
     # Delete imprecise records
-    DC_accepted <<- precision_index(DC_accepted)
+    DC_accepted <- precision_index(DC_accepted)
     # Reformat basisOfRec column
-    DC_accepted <<- occurrence_basisOfRec(DC_accepted)
+    DC_accepted <- occurrence_basisOfRec(DC_accepted)
     # Rename columns associated with ID number
-    DC_accepted <<- occurrence_id_recode(DC_accepted)
+    DC_accepted <- occurrence_id_recode(DC_accepted)
     # Generate SOURCE column
-    DC_accepted <<- occurrence_generate_source(DC_accepted)
+    DC_accepted <- occurrence_generate_source(DC_accepted)
     # Reformat elevation field
-    DC_elevation <<- DC_elevation_create()
+    DC_elevation <- DC_elevation_create(DC_accepted)
     # Add columns which can't be populated from dataset
     DC_accepted$ISLAND <- ""
     DC_accepted$CITATION <- ""
@@ -68,17 +96,32 @@ DC_manual_upload_main <- function (){
                                   lapply(DC_accepted$BINOMIAL, species_extract), sep = " ")
     DC_accepted <<- DC_accepted
     # Remove unused columns
-    DC_point_data <- occurrence_column_remove(DC_accepted)
+    DC_point_data <<- occurrence_column_remove(DC_accepted)
     # rm(DC_data,pos=1)
     # rm(DC_accepted,pos=1)
     return(DC_point_data)
   } else {
       # If no matching records exist, remove DC_data
-    rm(DC_data, pos = ".GlobalEnv")
+    # rm(DC_data, pos = ".GlobalEnv")
     }
 }
 
 #### Dependent functions ####
+
+DC_unzipper <- function (a,y,x){
+  # Unzip files
+  unzip(y[x], exdir = "Back_end/Downloaded_Datasets/DarwinCore_files",
+        overwrite = TRUE)
+  # Read .csv file
+  single_dc_file <- data.frame(read.csv(
+    "Back_end/Downloaded_Datasets/DarwinCore_files/occurrences.csv",
+    fileEncoding = "latin1"
+  ))
+  # Append DC file to list of data frames for other DC files
+  DC_data <- c(a, list(single_dc_file))
+  return(DC_data)
+}
+
 
 # Parameters: 
 # Returns: 
@@ -86,62 +129,56 @@ DC_manual_upload_main <- function (){
 # Purpose: Unzips all raw DC files downloaded from Symbiota sources and compiles
 #          them into a single list of data frames.
 DC_unzip_all <- function () {
+  
   # Compile list of all zip files in specified folder
   zip_files <- list.files(path = "User_Inputs/DarwinCore_files/",
                           pattern = "*.zip",
                           full.names = TRUE)
-  if (length(zip_files)) {
+  
+  if (length(zip_files) > 0) {
     # Build empty list for DC files
     DC_data <- list()
     # For loop unzips files individually and appends them to a list of data frames
     for (i in 1:length(zip_files)) {
       # Unzip files
-      unzip(zip_files[i], exdir = "Back_end/Downloaded_Datasets/DarwinCore_files",
-            overwrite = TRUE)
-      # Read .csv file
-      single_dc_file <- data.frame(read.csv(
-        "Back_end/Downloaded_Datasets/DarwinCore_files/occurrences.csv"
-      ))
-      # Append DC file to list of data frames for other DC files
-      DC_data <- c(DC_data, list(single_dc_file))
+      try(DC_data <- DC_unzipper(DC_data,zip_files,i))
     }
     # Remove unzipped files
     do.call(file.remove, list(
       list.files("Back_end/Downloaded_Datasets/DarwinCore_files",
                  full.names = TRUE)
-    ))
+    )
+    )
     # Return files
     return(DC_data)
   }
 }
-
 # Parameters: 
 # Returns: 
 # Throws: none
 # Purpose: Loads .csv files downloaded from Symbiota sources and compiles
 #          them into a single list of data frames. If zip files were included earlier,
 #          .csv files will be appended to this list.
-DC_individual_file_load <- function (){
+DC_individual_file_load <- function (x){
   # Find all .csv files in specified path
   DC_csvs <- list.files(path = "User_Inputs/DarwinCore_files/",
              pattern = "*.csv",
              full.names = TRUE)
   # Build DC_data only if it does not yet exist
-  if (!exists("DC_data")){
+  if (!exists("DC_csv_data")){
     DC_data <- list()
   }
   # Check if .csv files exist
-  if (length(DC_data)>1){
+  if (length(DC_csvs)>1){
   # Load all .csv files
   DC_csv_tables <- lapply(DC_csvs, function (x){
     data.frame(read.csv(x))
   })
-  # Append .csv files into single table
-  DC_data <- c(DC_data, DC_csv_tables)
   # Return data
-  return(DC_data)
+  return(DC_csv_tables)
   }
 }
+
 
 # Parameters: DC_data, spec.list
 # Returns: DC_data
@@ -149,8 +186,6 @@ DC_individual_file_load <- function (){
 # Purpose: Searches the DC datasets for spec.list$Species and appends input
 #          species name as name of list elements
 DC_id_lookup <- function (x) {
-  # Check if DarwinCore files have been imported
-  if (exists("DC_data")) {
     # Extract all binomials from DC data
     DC_binoms_temp <-
       lapply(x, function (y) {
@@ -161,9 +196,8 @@ DC_id_lookup <- function (x) {
       spec.list$id[which(spec.list$Species %in% y)][1]
     })
     # Append ID numbers to DC dataset
-    names(DC_data) <- unlist(DC_ids_temp)
-  }
-  return(DC_data)
+    names(x) <- unlist(DC_ids_temp)
+  return(x)
 }
 
 # Parameters: DC_data
@@ -183,8 +217,8 @@ DC_data_collapse <- function (a){
 # Returns: Spec.list$DC_records
 # Throws: none
 # Purpose: Saves a list of which records include DarwinCore Data
-DC_record_list <- function (){
-  record_list <- unique(DC_data$internal_taxon_id)
+DC_record_list <- function (x){
+  record_list <- unique(x$internal_taxon_id)
   # Create column for 
   spec.list$DC_records <- FALSE
   # Flag taxa with DC data
@@ -196,8 +230,8 @@ DC_record_list <- function (){
 # Returns: DC_raw.csv
 # Throws: none
 # Purpose: Exports raw DC data with affiliated batch number
-DC_raw_export <- function (){
-  write.csv(DC_data, 
+DC_raw_export <- function (x){
+  write.csv(x, 
             file = paste("Outputs/DC_raw_data_batch_", 
                          default_vals$value[which(default_vals$var_name == "batch_no")],
                          ".csv", sep = ""))
@@ -249,24 +283,24 @@ DC_data_clean <- function (x){
   # Count records
   n_records <- nrow(x)
   # Remove records with no associated year
-  x <- x[which(!is.na(x$year)),]
+  clean.data <- x[which(!is.na(x$year)),]
   # Remove records with year which is not credible
-  x <- DC_data[which(x$year > 1750),]
-  x <- DC_data[which(x$year < format(Sys.time(), "%Y")),]
+  clean.data <- clean.data[which(clean.data$year > 1750),]
+  clean.data <- clean.data[which(clean.data$year < format(Sys.time(), "%Y")),]
   # Remove records with uncertainty over 5km
-  x <- x[which(x$coordinateUncertaintyInMeters<default_vals$value[
+  clean.data <- clean.data[which(clean.data$coordinateUncertaintyInMeters<default_vals$value[
     which(default_vals$var_name == "uncertainty_tolerance")]|
-                               is.na(DC_data$coordinateUncertaintyInMeters)),]
+                               is.na(clean.data$coordinateUncertaintyInMeters)),]
   # Remove records with no location data
-  x <- x[which(!is.na(x$decimalLatitude)),]
-  x <- x[which(!is.na(x$decimalLongitude)),]
+  clean.data <- clean.data[which(!is.na(clean.data$decimalLatitude)),]
+  clean.data <- clean.data[which(!is.na(clean.data$decimalLongitude)),]
   # Delete duplicates based on lat, long, and event year
-  x <- distinct(x, year,decimalLatitude,decimalLongitude, 
+  clean.data <- distinct(clean.data, year,decimalLatitude,decimalLongitude, 
                        .keep_all= TRUE)
   # Print fraction of records removed in this process
   print("Fraction of records removed:")
-  print(1-nrow(x)/n_records)
-  return(x)
+  print(1-nrow(clean.data)/n_records)
+  return(clean.data)
 }
 
 # Parameters: DC_accepted
@@ -274,24 +308,24 @@ DC_data_clean <- function (x){
 # Throws: none
 # Purpose: Interprets DC minimum and maximum elevations. Chooses one if only one exists,
 #          otherwise averages values that exist. 
-DC_elevation_create <- function () {
+DC_elevation_create <- function (x) {
   # Create elevation field from min and max fields
-  DC_accepted$elevation <-
+  x$elevation <-
     ifelse(
-      is.na(DC_accepted$minimumElevationInMeters),
+      is.na(x$minimumElevationInMeters),
       ifelse(
-        is.na(DC_accepted$maximumElevationInMeters),
+        is.na(x$maximumElevationInMeters),
         NA,
-        DC_accepted$maximumElevationInMeters
+        x$maximumElevationInMeters
       ),
       ifelse(
-        is.na(DC_accepted$maximumElevationInMeters),
-        as.numeric(DC_accepted$minimumElevationInMeters),
-        as.numeric(DC_accepted$minimumElevationInMeters) +
-          as.numeric(DC_accepted$maximumElevationInMeters) / 2
+        is.na(x$maximumElevationInMeters),
+        as.numeric(x$minimumElevationInMeters),
+        as.numeric(x$minimumElevationInMeters) +
+          as.numeric(x$maximumElevationInMeters) / 2
       )
     )
-  return(DC_accepted)
+  return(x)
 }
 
 

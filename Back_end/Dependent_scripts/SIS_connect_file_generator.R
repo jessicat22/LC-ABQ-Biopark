@@ -8,7 +8,7 @@
 #              for upload to SIS.
 
 #### Load packages ####
-packages <- c("tidyr","data.table","dplyr")
+packages <- c("tidyr","data.table","dplyr","reshape2")
 
 lapply(packages, package.check)
 
@@ -245,89 +245,102 @@ Extreme_occurrences_narrative <- function () {
 narrative_realm_search <- function  () {
   # Split long form data frame into list
   realms.long1 <- split(realm_results , f = realm_results$ID_NO)
-
-  # Generate prefix for each distribution field
-  dist.prefix <- lapply(realms.long1, function(x) {
-    if (all(c("NA", "NT", "IM", "AA", "AT", "PA") %in% x$realm)) {
-      # Global
-      data.frame(
-        internal_taxon_id = x$ID_NO,
-        dist_code = 1,
-        dist_prefix = paste(
-          "has a global distribution")
-      )
-    } else if (all(c("NA", "PA")  %in% x$realm)) {
-      data.frame(
-        internal_taxon_id = x$ID_NO,
-        dist_code = 2,
-        dist_prefix = paste("has a Holarctic distribution")
-      )
-    } else if (all(c("IM", "AT")  %in% x$realm)) {
-      data.frame(
-        internal_taxon_id = x$ID_NO,
-        dist_code = 3,
-        dist_prefix = paste("has a broad Paleotropical distribution")
-      )
-    } else if (all(c("NA", "NT")  %in% x$realm)) {
-      data.frame(
-        internal_taxon_id = x$ID_NO,
-        dist_code = 4,
-        dist_prefix = paste("has a Neotropical and Nearctic distribution")
-      )
-    } else if (x$realm == "NA") {
-      data.frame(
-        internal_taxon_id = x$ID_NO,
-        dist_code = 5,
-        dist_prefix = paste("has a broad Nearctic distribution")
-      )
-    } else if (x$realm == "NT") {
-      data.frame(
-        internal_taxon_id = x$ID_NO,
-        dist_code = 5,
-        dist_prefix = paste("has a broad Neotrpical distribution")
-      )
-    } else if (x$realm == "PA") {
-      data.frame(
-        internal_taxon_id = x$ID_NO,
-        dist_code = 6,
-        dist_prefix = "has a broad Palearctic distribution"
-      )
-    } else if (x$realm == "AT") {
-      data.frame(
-        internal_taxon_id = x$ID_NO,
-        dist_code = 7,
-        dist_prefix = "has a broad Afrotropical distribution"
-      )
-    } else if (x$realm == "IM") {
-      data.frame(
-        internal_taxon_id = x$ID_NO,
-        dist_code = 8,
-        dist_prefix = "has a broad Indomalayan distribution"
-      )
-    } else if (x$realm == "AA") {
-      data.frame(
-        internal_taxon_id = x$ID_NO,
-        dist_code = 9,
-        dist_prefix = "has a broad Australasian distribution"
-      )
-    } else if (x$realm == "OC") {
-      data.frame(
-        internal_taxon_id = x$ID_NO,
-        dist_code = 10,
-        dist_prefix = "has a broad Oceanic distribution"
-      )
-    } else {
-      data.frame(
-        internal_taxon_id = x$ID_NO,
-        dist_code = 11,
-        dist_prefix = "ERROR"
-      )
-    }
-  })
-  # Aggregate results
-  dist.prefix <- data.frame(bind_rows(dist.prefix))
-  # Remove duplicates
-  dist.prefix <- unique(dist.prefix)
+  # Build final table
+  dist.prefix <- data.frame(matrix(ncol = 3, nrow = nrow(realm_results)))
+  colnames(dist.prefix) <- c("internal_taxon_id",
+                             "dist_code",
+                             "dist_prefix")
+  # Populate internal id numbers
+  dist.prefix$internal_taxon_id <- as.numeric(realm_results$ID_NO)
+  # Order of following functions allows for more inclusive definitions
+  # to override more restricted ones.
+  
+  # Populate prefix for Oceanic distribution
+  dist.prefix$dist_code[which(unlist(
+    lapply(realms.long1, function(x) {x$realm == "OC"})))] <- 11
+  dist.prefix$dist_prefix[which(unlist(
+    lapply(realms.long1, function(x) {x$realm == "OC"})))] <- 
+    "has an Oceanic distribution"
+  
+  # Populate prefix for Australasian distribution
+  dist.prefix$dist_code[which(unlist(
+    lapply(realms.long1, function(x) {x$realm == "AA"})))] <- 10
+  dist.prefix$dist_prefix[which(unlist(
+    lapply(realms.long1, function(x) {x$realm == "AA"})))] <- 
+    "has an Australasian distribution"
+  
+  # Populate prefix for indomalayan distribution
+  dist.prefix$dist_code[which(unlist(
+    lapply(realms.long1, function(x) {x$realm == "IM"})))] <- 9
+  dist.prefix$dist_prefix[which(unlist(
+    lapply(realms.long1, function(x) {x$realm == "IM"})))] <- 
+    "has an Indomalayan distribution"
+  
+  # Populate prefix for afrotropical distribution
+  dist.prefix$dist_code[which(unlist(
+    lapply(realms.long1, function(x) {x$realm == "AT"})))] <- 8
+  dist.prefix$dist_prefix[which(unlist(
+    lapply(realms.long1, function(x) {x$realm == "AT"})))] <- 
+    "has an Afrotropical distribution"
+  
+  # Populate prefix for palearctic distribution
+  dist.prefix$dist_code[which(unlist(
+    lapply(realms.long1, function(x) {x$realm == "PA"})))] <- 7
+  dist.prefix$dist_prefix[which(unlist(
+    lapply(realms.long1, function(x) {x$realm == "PA"})))] <- 
+    "has a Palearctic distribution"
+  
+  # Populate prefix for neotropical distribution
+  dist.prefix$dist_code[which(unlist(
+    lapply(realms.long1, function(x) {x$realm == "NT"})))] <- 6
+  dist.prefix$dist_prefix[which(unlist(
+    lapply(realms.long1, function(x) {x$realm == "NT"})))] <- 
+    "has a Neotropical distribution"
+  
+  # Populate prefix for nearctic distribution
+  dist.prefix$dist_code[which(unlist(
+    lapply(realms.long1, function(x) {x$realm == "NA"})))] <- 5
+  dist.prefix$dist_prefix[which(unlist(
+    lapply(realms.long1, function(x) {x$realm == "NA"})))] <- 
+    "has a Nearctic distribution"
+  
+  # Populate prefix for neotropical + nearctic distribution
+  dist.prefix$dist_code[which(unlist(
+    lapply(realms.long1, function(x) {all(c("NA", "NT")
+                                          %in% x$realm)})))] <- 4
+  dist.prefix$dist_prefix[which(unlist(
+    lapply(realms.long1, function(x) {all(c("NA", "NT")
+                                          %in% x$realm)})))] <- 
+    "has a Neotropical and Nearctic distribution"
+  
+  
+  # Populate prefix for paleotropical distribution
+  dist.prefix$dist_code[which(unlist(
+    lapply(realms.long1, function(x) {all(c("IM", "AT")
+                                          %in% x$realm)})))] <- 3
+  dist.prefix$dist_prefix[which(unlist(
+    lapply(realms.long1, function(x) {all(c("IM", "AT")
+                                          %in% x$realm)})))] <- 
+    "has a Paleotropical distribution"
+  
+  # Populate prefix for holarctic distribution
+  dist.prefix$dist_code[which(unlist(
+    lapply(realms.long1, function(x) {all(c("NA","PA")
+                                          %in% x$realm)})))] <- 2
+  dist.prefix$dist_prefix[which(unlist(
+    lapply(realms.long1, function(x) {all(c("NA", "PA")
+                                          %in% x$realm)})))] <- 
+    "has a Holarctic distribution"
+  
+  # Populate prefix for global distribution
+  dist.prefix$dist_code[which(unlist(
+    lapply(realms.long1, function(x) {all(c("NA", "NT", "IM", "AA", "AT", "PA")
+                                          %in% x$realm)})))] <- 1
+  dist.prefix$dist_prefix[which(unlist(
+    lapply(realms.long1, function(x) {all(c("NA", "NT", "IM", "AA", "AT", "PA")
+                                          %in% x$realm)})))] <- 
+    "has a global distribution"
+  
   return(dist.prefix)
 }
 

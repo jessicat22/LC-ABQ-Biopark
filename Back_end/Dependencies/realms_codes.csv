@@ -1,0 +1,9 @@
+realm_code1,realm_code2,realm_narrative
+NA,5,has a Nearctic distribution
+NT,6,has a Neotropical distribution
+AT,7,has an Afrotropical distribution
+IM,8,has an Indomalayan distribution
+AA,9,has an Australasian distribution
+OC,10,has an Oceanic distribution
+PA,11,has a Palearctic distribution
+,12,ERROR

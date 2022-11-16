@@ -1,5 +1,5 @@
 #### LC Pipeline Main Script ####
-## Version 3.1.1
+## Version 3.1.3
 # Started: January 2021
 # Last worked on: 13 October 2021
 # Author: Clay Meredith
@@ -11,7 +11,7 @@
 rm(list = ls())
 
 # Assign version number
-version_no <- "3.1.2"
+version_no <- "3.1.3"
 
 # # Notes
 # 
@@ -39,8 +39,12 @@ source("Back_end/Dependent_scripts/Credentials_Prompt.R")
 source("Back_end/Dependent_scripts/species_input_load.R")
 
 # Subset rows for testing purposes
-# Comment out this line to run entire list
-spec.list <- spec.list[c(21:51),]
+# Comment out next five lines to run entire list
+spec.list <- spec.list[c(1:50),]
+
+# Remove rows which lack a species name
+if (length(which(is.na(spec.list$Species))) > 0){
+  spec.list <- spec.list[-which(is.na(spec.list$Species)),]}
 
 #### Initiate GBIF Search ####
 if(GBIF_toggle == "Y") {

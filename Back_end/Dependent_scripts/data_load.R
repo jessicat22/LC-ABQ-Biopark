@@ -77,6 +77,9 @@ DEPENDENCIES_load_defaults <- function () {
 # Purpose: Loads reference table from Dependencies folder. Creates
 #          template for references table output.
 DEPENDENCIES_load_table_keys <- function () {
+  # Load realms_codes.csv
+  realms.key <- data.frame(read.csv("Back_end/Dependencies/realms_codes.csv", 
+                                    na.strings = "NNN"))
   # Load references_template.csv
   ref.key <- data.frame(read.csv("Back_end/Dependencies/references_template.csv"))
   # Assign access date

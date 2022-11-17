@@ -349,19 +349,31 @@ narrative_realm_search <- function  () {
 # Throws: none
 # Purpose: Compose elevation narrative
 elevation_narrative <- function (){
-  if (exists("fna_elev_data")){
-  # Rename fna_elevation_data columns
-  names(fna_elev_data) <- c("internal_taxon_id","min_elev","max_elev")
-  # Build final elevation table
-  elevation_final <- fna_elev_data
-  # Add citation flag
-  elevation_final$source <- references$in_text[which(
-    references$author == "Flora of North America Editorial Committee" &
-    references$internal_taxon_id %in% elevation_final$internal_taxon_id )]
+  if (exists("fna_tax_check_final")){
 
+  # Build final elevation table
+  elevation_final <- fna_tax_check_final[,which(names(fna_tax_check_final) %in% 
+                                                 c("id","elev_min","elev_upper"))]
+  
+  # Rename fna_elevation_data columns
+  names(elevation_final) <- c("internal_taxon_id","min_elev","max_elev")
+  
+  # Add FNA citations
+  elevation_final <- merge(elevation_final, references[
+    which(references$author == "Flora of North America Editorial Committee"),
+    which(names(references) %in% c("internal_taxon_id","in_text"))])
+  # Rename columns to match GBIF table
+  names(elevation_final) <- c("internal_taxon_id","min_elev","max_elev","source")
+
+  # Remove rows without data
+  elevation_final <- elevation_final[which(!is.na(elevation_final$min_elev)),]
+  elevation_final <- elevation_final[which(elevation_final$min_elev != ""),]
+  # Assign GBIF source to table
   GBIF_elevation$source <- ref.key$in_text[which(ref.key$keywords=="GBIF")]
+  
   # Merge tables
   elevation_final <- rbind(elevation_final, GBIF_elevation)
+
   } else { # if no FNA table exists use only GBIF values
     elevation_final <- GBIF_elevation
     elevation_final$source <- ref.key$in_text[which(ref.key$keywords=="GBIF")]
@@ -421,7 +433,8 @@ ASSESSMENT_TABLE_BUILD <- function (x){
   dist_nar1 <- narrative_realm_search()
   dist_nar1 <- merge(dist_nar1, x)
 
-  dist_nar1 <- merge(dist_nar1, extreme_temp, by.x = "internal_taxon_id", by.y = "ID_NO")
+  dist_nar1 <- merge(dist_nar1, extreme_temp, 
+                     by.x = "internal_taxon_id", by.y = "ID_NO")
   
   dist_narrative <- merge(dist_citations,dist_nar1, by.x = "id", 
         by.y = "internal_taxon_id")
@@ -431,10 +444,10 @@ ASSESSMENT_TABLE_BUILD <- function (x){
                   common_name_final$internal_taxon_id[which(common_name_final$primary==TRUE)])]
   # Add Latin name if common name exists
   dist_narrative$common[which(!is.na(dist_narrative$common))] <- 
-    paste(dist_narrative$common[which(!is.na(dist_narrative$common))],
+    paste(dist_narrative$common[which(!is.na(dist_narrative$common))], " (",
           spec.list$Species[
             match(dist_narrative$id[which(!is.na(dist_narrative$common))], 
-                  spec.list$id)],
+                  spec.list$id)], ")",
           sep = "")
   
   # Use Latin name if common name does not exist
@@ -482,7 +495,11 @@ ASSESSMENT_TABLE_BUILD <- function (x){
             fna_tax_check_final$id[which(!is.na(fna_tax_check_final$accepted_match))])] <- 
     paste('The species occurs on "',
           fna_tax_check_final$habitat[which(!is.na(fna_tax_check_final$accepted_match))],
-'" ', fna_tax_check_final$in_text[which(!is.na(fna_tax_check_final$accepted_match))], sep = "")
+'" (', references$in_text[which(references$author == 
+                                  "Flora of North America Editorial Committee" &
+  references$internal_taxon_id %in% 
+    fna_tax_check_final$id[which(!is.na(fna_tax_check_final$accepted_match))])], ").",
+sep = "")
   }
   # Populate language field
   assessments$Language.value <- 

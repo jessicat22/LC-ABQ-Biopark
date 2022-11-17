@@ -40,7 +40,7 @@ source("Back_end/Dependent_scripts/species_input_load.R")
 
 # Subset rows for testing purposes
 # Comment out next five lines to run entire list
-spec.list <- spec.list[c(1:50),]
+# spec.list <- spec.list[c(1:50),]
 
 # Remove rows which lack a species name
 if (length(which(is.na(spec.list$Species))) > 0){

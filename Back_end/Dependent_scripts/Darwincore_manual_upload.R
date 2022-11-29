@@ -20,10 +20,10 @@ source("Back_end/Dependent_scripts/Occurrence_reformat.R")
 #### DC Main Funciton ####
 
 DC_manual_upload_main <- function (){
-
-    # Load data from .zip files
-  DC_zip_data <- DC_unzip_all()
   
+  if(length(list.files(path = "User_Inputs/DarwinCore_files/"))>0){
+  # Load data from .zip files
+  DC_zip_data <- DC_unzip_all()
   # Load data from .csv files
   DC_csv_data <- DC_individual_file_load()
 
@@ -103,7 +103,10 @@ DC_manual_upload_main <- function (){
   } else {
       # If no matching records exist, remove DC_data
     # rm(DC_data, pos = ".GlobalEnv")
-    }
+  }
+  } else {
+    print("No DarwinCore Data Found.")
+  }
 }
 
 #### Dependent functions ####

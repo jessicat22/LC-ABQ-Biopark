@@ -1,38 +1,41 @@
 Redlist_id,TaxonomicNotes.value,classname,family,genus,infraType,infra_authority,infra_name,internal_taxon_id,internal_taxon_name,kingdom,ordername,phylum,species,taxonomicAuthority
-19018621,,,,Ambrosia,,,,,Ambrosia confertiflora,,,,confertiflora,DC.
-126168241,,,,Lepidium,,,,,Lepidium densiflorum,,,,densiflorum,Schrad.
-126168408,,,,Lepidium,,,,,Lepidium lasiocarpum,,,,lasiocarpum,Nutt.
-176539,,,,Lepidium,,,,,Lepidium virginicum,,,,virginicum,L.
-126420669,,,,Cuscuta,,,,,Cuscuta indecora,,,,indecora,Choisy
-126421803,,,,Ipomoea,,,,,Ipomoea hederacea,,,,hederacea,Jacq.
-164042,,,,Juncus,,,,,Juncus bufonius,,,,bufonius,L.
-137582843,,,,Bromus,,,,,Bromus carinatus,,,,carinatus,Hook. & Arn.
-168634,,,,Veronica,,,,,Veronica peregrina,,,,peregrina,L.
-137690427,,,,Sporobolus,,,,,Sporobolus cryptandrus,,,,cryptandrus,(Torr.) A.Gray
-138236329,,,,Portulaca,,,,,Portulaca pilosa,,,,pilosa,L.
-138236594,,,,Portulaca,,,,,Portulaca umbraticola,,,,umbraticola,Kunth
-156771087,,,,Sapindus,,,,,Sapindus saponaria,,,,saponaria,L.
-164208,,,,Typha,,,,,Typha domingensis,,,,domingensis,Pers.
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,variety,,reticulata,,,,,,,
+169915,,,AMARANTHACEAE,Beta,,,,,Beta vulgaris,,,,vulgaris,L.
+172256,,,AMARYLLIDACEAE,Allium,,,,,Allium schoenoprasum,,,,schoenoprasum,L.
+172110,,,AMARYLLIDACEAE,Allium,,,,,Allium ursinum,,,,ursinum,L.
+202958,,,AMARYLLIDACEAE,Leucojum,,,,,Leucojum vernum,,,,vernum,L.
+193504,,,AMARYLLIDACEAE,Narcissus,,,,,Narcissus poeticus,,,,poeticus,L.
+165237,,,AMARYLLIDACEAE,Sternbergia,,,,,Sternbergia lutea,,,,lutea,(L.) Ker Gawl. ex Spreng.
+202959,,,ANACARDIACEAE,Cotinus,,,,,Cotinus coggygria,,,,coggygria,Scop.
+202960,,,ANACARDIACEAE,Pistacia,,,,,Pistacia lentiscus,,,,lentiscus,L.
+202922,,,APIACEAE,Ammi,,,,,Ammi majus,,,,majus,L.
+202923,,,APIACEAE,Ammi,,,,,Ammi visnaga,,,,visnaga,(L.) Lam.
+202926,,,APIACEAE,Angelica,,,,,Angelica archangelica,,,,archangelica,L.
+164203,,,APIACEAE,Apium,,,,,Apium graveolens,,,,graveolens,L.
+202943,,,APIACEAE,Bupleurum,,,,,Bupleurum falcatum,,,,falcatum,L.
+202947,,,APIACEAE,Carum,,,,,Carum carvi,,,,carvi,L.
+167932,,,APIACEAE,Cicuta,,,,,Cicuta virosa,,,,virosa,L.
+203487,,,APIACEAE,Crithmum,,,,,Crithmum maritimum,,,,maritimum,L.
+172210,,,APIACEAE,Daucus,,,,,Daucus carota,,,,carota,L.
+165413,,,APIACEAE,Eryngium,,,,,Eryngium maritimum,,,,maritimum,L.
+203488,,,APIACEAE,Eryngium,,,,,Eryngium planum,,,,planum,L.
+203489,,,APIACEAE,Foeniculum,,,,,Foeniculum vulgare,,,,vulgare,Mill.
+167934,,,APIACEAE,Oenanthe,,,,,Oenanthe aquatica,,,,aquatica,(L.) Poir.
+164500,,,APIACEAE,Oenanthe,,,,,Oenanthe crocata,,,,crocata,L.
+55741893,,,APIACEAE,Peucedanum,,,,,Peucedanum officinale,,,,officinale,L.
+55741987,,,APIACEAE,Sanicula,,,,,Sanicula europaea,,,,europaea,L.
+202961,,,APOCYNACEAE,Nerium,,,,,Nerium oleander,,,,oleander,L.
+202962,,,APOCYNACEAE,Vinca,,,,,Vinca minor,,,,minor,L.
+202963,,,AQUIFOLIACEAE,Ilex,,,,,Ilex aquifolium,,,,aquifolium,L.
+202964,,,ARALIACEAE,Hedera,,,,,Hedera helix,,,,helix,L.
+176377,,,ASPARAGACEAE,Asparagus,,,,,Asparagus officinalis,,,,officinalis,L.
+202965,,,ASPARAGACEAE,Convallaria,,,,,Convallaria majalis,,,,majalis,L.
+202953,,,ASPARAGACEAE,Drimia,,,,,Drimia maritima,,,,maritima,L. Stearn
+202966,,,ASPARAGACEAE,Polygonatum,,,,,Polygonatum odoratum,,,,odoratum,(Mill.) Druce
+162375,,,ASPARAGACEAE,Ruscus,,,,,Ruscus aculeatus,,,,aculeatus,L.
+202967,,,ASPARAGACEAE,Ruscus,,,,,Ruscus hypoglossum,,,,hypoglossum,L.
+202968,,,ASPARAGACEAE,Scilla,,,,,Scilla bifolia,,,,bifolia,L.
+202937,,,ASPLENIACEAE,Asplenium,,,,,Asplenium trichomanes,,,,trichomanes,L.
+202908,,,ASTERACEAE,Achillea,,,,,Achillea crithmifolia,,,,crithmifolia,Waldst. &amp; Kit.
+202909,,,ASTERACEAE,Achillea,,,,,Achillea millefolium,,,,millefolium,L.
+202910,,,ASTERACEAE,Achillea,,,,,Achillea ptarmica,,,,ptarmica,L.
+202924,,,ASTERACEAE,Anacyclus,,,,,Anacyclus pyrethrum,,,,pyrethrum,(L.) Lag.

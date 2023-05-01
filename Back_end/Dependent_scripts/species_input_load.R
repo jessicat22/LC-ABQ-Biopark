@@ -24,6 +24,11 @@ if(!is.na(match("taxonomy.csv", tolower(list.files("User_inputs/"))))){
     "User_Inputs/spec_list.csv"))
 }
 
+# Subset list
+if (exists('spec_max')){
+  spec.list <- spec.list[c(spec_min:spec_max),] 
+}
+
 # Remove no-break spaces
 spec.list$Species <- remove_no_breaks(spec.list$Species)
 # Convert species names to class character

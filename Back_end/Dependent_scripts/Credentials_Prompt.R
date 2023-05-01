@@ -48,8 +48,11 @@ PROMPT_credentials_main <- function(){
       }
     )
   } else {
-    GBIF_old_toggle <<- 
-      PROMPT_old_GBIF_toggle()
+    GBIF_old_toggle <<- "N"
+    # Overridden for public consumption. During testing, the same dataset can be
+    # run repeatedly using a single downloaded dataset by replacing the "N" above
+    # With the commented out function below
+      # PROMPT_old_GBIF_toggle()
   }
   
   # Run Red List API check only if user indicates they want to and no credentials are present
@@ -59,19 +62,24 @@ PROMPT_credentials_main <- function(){
       error = function(e) {RL_credentials()}
     )
   }
-  # Prompt to collect spatial data
-  spatial_collect_toggle <<- PROMPT_spatial_collect()
+  # Prompt to collect spatial data. Used for testing and validation. Can be restored by
+  # replacing "N" with commented out function below.
+  spatial_collect_toggle <<- "N"
+    
+  #   Uncomment out the section below to restore functionality.
+  # spatial_collect_toggle <<- PROMPT_spatial_collect()
   
   #### Prompt user for remaining details ####
   compiler_name <<- readline(prompt="Enter Compiler Name: ")
   
   inat <<- PROMPT_inat_toggle()
+  
+  if(PROMPT_species_subset() == "Y"){
+    PROMPT_species_minimum()
+    PROMPT_species_maximum()
+} else {print("Entire species list will be used for analysis.")}
 
 }
-
-
-
-
 
 #### Prompt user for GBIF credentials ####
 
@@ -146,7 +154,7 @@ PROMPT_GBIF_toggle <- function (){
                                    "N"
   ), 
   preselect = NULL, multiple = FALSE,
-  title = "Search GBIF databse (requires GBIF credentials and password)?",
+  title = "Search GBIF databse (requires GBIF credentials and password)? Input 1 or 2.",
   graphics = getOption("menu.graphics"))
   return(selected_action)
 }
@@ -185,6 +193,37 @@ PROMPT_inat_toggle <- function(){
   return(selected_action)
 }
 
+PROMPT_species_subset <- function(){
+  # Prompt user to select action
+  selected_action <- select.list(c("Y",
+                                   "N"
+  ), 
+  preselect = NULL, multiple = FALSE,
+  title = "Subset records list? The tool works best in batches of 20 species. 
+  If your taxonomy.csv file contains more species, consider selecting yes.",
+  graphics = getOption("menu.graphics"))
+  return(selected_action)
+}
+
+# Parameters: User input
+# Returns: var: spec_min
+# Throws: 
+# Purpose: Prompt user for minimum species list row
+PROMPT_species_minimum <- function (){
+  # Ask user if GBIF data is to be used
+  # Prompt user to input GBIF password (if statement ensures prompt only appears once)
+    spec_min <<- readline(prompt="Enter the minimum row number to be analyzed: ")
+}
+
+# Parameters: User input
+# Returns: var: spec_max
+# Throws: 
+# Purpose: Prompt user for minimum species list row
+PROMPT_species_maximum <- function (){
+  # Ask user if GBIF data is to be used
+  # Prompt user to input GBIF password (if statement ensures prompt only appears once)
+  spec_max <<- readline(prompt="Enter the maximum row number to be analyzed: ")
+}
 
 #### Execute script ####
 PROMPT_credentials_main()

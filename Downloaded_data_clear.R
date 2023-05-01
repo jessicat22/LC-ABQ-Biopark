@@ -37,3 +37,6 @@ files_to_remove <-
 
 # Remove files
 lapply(files_to_remove, remove_files)
+
+# Remove kerying password
+key_delete(gbif_pass)

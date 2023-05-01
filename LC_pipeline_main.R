@@ -1,7 +1,7 @@
 #### LC Pipeline Main Script ####
 ## Version 3.1.3
 # Started: January 2021
-# Last worked on: 13 October 2021
+# Last edited: 27 April 2023
 # Author: Clay Meredith
 # File: LC_pipeline_main.R
 # Description: Script runs dependent scripts to determine user parameters, load data,
@@ -11,14 +11,8 @@
 rm(list = ls())
 
 # Assign version number
-version_no <- "3.1.3"
+version_no <- "3.1.4"
 
-# # Notes
-# 
-# Run Appalachia species 1-30 again and check references table.
-# Previous run failed to generate citations due to issue with indexing
-# of VASCAN results (I think). Issue has been fixed, but it's unclear if
-# this error propagated to create issues with NS and POWO.
 
 #### Define working directory ####
 # This line only works when the file is sourced. It will not function as expected
@@ -38,19 +32,15 @@ source("Back_end/Dependent_scripts/Credentials_Prompt.R")
 #### Load Species List ####
 source("Back_end/Dependent_scripts/species_input_load.R")
 
-# Subset rows for testing purposes
-# Comment out next five lines to run entire list
-spec.list <- spec.list[c(1:20),]
-
 # Remove rows which lack a species name
 if (length(which(is.na(spec.list$Species))) > 0){
   spec.list <- spec.list[-which(is.na(spec.list$Species)),]}
 
 #### Initiate GBIF Search ####
 if(GBIF_toggle == "Y") {
-  # Run GBIF_search_initiate if 
+  # Run GBIF_search_initiate if
   source("Back_end/Dependent_scripts/GBIF_search_initiate.R")
-} else if (GBIF_old_toggle == "Y" & 
+} else if (GBIF_old_toggle == "Y" &
            file.exists("Back_end/Downloaded_Datasets/GBIF_key_result.csv")) {
   # Load previous key results
   GBIF_key_result <-
@@ -81,9 +71,9 @@ try(source("Back_end/Dependent_scripts/NS_data_retrieve.R"))
 try(source("Back_end/Dependent_scripts/FNA_Search_Script/FNA_query_functions.R"))
 
 # Run Red List search only if RL token is found
-if(nrow(spec.list)<100 && RL_toggle == "Y" && 
+if(nrow(spec.list)<100 && RL_toggle == "Y" &&
    !is.null(key_get("RL_api"))) {
-  source("Back_end/Dependent_scripts/RL_functions.R")} else 
+  source("Back_end/Dependent_scripts/RL_functions.R")} else
   {print("Red List API token not found.")
     print("Red List search will not be performed.")}
 
@@ -121,7 +111,7 @@ if(spatial_collect_toggle == "Y"){
 source("Back_end/Testing_scripts/spatial_variable_test.R")
 }
 
-# # Run European Mask
+# # # Run European Mask
 # source("Back_end/Dependent_scripts/Euro_mask_eoo_recalculate.R")
 
 # Table exports
@@ -129,9 +119,9 @@ source("Back_end/Dependent_scripts/SIS_connect_file_generator.R")
 
 #### Next Steps ####
 
-# # Define previous datasets which are no longer necessary
-# GBIF_deletions <- list.files("Downloaded_Datasets/", full.names = T)
-# # Remove GBIF_key_result.csv from deletion list
-# GBIF_deletions <- GBIF_deletions[which(str_sub(GBIF_deletions, start = -4) != ".csv")]
-# # Delete previous datasets
-# unlink(GBIF_deletions, force = TRUE, recursive = TRUE)
+# Define previous datasets which are no longer necessary
+GBIF_deletions <- list.files("Downloaded_Datasets/", full.names = T)
+# Remove GBIF_key_result.csv from deletion list
+GBIF_deletions <- GBIF_deletions[which(str_sub(GBIF_deletions, start = -4) != ".csv")]
+# Delete previous datasets
+unlink(GBIF_deletions, force = TRUE, recursive = TRUE)

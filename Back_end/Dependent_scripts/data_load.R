@@ -163,7 +163,7 @@ LOAD_REALMS <- function () {
 LOAD_HOTSPOTS <- function () {
   if (!exists('hotspots')) {
     # Check if files exist
-    if (!file.exists("Back_end/Dependencies/Geospatial_data/hotspot")) {
+    if (!file.exists("Back_end/Dependencies/Geospatial_data/hotspot/hotspots_2016_1.shp")) {
       print("Downloading biodiversity hotspot shapefiles")
       ## Download WGSRPD Dataset
       

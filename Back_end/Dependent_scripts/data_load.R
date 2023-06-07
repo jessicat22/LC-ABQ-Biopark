@@ -1,7 +1,7 @@
 #### Data Import ####
 ## Version 3.1
   # Started: 8 April 2021
-  # Last worked on: 30 June 2021
+  # Last worked on: 7 June 2023
 # Author: Clay Meredith
 # File: Dependent_scripts/data_load.R
 # Description: Loads data tables from package file structure including
@@ -139,7 +139,7 @@ LOAD_WGSRPD <- function () {
 LOAD_REALMS <- function () {
   if (!exists('realms')) {
     # Check if files exist
-    if (!file.exists("Back_end/Dependencies/Geospatial_data/realm")) {
+    if (!file.exists("Back_end/Dependencies/Geospatial_data/realm/official")) {
       print("Downloading Biogeographic realms shapefiles")
       ## Download WGSRPD Dataset
       download("https://c402277.ssl.cf1.rackcdn.com/publications/15/files/original/official_teow.zip?1349272619",

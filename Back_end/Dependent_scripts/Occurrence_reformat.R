@@ -58,31 +58,32 @@ occurrence_standard_columns <- function (x) {
   
   # Generate and populate SUBSPECIES column
   x$SUBSPECIES <- ifelse(x$taxonRank ==
-                           "SUBSPECIES", x$infraspecificEpithet,NA)
+                           "SUBSPECIES", x$infraspecificEpithet,"")
   
   # Generate SUBPOP and fill with variety details if applicable
   x$SUBPOP <- ifelse(x$taxonRank == "VARIETY",
-                     paste0("var. ", x$infraspecificEpithet),NA)
+                     paste0("var. ", x$infraspecificEpithet),"")
   
   # Generate DATA_SENS column and populate with specified value
   x$DATA_SENS <- default_vals$value[which(default_vals$var_name==
                                             "sens")]
   
   # Generate SENS_COMM and populate with specified value
-  x$SENS_COMM <- NA
+  x$SENS_COMM <- ""
   
   # Generate DIST_COMM field
-  x$DIST_COMM <- NA
+  x$DIST_COMM <- ""
   
   # Generate ISLAND field
   x$ISLAND <- x$island
+  x$ISLAND[which(is.na(x$ISLAND))] <- ""
   
   # Generate PRESENE column
   x$PRESENCE <- default_vals$value[which(default_vals$var_name==
                                            "presence_code")]
   
   # Generate TAX_COMM field
-  x$TAX_COMM <- NA
+  x$TAX_COMM <- ""
   
   # Generate SPATIALREF column
   if ("geodeticDatum" %in% names(x)) {
@@ -102,8 +103,10 @@ institution_id_reformat <- function (x){
   # Pass otherCatalogNumber field to catalogNumber field if the latter does not exist
   x$catalogNumber[which(is.na(x$catalogNumber)|
                                     x$catalogNumber == "")] <- 
+    
     x$otherCatalogNumbers[which(is.na(x$catalogNumber)|
                                             x$catalogNumber == "")]
+  
   # Convert Institution and Catalog Number fields to character
   x$institutionCode <- as.character(x$institutionCode)
   x$catalogNumber <- as.character(x$catalogNumber)
@@ -113,11 +116,16 @@ institution_id_reformat <- function (x){
   # catalog number only if it is not already present.)
   x$catalogNumber[x$catalogNumber %in% c(""," ")] <- NA
   x$institutionCode[x$institutionCode %in% c(""," ")] <- NA
+  
   x$CATALOG_NO <- ifelse(!str_detect(x$catalogNumber,
                                                x$institutionCode),
                                    paste0(x$institutionCode, " ",
                                           x$catalogNumber),
                                    x$catalogNumber)
+  # Remove NA Values
+  x$CATALOG_NO[which(is.na(x$CATALOG_NO))] <- ""
+  # Remove spaces
+  x$CATALOG_NO[which(x$CATALOG_NO == " ")] <- ""
   return(x)
 }
 
@@ -251,12 +259,9 @@ occurrence_id_recode <- function(x){
 # Throws: none
 # Purpose: Builds SOURCE column by stripping text from recordNumber then
 #          combining recordedBy with recordNumber.
-occurrence_generate_source <- function (x) {
-  # Strip non-numeric characters from recordNumber column
-  x$recordNumber <- gsub("[^0-9]", "", x$recordNumber)
+occurrence_generate_source <- function (x,y) {
   # Build source column from recordedBy and recordNumber
-  x$SOURCE <- paste(x$recordedBy, 
-                                 x$recordNumber, sep = " ")
+  x$SOURCE <- paste(y)
   return(x)
 }
 
@@ -266,7 +271,7 @@ occurrence_generate_source <- function (x) {
 # Purpose: Remove unused columns and generate final table (GBIF_points)
 #          Finally, reorders columns.
 occurrence_column_remove <- function (x){
-  x$CITATION <- NA
+  x$CITATION <- ""
   # Define names of columns to keep
   column_keeps <- c("ID_NO", "BINOMIAL", "PRESENCE", "ORIGIN", "SEASONAL",
                          "COMPILER","YEAR", "CITATION", "DEC_LAT", "DEC_LONG", 

@@ -6,7 +6,7 @@ pop.data.qual,Unknown,Default value added to allfields table for population data
 aoo.just,AOO was calculated based on publicly available point data from GBIF . The reported upper value is calculated based on the number of 2 km x 2 km grid cells occupied by points occurring within WGSRPD regions where the species is confirmed to be native. The lower value is derived from the same data with the 10% of points furthest from the species' centroid removed. Both figures should be considered underestimates given incomplete sampling of the species.,Default narrative for AOO justification field.,Any user-defined text.
 eoo.just,"EOO calculated based on GBIF.org (2020) occurrence records trimmed to include only the species' native range as defined by Plants of the World Online, NatureServe, and VASCAN. The lower value is derived from the same data with the 10% of points furthest from the species' centroid removed.",Default narrative for EOO justification field.,Any user-defined text.
 del_year,TRUE,Toggle to instruct script to delete point records which lack a year.,"TRUE, FALSE"
-sens,FALSE,Default value for data sensitive field in point occurrences.,"TRUE, FALSE"
+sens,0,Default value for data sensitive field in point occurrences.,"0, 1"
 inat,TRUE,Default value for including iNaturalist observations derived from GBIF (not currently used since it is asked directly).,"TRUE, FALSE"
 nothreats,TRUE,Default value for nothreats field in allfields table (defaults to TRUE at the request of Craig Hilton-Taylor).,"TRUE, FALSE"
 threats.unknown,FALSE,Default value for threatsUnknown field in allfields table (defaults to FALSE at the request of Craig Hilton-Taylor).,"TRUE, FALSE"

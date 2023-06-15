@@ -85,7 +85,7 @@ DC_manual_upload_main <- function (){
     # Rename columns associated with ID number
     DC_accepted <- occurrence_id_recode(DC_accepted)
     # Generate SOURCE column
-    DC_accepted <- occurrence_generate_source(DC_accepted)
+    DC_accepted <- occurrence_generate_source(DC_accepted, paste("Darwincore Upload"))
     # Reformat elevation field
     DC_elevation <- DC_elevation_create(DC_accepted)
     # Add columns which can't be populated from dataset

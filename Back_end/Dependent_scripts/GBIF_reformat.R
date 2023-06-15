@@ -44,7 +44,7 @@ GBIF_manipulate_main <- function (){
   # Rename columns associated with ID number
   GBIF_accepted <- occurrence_id_recode(GBIF_accepted)
   # Generate SOURCE column
-  GBIF_accepted <- occurrence_generate_source(GBIF_accepted)
+  GBIF_accepted <- occurrence_generate_source(GBIF_accepted, paste("GBIF.org ", format(Sys.time(), "%Y")))
   # Generate BINOMIAL column
   GBIF_accepted <- GBIF_generate_binomial(GBIF_accepted)
   # # Remove extra columns and generate final table

@@ -15,8 +15,8 @@
 # then loads packages
 package.check <- function(x) {
   if (!require(x, character.only = TRUE)) {
-    install.packages(x, dependencies = TRUE)
-    library(x, character.only = TRUE)
+    install.packages(x, dependencies = TRUE, verbose = FALSE, quiet = TRUE)
+    library(x, character.only = TRUE, quietly = TRUE)
   }
 }
 

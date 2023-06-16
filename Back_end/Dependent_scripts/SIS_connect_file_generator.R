@@ -19,15 +19,15 @@ lapply(packages, package.check)
 # Purpose: 
 SIS_table_generator_main <- function (){
   # # Export synonyms from NS and POWO
-  # synonyms_table <- data.frame(synonym_export())
-  # synonyms_table <- unnest(synonyms_table, cols = c(speciesName, infraType, infrarankName))
-  # # Remove species field (necessary due to error in SIS Connect which is unlikely to be fixed)
-  # synonyms_table$speciesName <- ""
-  # write.csv(synonyms_table, 
-  #           paste("Outputs/Synonyms_batch_", 
-  #                 default_vals$value[which(default_vals$var_name == "batch_no")],
-  #                 ".csv", sep = ""),
-  #           row.names = FALSE)
+  synonyms_table <- data.frame(synonym_export())
+  synonyms_table <- unnest(synonyms_table, cols = c(speciesName, infraType, infrarankName))
+  # Remove species field (necessary due to error in SIS Connect which is unlikely to be fixed)
+  synonyms_table$speciesName <- ""
+  write.csv(synonyms_table,
+            paste("Outputs/Synonyms_batch_",
+                  default_vals$value[which(default_vals$var_name == "batch_no")],
+                  ".csv", sep = ""),
+            row.names = FALSE)
 
   # Export common names from ITIS, NS, and VC
   common_name_final <- commonname_reformat()
@@ -202,9 +202,9 @@ commonname_reformat <- function (){
   # Sort common names by primary column
   commonnames <- commonnames[order(-commonnames$primary),]
   # Remove duplicates
-  commonnames <- unique(commonnames)
+  commonnames <- commonnames[which(!duplicated(commonnames[,c(1:3)])),]
   # Remove rows with NA (typically introduced by ITIS)
-  commonnames <- commonnames[-which(is.na(commonnames$name)),]
+  commonnames <- commonnames[which(!is.na(commonnames$name)),]
   # Convert case of names
   commonnames$name <- lapply(commonnames$name, simpleCap)
   return(commonnames)

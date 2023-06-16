@@ -304,14 +304,14 @@ elevation_extract <- function (x){
   # Extract minimum elevation
   min_elev <- lapply(elev_temp, 
                           function (x){
-                            min(x$elevation, na.rm = TRUE)
+                            min(as.numeric(x$elevation), na.rm = TRUE)
                           })
   min_elev <- stack(min_elev)
   names(min_elev) <- c("min_elev","internal_taxon_id")
   # Extract maximum elevation
   max_elev <- lapply(elev_temp, 
                           function (x){
-                            max(x$elevation, na.rm = TRUE)
+                            max(as.numeric(x$elevation), na.rm = TRUE)
                           })
   max_elev <- stack(max_elev)
   names(max_elev) <- c("max_elev","internal_taxon_id")

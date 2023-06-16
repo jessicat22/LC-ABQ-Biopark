@@ -180,7 +180,7 @@ LOAD_HOTSPOTS <- function () {
     }
     # Load data into environment
     hotspots <<-
-      st_as_sf(readOGR(dsn = "Back_end/Dependencies/Geospatial_data/hotspot"))
+      st_as_sf(readOGR(dsn = "Back_end/Dependencies/Geospatial_data/hotspot", verbose = FALSE))
   }
   
 }

@@ -7,6 +7,8 @@
 # Description: Handler for species inputs. Parses type based on title and
 #              loads data into spec.list
 
+print("Loading species list.")
+
 # If taxonom.csv file exists, assign it to spec.list
 if(!is.na(match("taxonomy.csv", tolower(list.files("User_inputs/"))))){
   spec.list <- data.frame(read.csv(

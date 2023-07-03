@@ -14,6 +14,7 @@ lapply(packages, package.check)
 
 #### Main function ####
 GBIF_search_main <- function (){
+  print("Initiating GBIF search.")
   # Prepare GBIF queries
   GBIF_qprep()
   # Generate pred fields and initiates search

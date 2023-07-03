@@ -15,6 +15,7 @@ library(plyr)
 
 #### Compiled Search Function ####
 fna_search_main <- function (){
+  print("Executing Flora of North America search.")
   # Build query list and output table
   fna_tax_check <<- fna_query_build(spec.list$id, spec.list$Species)
   
@@ -281,7 +282,7 @@ fna_subtaxa_merge <- function(){
     fna_tax_check <<- fna_tax_check
     # Bind subtaxa to taxa
     fna_tax_check <<- rbind.fill(fna_tax_check,fna_sub_res)
-    print(fna_tax_check)
+    # print(fna_tax_check)
     # # Add temp index column
     # fna_tax_check$temp_id <<- c(1:nrow(fna_tax_check))
     # Define number of subtaxa as 0 for subtaxa

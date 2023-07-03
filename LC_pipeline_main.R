@@ -1,7 +1,7 @@
 #### LC Pipeline Main Script ####
-## Version 3.1.3
+## Version 3.1.4
 # Started: January 2021
-# Last edited: 27 April 2023
+# Last edited: 26 June 2023
 # Author: Clay Meredith
 # File: LC_pipeline_main.R
 # Description: Script runs dependent scripts to determine user parameters, load data,
@@ -26,11 +26,11 @@ if (!exists("current.dir")){
 # Load base functions
 source("Back_end/Dependent_scripts/base_functions.R")
 
-#### Prompt for user credentials ####
-source("Back_end/Dependent_scripts/Credentials_Prompt.R")
-
 #### Load Species List ####
 source("Back_end/Dependent_scripts/species_input_load.R")
+
+#### Prompt for user credentials ####
+source("Back_end/Dependent_scripts/Credentials_Prompt.R")
 
 # Remove rows which lack a species name
 if (length(which(is.na(spec.list$Species))) > 0){

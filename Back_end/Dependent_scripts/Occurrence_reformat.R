@@ -292,13 +292,14 @@ occurrence_column_remove <- function (x){
 # Throws: none
 # Purpose: Extracts elevation min and max for each species
 elevation_extract <- function (x){
-  # Remove unreasonable elevations
+  # Remove missing elevations
   elev_temp <- x[which(!is.na(x$elevation)),]
+  # Reclassify elevation as numeric
+  elev_temp$elevation <- as.numeric(elev_temp$elevation)
   # Elevations below the Dead Sea (-430.5 m) removed
   # Elevations above Everest (8849 m) removed
   elev_temp <- elev_temp[which(elev_temp$elevation>-430.5 &
                                            elev_temp$elevation<8849),]
-  foo <<- elev_temp
   # Divide into list of tables
   elev_temp <- split(elev_temp, f = elev_temp$ID_NO)
   # Extract minimum elevation

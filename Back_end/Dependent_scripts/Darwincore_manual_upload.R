@@ -20,10 +20,13 @@ source("Back_end/Dependent_scripts/Occurrence_reformat.R")
 #### DC Main Funciton ####
 
 DC_manual_upload_main <- function (){
-  
+
   if(length(list.files(path = "User_Inputs/DarwinCore_files/"))>0){
+    print("Uploading DarwinCore data.")
   # Load data from .zip files
   DC_zip_data <- DC_unzip_all()
+  
+  
   # Load data from .csv files
   DC_csv_data <- DC_individual_file_load()
 
@@ -146,12 +149,28 @@ DC_unzip_all <- function () {
       # Unzip files
       try(DC_data <- DC_unzipper(DC_data,zip_files,i))
     }
-    # Remove unzipped files
-    do.call(file.remove, list(
-      list.files("Back_end/Downloaded_Datasets/DarwinCore_files",
-                 full.names = TRUE)
+
+    # Remove all unzipped files
+    lapply(as.list(
+              list.files("Back_end/Downloaded_Datasets/DarwinCore_files",
+                         full.names = TRUE,
+                         recursive = TRUE)
+            ),
+           function (x){
+             unlink(x, recursive = TRUE, force = TRUE)
+           }
     )
+
+    lapply(as.list(
+      list.dirs("Back_end/Downloaded_Datasets/DarwinCore_files",
+                 full.names = TRUE,
+                 recursive = FALSE)
+    ),
+    function (x){
+      unlink(x, recursive = TRUE, force = TRUE)
+    }
     )
+    
     # Return files
     return(DC_data)
   }
@@ -165,7 +184,7 @@ DC_unzip_all <- function () {
 DC_individual_file_load <- function (x){
   # Find all .csv files in specified path
   DC_csvs <- list.files(path = "User_Inputs/DarwinCore_files/",
-             pattern = "*.csv",
+             pattern = "occurrences.csv",
              full.names = TRUE)
   # Build DC_data only if it does not yet exist
   if (!exists("DC_csv_data")){

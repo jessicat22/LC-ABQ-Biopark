@@ -24,6 +24,7 @@ package.check <- function(x) {
 packages <- c("stringr")
 
 lapply(packages, package.check)
+print("Loading base functions.")
 
 # Parameters: list
 # Returns: list (logical)

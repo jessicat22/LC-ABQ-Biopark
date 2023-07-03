@@ -23,8 +23,10 @@ GBIF_download_main <- function () {
   # Check GBIF_toggle
   if (GBIF_toggle == "Y") {
     # Wait for GBIF to compile data for download
+    print("Waiting for GBIF to compile.")
     gbif.out1 <- occ_download_wait(gbif.out)
     # Download data
+    print("Downloading GBIF data.")
     GBIF_download()
   } else if (GBIF_old_toggle == "Y"){
     # Rederine GBIF_key_results

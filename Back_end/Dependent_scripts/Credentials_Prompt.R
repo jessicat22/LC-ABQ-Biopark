@@ -77,6 +77,7 @@ PROMPT_credentials_main <- function(){
   if(PROMPT_species_subset() == "Y"){
     PROMPT_species_minimum()
     PROMPT_species_maximum()
+    spec.list <<- spec.list[c(spec_min:spec_max),]
 } else {print("Entire species list will be used for analysis.")}
 
 }
@@ -199,8 +200,9 @@ PROMPT_species_subset <- function(){
                                    "N"
   ), 
   preselect = NULL, multiple = FALSE,
-  title = "Subset records list? The tool works best in batches of 20 species. 
-  If your taxonomy.csv file contains more species, consider selecting yes.",
+  title = paste("Your data contains", nrow(spec.list),"species. If your",
+                "taxonomy.csv file contains more than 20 species, consider",
+                "selecting yes. Subset records list?"),
   graphics = getOption("menu.graphics"))
   return(selected_action)
 }

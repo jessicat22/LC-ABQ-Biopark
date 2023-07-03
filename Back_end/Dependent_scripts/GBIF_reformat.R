@@ -12,6 +12,7 @@ source("Back_end/Dependent_scripts/Occurrence_reformat.R")
 
 #### GBIF Main Funciton ####
 GBIF_manipulate_main <- function (){
+  print("Reformatting GBIF data.")
   # # Subset data
   # GBIF_sample()
   # Remove unused columns

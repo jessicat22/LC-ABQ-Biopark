@@ -18,6 +18,7 @@ lapply(packages, package.check)
 # Throws: 
 # Purpose: 
 SIS_table_generator_main <- function (){
+  print("Exporting tables.")
   # # Export synonyms from NS and POWO
   synonyms_table <- data.frame(synonym_export())
   synonyms_table <- unnest(synonyms_table, cols = c(speciesName, infraType, infrarankName))

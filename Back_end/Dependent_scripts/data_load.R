@@ -19,6 +19,7 @@ lapply(packages, package.check)
 
 #### Main function ####
 DEPENDENCIES_main <- function () {
+  print("Loading dependent data.")
   # Load default values table
   DEPENDENCIES_load_defaults()
   # load reference key and create references table

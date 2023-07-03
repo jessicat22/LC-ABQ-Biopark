@@ -282,6 +282,20 @@ NS_primary_comm_extract <- function (x) {
              primary = rep(TRUE))
 }
 
+NS_primary_comm_extract <- function (x) {
+  if(!is.null(x$primaryCommonName)){
+    data.frame(name=
+                 x$primaryCommonName,
+               language = x$primaryCommonNameLanguage,
+               primary = rep(TRUE))
+  } else {
+    data.frame()
+  }
+}
+
+
+
+
 # Parameters: NS_data_raw (list of tables), NS_other_common_extract (function),
 #             NS_primary_comm_extract (function), 
 # Returns: NS_common_names (table)

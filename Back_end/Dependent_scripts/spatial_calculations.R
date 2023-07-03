@@ -15,7 +15,6 @@
 
 #### Load packages ####
 packages <- c("sf","lwgeom","red","rgeos","geosphere")
-
 lapply(packages, package.check)
 # library(sf)     # Spatial calculations
 # library(lwgeom) # EOO minimum convex polygon calculation

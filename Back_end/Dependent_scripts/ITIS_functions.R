@@ -21,7 +21,7 @@ lapply(packages, package.check)
 # Purpose: Executes ITIS taxonomy search. Reformats results. 
 #          Returns ITIS_data (table)
 ITIS_main <- function() {
-  print("Initiating ITIS search.")
+  print("Executing ITIS search.")
   # Search species names for exact matches
   ITIS_raw <<- itis_terms(spec.list$Species)
   # Reformat results

@@ -16,25 +16,25 @@ lapply(packages, package.check)
 
 #### Main Function ####
 POW_data_main <- function(){
-    print("Executing Kew POWO Search")
+    print("Retrieving Kew POWO data.")
   # Execute POWO search
-  POW_data <<- lapply(POW_taxonomy$fqId,POW_data_query_catch)
+  POW_data <- lapply(POW_taxonomy$fqId,POW_data_query_catch)
   # Rename list elements with internal id
   names(POW_data) <<- POW_taxonomy$id
   # Extract native occurrence data
   # Reformat native occurrence data
-  POW_native_occ_reformat()
+  POW_native <- POW_native_occ_reformat()
   # Extract introduced occurrence data
   # Reformat introduced occurrence data
-  POW_introduced_occ_reformat()
+  POW_introduced <- POW_introduced_occ_reformat()
   # Extract and reformat extinct occurrences
-  POW_extinct_occ_reformat()
+  POW_extinct <- POW_extinct_occ_reformat()
   # Merge occurrence tables
-  POW_occurrence_merge()
+  POW_occurrence <- POW_occurrence_merge()
   # Extract and compile synonyms
-  POW_syn_compile()
+  POW_synonyms <- POW_syn_compile()
   # Reformat Synonyms Table
-  POW_synonyms_reformat()
+  POW_synonyms <<- POW_synonyms_reformat()
   # Remove working tables for occurrence and synonyms
   POW_remove_unused()
   # Recode occurrence records
@@ -86,9 +86,12 @@ POW_native_occ_extract <- function(x)
 # Purpose: Execute POW native occurrence search and reformat into single table
 POW_native_occ_reformat <- function (){
   # Execute search
-  POW_native <- lapply(POW_data,POW_native_occ_extract)
+  POW_native_temp <- lapply(POW_data,POW_native_occ_extract)
   # Convert to single data frame
-  POW_native <<- bind_rows(POW_native[which(!is.na(POW_native))], .id = "id")
+  POW_native_temp <- bind_rows(
+    POW_native_temp[which(!is.na(POW_native_temp))], 
+                               .id = "id")
+  return(POW_native_temp)
 }
 
 # Parameters: POW_data
@@ -123,9 +126,12 @@ POW_introduced_occ_extract <- function(x) {
 # Purpose: Execute POW native occurrence search and reformat into single table
 POW_introduced_occ_reformat <- function (){
   # Execute search
-  POW_introduced <- lapply(POW_data,POW_introduced_occ_extract)
+  POW_introduced_temp <- lapply(POW_data,POW_introduced_occ_extract)
   # Convert to single data frame
-  POW_introduced <<- bind_rows(POW_introduced[which(!is.na(POW_introduced))], .id = "id")
+  POW_introduced_temp <- bind_rows(POW_introduced_temp[
+    which(!is.na(POW_introduced_temp))], 
+    .id = "id")
+  return(POW_introduced_temp)
 }
 
 # Parameters: POW_data
@@ -160,9 +166,11 @@ POW_extinct_occ_extract <- function(x) {
 # Purpose: Execute POW extinct occurrence search and reformat into single table
 POW_extinct_occ_reformat <- function (){
   # Execute search
-  POW_extinct <- lapply(POW_data,POW_extinct_occ_extract)
+  POW_extinct_temp <- lapply(POW_data,POW_extinct_occ_extract)
   # Convert to single data frame
-  POW_extinct <<- bind_rows(POW_extinct[which(!is.na(POW_extinct))], .id = "id")
+  POW_extinct_temp <- bind_rows(
+    POW_extinct_temp[which(!is.na(POW_extinct_temp))], .id = "id")
+  return(POW_extinct_temp)
 }
 
 # Parameters: POW_extinct, POW_introduced, POW_native 
@@ -173,18 +181,18 @@ POW_occurrence_merge <- function (){
   
   if (exists("POW_native") && exists("POW_introduced")){
     # If both native and introduced exist, merge to create occurrence table
-    POW_occurrence <- rbind(POW_native, POW_introduced)
+    POW_occurrence_temp <- rbind(POW_native, POW_introduced)
   } else {
     # Else pass only native table to final occurrence
-    POW_occurrence <- POW_native}
+    POW_occurrence_temp <- POW_native}
   if (exists("POW_extinct")){
     # Merge extinct occurrences if table exists
-    POW_occurrence <<- rbind(POW_occurrence, POW_extinct)
+    POW_occurrence_temp <- rbind(POW_occurrence_temp, POW_extinct)
   }
-  names(POW_occurrence) <<- c("id","CountryOccurrenceLookup",
+  names(POW_occurrence_temp) <- c("id","CountryOccurrenceLookup",
                               "CountryOccurrenceName","ORIGIN","PRESENCE",
                               "SEASONALITY")
-  
+  return(POW_occurrence_temp)
 }
 
 # Parameters: POW_data 
@@ -213,14 +221,16 @@ POW_syn_extract <- function(x) {
 # Purpose: Execute synonym extract and compile into single table
 POW_syn_compile <- function (){
   # Execute synonym extract
-  POW_synonyms <- lapply(POW_data, POW_syn_extract)
+  POW_synonyms_temp <- lapply(POW_data, POW_syn_extract)
   # Remove unused list elements
-  if (length(-which(is.na(POW_synonyms)))>0){
-    POW_synonyms <- 
-    POW_synonyms[-which(is.na(POW_synonyms))]
+  if (length(-which(is.na(POW_synonyms_temp)))>0){
+    POW_synonyms_temp <- 
+    POW_synonyms_temp[-which(is.na(POW_synonyms_temp))]
   }
   # Collapse synonyms to single dataframe
-  POW_synonyms <<- data.frame(bind_rows(POW_synonyms, .id = "internal_taxon_id"))
+  POW_synonyms_temp <- data.frame(bind_rows(POW_synonyms_temp,
+                                            .id = "internal_taxon_id"))
+  return(POW_synonyms_temp)
 }
 
 # Parameters: POW_synonyms
@@ -296,7 +306,7 @@ POW_synonyms_reformat <- function () {
   POW_synonyms <- POW_synonyms[,c("internal_taxon_id","name","speciesAuthor","speciesName",
                   "infraType", "infrarankName", "infrarankAuthor")]
   # Set table as global variable
-  POW_synonyms <<- POW_synonyms
+  return(POW_synonyms)
 }
 
 # Parameters: POW_data, POW_extinct, POW_introduced, POW_native 

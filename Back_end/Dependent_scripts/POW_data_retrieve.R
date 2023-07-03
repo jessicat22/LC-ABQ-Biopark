@@ -20,27 +20,41 @@ POW_data_main <- function(){
   # Execute POWO search
   POW_data <- lapply(POW_taxonomy$fqId,POW_data_query_catch)
   # Rename list elements with internal id
-  names(POW_data) <<- POW_taxonomy$id
+  names(POW_data) <- POW_taxonomy$id
+  # Set POW_data as global variable
+  POW_data <<- POW_data
   # Extract native occurrence data
   # Reformat native occurrence data
   POW_native <- POW_native_occ_reformat()
-  # Extract introduced occurrence data
+    # Extract introduced occurrence data
   # Reformat introduced occurrence data
   POW_introduced <- POW_introduced_occ_reformat()
   # Extract and reformat extinct occurrences
   POW_extinct <- POW_extinct_occ_reformat()
   # Merge occurrence tables
-  POW_occurrence <- POW_occurrence_merge()
+  if (exists("POW_native") && exists("POW_introduced")){
+      # If both native and introduced exist, merge to create occurrence table
+      POW_occurrence <- rbind(POW_native, POW_introduced)
+    } else {
+      # Else pass only native table to final occurrence
+      POW_occurrence <- POW_native
+      }
+    if (exists("POW_extinct")){
+      # Merge extinct occurrences if table exists
+      POW_occurrence <- rbind(POW_occurrence, POW_extinct)
+    }
+  # Rename occurrence table columns
+    names(POW_occurrence) <- c("id","CountryOccurrenceLookup",
+                                    "CountryOccurrenceName","ORIGIN","PRESENCE",
+                                    "SEASONALITY")
   # Extract and compile synonyms
   POW_synonyms <- POW_syn_compile()
   # Reformat Synonyms Table
-  POW_synonyms <<- POW_synonyms_reformat()
-  # Remove working tables for occurrence and synonyms
-  POW_remove_unused()
+  POW_synonyms <<- POW_synonyms_reformat(POW_synonyms)
   # Recode occurrence records
   POW_occurrence_recode()
   # Build references table
-  references <<- POW_citations_generate()
+  references <<- POW_citations_generate(POW_occurrence)
 }
 
 #### POW Functions ####
@@ -178,7 +192,7 @@ POW_extinct_occ_reformat <- function (){
 # Throws: 
 # Purpose: Merges recoded occurrence fields into single output table
 POW_occurrence_merge <- function (){
-  
+
   if (exists("POW_native") && exists("POW_introduced")){
     # If both native and introduced exist, merge to create occurrence table
     POW_occurrence_temp <- rbind(POW_native, POW_introduced)
@@ -237,95 +251,124 @@ POW_syn_compile <- function (){
 # Returns: POW_synonyms (reformatted data frame)
 # Throws: 
 # Purpose: Reformats synonym table to comply with IUCN standards
-POW_synonyms_reformat <- function () {
+POW_synonyms_reformat <- function (x) {
+  POW_synonyms_temp <- x
   # Assign infrarankAuthor field to species where designation is for species
-  POW_synonyms$speciesAuthor[which(POW_synonyms$infraType == "SPECIES")] <-
-    POW_synonyms$infrarankAuthor[which(POW_synonyms$infraType == "SPECIES")]
+  POW_synonyms_temp$speciesAuthor[which(
+    POW_synonyms_temp$infraType == "SPECIES")] <-
+    POW_synonyms_temp$infrarankAuthor[which(
+      POW_synonyms_temp$infraType == "SPECIES")]
   
   # Remove infrarankAuthor fields where designation is for species
-  POW_synonyms$infrarankAuthor[which(POW_synonyms$infraType == "SPECIES")] <-
+  POW_synonyms_temp$infrarankAuthor[which(
+    POW_synonyms_temp$infraType == "SPECIES")] <-
     NA
   
   # Assign subspecies names to the infrarankName column
-  POW_synonyms$infrarankName[which(POW_synonyms$infraType == "SUBSPECIES")] <-
+  POW_synonyms_temp$infrarankName[which(
+    POW_synonyms_temp$infraType == "SUBSPECIES")] <-
     substr(
-      POW_synonyms$name[which(POW_synonyms$infraType == "SUBSPECIES")],
-      str_locate(POW_synonyms$name, "subsp. ")[which(POW_synonyms$infraType ==
-                                                       "SUBSPECIES")] + 7,
-      nchar(POW_synonyms$name[which(POW_synonyms$infraType == "SUBSPECIES")])
+      POW_synonyms_temp$name[which(
+        POW_synonyms_temp$infraType == "SUBSPECIES")],
+      str_locate(POW_synonyms_temp$name, "subsp. ")[which(
+        POW_synonyms_temp$infraType ==
+            "SUBSPECIES")] + 7,
+      nchar(POW_synonyms_temp$name[which(
+        POW_synonyms_temp$infraType == "SUBSPECIES")])
     )
   
   # Assign variety names to the infrarankName column
-  POW_synonyms$infrarankName[which(POW_synonyms$infraType == "VARIETY")] <-
+  POW_synonyms_temp$infrarankName[which(
+    POW_synonyms_temp$infraType == "VARIETY")] <-
     substr(
-      POW_synonyms$name[which(POW_synonyms$infraType == "VARIETY")],
-      str_locate(POW_synonyms$name, "var. ")[which(POW_synonyms$infraType ==
-                                                     "VARIETY")] + 5,
-      nchar(POW_synonyms$name[which(POW_synonyms$infraType == "VARIETY")])
+      POW_synonyms_temp$name[which(
+        POW_synonyms_temp$infraType == "VARIETY")],
+      str_locate(POW_synonyms_temp$name, "var. ")[which(
+        POW_synonyms_temp$infraType ==
+          "VARIETY")] + 5,
+      nchar(POW_synonyms_temp$name[which(
+        POW_synonyms_temp$infraType == "VARIETY")])
     )
   
   # add and populate specific epithet column
   # Species level
-  POW_synonyms$speciesName[which(POW_synonyms$infraType == "SPECIES")] <-
+  POW_synonyms_temp$speciesName[which(
+    POW_synonyms_temp$infraType == "SPECIES")] <-
     substr(
-      POW_synonyms$name[which(POW_synonyms$infraType == "SPECIES")],
-      str_locate(POW_synonyms$name, " ")[which(POW_synonyms$infraType ==
-                                                 "SPECIES")] + 1,
-      nchar(POW_synonyms$name[which(POW_synonyms$infraType == "SPECIES")])
+      POW_synonyms_temp$name[which(
+        POW_synonyms_temp$infraType == "SPECIES")],
+      str_locate(POW_synonyms_temp$name, " ")[which(
+        POW_synonyms_temp$infraType ==
+           "SPECIES")] + 1,
+      nchar(POW_synonyms_temp$name[which(
+        POW_synonyms_temp$infraType == "SPECIES")])
     )
   
   # Subspecies level
-  POW_synonyms$speciesName[which(POW_synonyms$infraType == "SUBSPECIES")] <-
+  POW_synonyms_temp$speciesName[which(
+    POW_synonyms_temp$infraType == "SUBSPECIES")] <-
     substr(
-      POW_synonyms$name[which(POW_synonyms$infraType == "SUBSPECIES")],
-      str_locate(POW_synonyms$name, " ")[which(POW_synonyms$infraType ==
-                                                 "SUBSPECIES")] + 1,
-      str_locate(POW_synonyms$name, "subsp. ")[which(POW_synonyms$infraType ==
-                                                       "SUBSPECIES")] - 2
+      POW_synonyms_temp$name[which(
+        POW_synonyms_temp$infraType == "SUBSPECIES")],
+      str_locate(POW_synonyms_temp$name, " ")[which(
+        POW_synonyms_temp$infraType ==
+          "SUBSPECIES")] + 1,
+      str_locate(POW_synonyms_temp$name, "subsp. ")[which(
+        POW_synonyms_temp$infraType ==
+          "SUBSPECIES")] - 2
     )
   
   
   # Variety level
-  POW_synonyms$speciesName[which(POW_synonyms$infraType == "VARIETY")] <-
+  POW_synonyms_temp$speciesName[which(
+    POW_synonyms_temp$infraType == "VARIETY")] <-
     substr(
-      POW_synonyms$name[which(POW_synonyms$infraType == "VARIETY")],
-      str_locate(POW_synonyms$name, " ")[which(POW_synonyms$infraType ==
-                                                 "VARIETY")] + 1,
-      str_locate(POW_synonyms$name, "var. ")[which(POW_synonyms$infraType ==
-                                                     "VARIETY")] - 2
+      POW_synonyms_temp$name[which(
+        POW_synonyms_temp$infraType == "VARIETY")],
+      str_locate(POW_synonyms_temp$name, " ")[which(
+        POW_synonyms_temp$infraType ==
+           "VARIETY")] + 1,
+      str_locate(POW_synonyms_temp$name, "var. ")[which(
+        POW_synonyms_temp$infraType ==
+           "VARIETY")] - 2
     )
   
   # Remove forma and subvarieties
-  POW_synonyms <-
-    POW_synonyms[!(POW_synonyms$infraType %in% c("Form", "Subvariety")), ]
-  POW_synonyms$infraType[which(POW_synonyms$infraType == "SPECIES")] <- NA
-  POW_synonyms$infraType <- lapply(POW_synonyms$infraType, standardize_level)
+  POW_synonyms_temp <-
+    POW_synonyms_temp[!(POW_synonyms_temp$infraType %in% 
+                          c("Form", "Subvariety")),]
+  POW_synonyms_temp$infraType[which(
+    POW_synonyms_temp$infraType == "SPECIES")] <-
+    NA
+  POW_synonyms_temp$infraType <-
+    lapply(POW_synonyms_temp$infraType, standardize_level)
   # Assign NA value for species level
-  POW_synonyms$infraType[which(lapply(POW_synonyms$infraType,class)=="list")] <- NA
+  POW_synonyms_temp$infraType[which(
+    lapply(POW_synonyms_temp$infraType, class) ==
+                                      "list")] <- NA
   # Reorder table
-  POW_synonyms <- POW_synonyms[,c("internal_taxon_id","name","speciesAuthor","speciesName",
-                  "infraType", "infrarankName", "infrarankAuthor")]
+  POW_synonyms_temp <-
+    POW_synonyms_temp[, c(
+      "internal_taxon_id",
+      "name",
+      "speciesAuthor",
+      "speciesName",
+      "infraType",
+      "infrarankName",
+      "infrarankAuthor"
+    )]
   # Set table as global variable
-  return(POW_synonyms)
-}
-
-# Parameters: POW_data, POW_extinct, POW_introduced, POW_native 
-# Returns: 
-# Throws: 
-# Purpose: Removes temporary tables used to compile data
-POW_remove_unused <- function (){
-  rm(POW_extinct,pos = ".GlobalEnv")
-  rm(POW_introduced,pos = ".GlobalEnv")
-  rm(POW_native,pos = ".GlobalEnv")
+  return(POW_synonyms_temp)
 }
 
 # Parameters: NS_occ (table)
 # Returns: references (table)
 # Throws: none
 # Purpose: Add NS citations to references table
-POW_citations_generate <- function (){
+POW_citations_generate <- function (x){
+  POW_occurrence_temp <- x
   # Identify taxa using NS data
-  POW_ids <- unique(POW_occurrence$id)
+  POW_ids <- unique(POW_occurrence_temp$id)
   # Generate references
   POW_citations <- ref.key[which(ref.key$keywords == "POWO"),]
   POW_citations <- rbind(POW_citations, POW_citations[rep(1, length(POW_ids)-1), ])

@@ -52,7 +52,7 @@ PROMPT_credentials_main <- function(){
     # Overridden for public consumption. During testing, the same dataset can be
     # run repeatedly using a single downloaded dataset by replacing the "N" above
     # With the commented out function below
-      # PROMPT_old_GBIF_toggle()
+    PROMPT_old_GBIF_toggle()
   }
   
   # Run Red List API check only if user indicates they want to and no credentials are present

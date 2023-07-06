@@ -71,10 +71,9 @@ fna_search_main <- function (){
   # Generate in-text citations
   fna_in_text()
   # Remove working variables and tables
-  rm(fna_tax_check,pos = ".GlobalEnv")
-  rm(fna_elev,pos = ".GlobalEnv")
-  rm(fna_habitat,pos = ".GlobalEnv")
-  rm(fna_sub_res,pos = ".GlobalEnv")
+  # rm(fna_tax_check,pos = ".GlobalEnv")
+  # rm(fna_elev,pos = ".GlobalEnv")
+  # rm(fna_sub_res,pos = ".GlobalEnv")
   } else {
     # Delete dummy output file
     file.remove("Outputs/output_file_name.csv")
@@ -201,7 +200,7 @@ fna_subtaxa_number <- function(){
     "Outputs/output_file_name.csv")
   
   # Caclulate number of subtaxa for each taxon
-  fna_tax_check$num_subtaxa <<- 0
+  fna_tax_check$num_subtaxa <- 0
   fna_tax_check$num_subtaxa[which(!is.na(fna_tax_check$accepted_match))] <<-
     unlist(lapply(fna_num_subtaxa,length))
   
@@ -227,7 +226,7 @@ fna_subtaxa_retrieve <- function (){
     # Append species ID numbers to results
     # If one species returned, fna_sub_res will be a matrix,
     # if >1 species returned, fna_sub_res will be a list
-    if (class(fna_sub_res)[1] == "list"){
+    if (length(fna_sub_res) > 1){
       print("multiple species with subtaxa")
       names(fna_sub_res) <- fna_tax_check$id[which(
         fna_tax_check$num_subtaxa>0)]
@@ -242,7 +241,7 @@ fna_subtaxa_retrieve <- function (){
       names(fna_sub_res) <- fna_tax_check$id[which(
         fna_tax_check$num_subtaxa>0)]
       # Convert from wide to long
-      fna_sub_res <- data.frame(stack(fna_sub_res),stringsAsFactors=FALSE)
+      fna_sub_res <- data.frame(stack(as.data.frame(fna_sub_res)),stringsAsFactors=FALSE)
       # Convert columns to character and numeric types
       fna_sub_res$id <- as.numeric(as.character(fna_sub_res$id))
       # Convert to global variable
@@ -294,30 +293,26 @@ fna_subtaxa_merge <- function(){
 # Retrieve Authority for accepted taxa
 fna_author_retrieve <- function(){
   # Build queries column for authority
-  ###BUG
-  
   author_query <- paste("[[Taxon name::",
                         fna_tax_check$accepted_match,
                         "]]|?Authority")
-  
   # Run query for authority
   fna_auth <- mapply(fna_prop_query_catch,
                       author_query,
                       "Outputs/output_file_name.csv")
-  
-  # append to fna_tax_check
-  if(class(fna_auth) != "list"){fna_auth<- as.list(unname(fna_auth[1,]))
-  } #else {
-    
-  #}
-  
   # Add column for FNA authority
   fna_tax_check$fna_author <- NA
-  # Fill column
-  fna_tax_check$fna_author <- as.list(fna_auth)
-  # Assign fna_tax_check as global variable
+  # append to fna_tax_check  
+    # Handler for results as lists (occurs when there are no subtaxa)
+  if(all(class(fna_auth) == "list")){
+    fna_tax_check[which(!is.na(fna_auth)),]$fna_author <- 
+      lapply(fna_auth[which(!is.na(fna_auth))], function(x){
+        x$Authority
+      })
+    } else {
+      fna_tax_check$fna_author <- fna_auth[1,]
+    }
   fna_tax_check <<- fna_tax_check
-  
 }
 
 # Retrieve volume for each species
@@ -327,23 +322,23 @@ fna_volume_retrieve <- function(){
   # Run query for volume
   fna_vol <- mapply(fna_prop_query_catch,volume_query,
                     "Outputs/output_file_name.csv")
-  # Append to results
-  if(class(fna_vol) != "list"){fna_vol<- as.list(unname(fna_vol[1,]))}
-  
-  # Unlist fna_vol
-  fna_vol <- lapply(fna_vol, function(x){
-    x <- x[[1]][[1]]
-    unlist(x)
+  # Add column for volume
+  fna_tax_check$fna_vol <- NA
+  foo <<- fna_vol
+
+    # append to fna_tax_check  
+    # Handler for results as lists (occurs when there are no subtaxa)
+    if(all(class(fna_vol) == "list")){
+      fna_tax_check[which(!is.na(fna_vol)),]$fna_vol <- 
+        lapply(fna_vol[which(!is.na(fna_vol))], function(x){
+          x$Volume
+        })
+    } else {
+      fna_tax_check$fna_vol <- fna_vol[1,]
+    }
+    fna_tax_check <<- fna_tax_check
   }
-  )
-
-  fna_tax_check$fna_vol <<- fna_vol
   
-  # # Replace "NULL" values with NA
-  # fna_tax_check$fna_vol[which(fna_tax_check$fna_vol=="NULL")] <<-
-  #   NA
-}
-
 # Retrieve habitat for each species
 fna_habitat_retrieve <- function(){
   # Build queries for habitat
@@ -351,7 +346,7 @@ fna_habitat_retrieve <- function(){
                          fna_tax_check$accepted_match,"]]|?Habitat")
   habitat_text <- list()
   # Run query for habitat works
-  fna_habitat <<- mapply(fna_prop_query_catch,habitat_query,
+  fna_habitat <- mapply(fna_prop_query_catch,habitat_query,
                          "Outputs/output_file_name.csv")
   
   if (class(fna_habitat) == "list"){
@@ -470,16 +465,18 @@ fna_in_text <- function(){
 fna_habitat_merge <- function(){
   fna_tax_check$habitat <- unlist(fna_tax_check$habitat)
   # Concatenate habitat narratives
+  if (!all(is.na(fna_tax_check$habitat[which(fna_tax_check$entered_name == "SUBTAXON")]))){
+  
   fna_habitat_concatenated <-
     aggregate(habitat ~ id,
               fna_tax_check[which(fna_tax_check$entered_name == "SUBTAXON"), ],
               paste, collapse = ", ")
-  
   # Append to fna_tax_check table
   fna_tax_check$habitat[which(fna_tax_check$entered_name!="SUBTAXON")][match(
     fna_habitat_concatenated$id,
     fna_tax_check$id[which(fna_tax_check$entered_name!="SUBTAXON")]
   )] <<- fna_habitat_concatenated$habitat
+  }
   print("habitat done")
 }
 

@@ -28,7 +28,7 @@ if(!is.na(match("taxonomy.csv", tolower(list.files("User_inputs/"))))){
 
 # Subset list
 if (exists('spec_max')){
-  spec.list <- spec.list[c(spec_min:spec_max),] 
+  spec.list <- spec.list[c(spec_min:spec_max),]
 }
 
 # Remove no-break spaces

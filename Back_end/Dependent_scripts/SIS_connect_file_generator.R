@@ -354,24 +354,24 @@ elevation_narrative <- function (){
 
   # Build final elevation table
   elevation_final <- fna_tax_check_final[,which(names(fna_tax_check_final) %in% 
-                                                 c("id","elev_min","elev_upper"))]
-  
+                                                 c("id","elev_min",
+                                                   "elev_upper"))]
   # Rename fna_elevation_data columns
   names(elevation_final) <- c("internal_taxon_id","min_elev","max_elev")
-  
   # Add FNA citations
   elevation_final <- merge(elevation_final, references[
     which(references$author == "Flora of North America Editorial Committee"),
     which(names(references) %in% c("internal_taxon_id","in_text"))])
   # Rename columns to match GBIF table
-  names(elevation_final) <- c("internal_taxon_id","min_elev","max_elev","source")
+  names(elevation_final) <- c("internal_taxon_id","min_elev","max_elev",
+                              "source")
 
   # Remove rows without data
   elevation_final <- elevation_final[which(!is.na(elevation_final$min_elev)),]
   elevation_final <- elevation_final[which(elevation_final$min_elev != ""),]
   # Assign GBIF source to table
   GBIF_elevation$source <- ref.key$in_text[which(ref.key$keywords=="GBIF")]
-  
+
   # Merge tables
   elevation_final <- rbind(elevation_final, GBIF_elevation)
 
@@ -381,6 +381,7 @@ elevation_narrative <- function (){
   }
   # Remove duplicates
   elevation_final <- elevation_final[which(!duplicated(elevation_final$internal_taxon_id)),]
+  foo <<- elevation_final
   return(elevation_final)
 }
 

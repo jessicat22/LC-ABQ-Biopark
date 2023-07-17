@@ -67,7 +67,8 @@ fna_search_main <- function (){
     file.remove("Outputs/output_file_name.csv")
     #### FNA Citations ####
     fna_citation_build(fna_data_draft)
-    
+    # Unnest data #
+    fna_data_draft <- unnest(fna_data_draft, cols = names(fna_data_draft))
     # Generate in-text citations
     fna_tax_check_final <<- fna_in_text(fna_data_draft)
     print("FNA functions complete.")

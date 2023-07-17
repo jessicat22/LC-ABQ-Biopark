@@ -15,6 +15,11 @@ if (!exists("current.dir")){
   print(getwd())
 }
 
+#### Load packages ####
+packages <- c("keyring")
+
+lapply(packages, package.check)
+
 # Define file remover function
 remove_files <- function (x){
   unlink(x, recursive = TRUE, force = TRUE)
@@ -38,5 +43,5 @@ files_to_remove <-
 # Remove files
 lapply(files_to_remove, remove_files)
 
-# Remove kerying password
-key_delete(gbif_pass)
+# # Remove kerying password
+# key_delete(gbif_pass)

@@ -405,9 +405,10 @@ distribution_extremes_compile <- function (){
   ## Define extreme occurrences
   # Subset only native occurrences
   native_occ_final <- subset(GBIF_point_data, ORIGIN==1)
+  print(native_occ_final)
   
   native_occ_final <- split( native_occ_final , f = native_occ_final$ID_NO )
-  
+
   # Define southernmost occurrence
   south.occ <- lapply(native_occ_final, function (x){
     x[which.min(x$DEC_LAT),]

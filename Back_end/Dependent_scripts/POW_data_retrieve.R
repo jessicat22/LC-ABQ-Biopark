@@ -26,18 +26,21 @@ POW_data_main <- function(){
   # Extract native occurrence data
   # Reformat native occurrence data
   POW_native <- POW_native_occ_reformat()
+
     # Extract introduced occurrence data
   # Reformat introduced occurrence data
   POW_introduced <- POW_introduced_occ_reformat()
   # Extract and reformat extinct occurrences
   POW_extinct <- POW_extinct_occ_reformat()
+  print(POW_extinct)
   # Merge occurrence tables
   if (exists("POW_native") && exists("POW_introduced")){
       # If both native and introduced exist, merge to create occurrence table
       POW_occurrence <- rbind(POW_native, POW_introduced)
-    } else {
+      } else {
       # Else pass only native table to final occurrence
-      POW_occurrence <- POW_native
+      print("No introduced")
+        POW_occurrence <- POW_native
       }
     if (exists("POW_extinct")){
       # Merge extinct occurrences if table exists
@@ -52,7 +55,7 @@ POW_data_main <- function(){
   # Reformat Synonyms Table
   POW_synonyms <<- POW_synonyms_reformat(POW_synonyms)
   # Recode occurrence records
-  POW_occurrence_recode()
+  POW_occurrence <<- POW_occurrence_recode(POW_occurrence)
   # Build references table
   references <<- POW_citations_generate(POW_occurrence)
 }
@@ -384,8 +387,8 @@ POW_citations_generate <- function (x){
 # Returns: POW_occ (table)
 # Throws: none
 # Purpose: Recodes occurrence codes from WGSRPD to IUCN. Removes unused columns.
-POW_occurrence_recode <- function() {
-  if (exists("POW_occurrence")) {
+POW_occurrence_recode <- function(x) {
+  POW_occurrence <- x
     # Add source field
     POW_occurrence$source <- "Kew"
     # Index POWO Code to return IUCN occ code
@@ -398,13 +401,13 @@ POW_occurrence_recode <- function() {
     POW_occurrence$CountryOccurrenceLookup
     
     # Remove unused name field
-    POW_occurrence <<-
+    POW_occurrence <-
       POW_occurrence[,-which(
         names(POW_occurrence) %in% c(
           "name"
         )
       )]
-  }
+  return(POW_occurrence)
 }
 
 #### Execute script ####
